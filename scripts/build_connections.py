@@ -6,7 +6,7 @@ import openpyxl
 
 ROOT = Path(__file__).resolve().parents[1]
 RAW = ROOT/'data/raw'
-p = argparse.ArgumentParser(); p.add_argument('--canary', action='store_true'); args = p.parse_args()
+p = argparse.ArgumentParser(); p.add_argument('--canary', action='store_true'); p.add_argument('--output-dir',type=Path,default=ROOT/'data'); args = p.parse_args();args.output_dir.mkdir(parents=True,exist_ok=True)
 def write(path, obj):
     tmp=path.with_suffix('.tmp'); tmp.write_text(json.dumps(obj,ensure_ascii=False,indent=2)+'\n'); tmp.replace(path)
 metadata=json.loads((RAW/'countries.json').read_text())
@@ -14,7 +14,7 @@ nodes={c['cca3']:dict(code=c['cca3'],name={'USA':'США','RUS':'Россия','
 aliases={}
 for c in metadata:
     for name in [c['name']['common'],c['name']['official']]+c.get('altSpellings',[]): aliases[name]=c['cca3']
-aliases.update({'US':'USA','Russian Federation':'RUS','Iran':'IRN','Türkiye':'TUR','Turkey':'TUR','South Korea':'KOR','Korea, South':'KOR','Korea, North':'PRK','Trinidad & Tobago':'TTO','Taiwan':'TWN','Congo (Brazzaville)':'COG','Congo (Kinshasa)':'COD','Bahama Islands':'BHS','Ivory Coast':'CIV','Virgin Islands (U.S.)':'VIR','United Arab Emirates':'ARE'})
+aliases.update({'US':'USA','Russian Federation':'RUS','Iran':'IRN','Türkiye':'TUR','Turkey':'TUR','South Korea':'KOR','Korea, South':'KOR','Korea, North':'PRK','Trinidad & Tobago':'TTO','Taiwan':'TWN','Congo (Brazzaville)':'COG','Congo (Kinshasa)':'COD','Bahama Islands':'BHS','Ivory Coast':'CIV','Virgin Islands (U.S.)':'VIR','United Arab Emirates':'ARE','St. Lucia':'LCA','St. Vincent and the Grenadines':'VCT','Virgin Islands (British)':'VGB','Turkiye':'TUR','Georgia, Republic of':'GEO','Gibralter':'GIB','Djbouti':'DJI','Macau S.A.R.':'MAC','Micronesia, Federated States of':'FSM','Serbia (Excludes Kosovo)':'SRB'})
 regions={
  'Europe':('Европа',[16,53]),'EU':('ЕС',[15,51]),'Non-EU Europe':('Европа вне ЕС',[23,61]),
  'Other Europe':('Другие страны Европы',[22,55]),'Other EU':('Другие страны ЕС',[17,50]),'Rest of Europe':('Остальная Европа',[24,61]),
@@ -57,11 +57,11 @@ for product,code in [('crude','EPC0'),('gasoline','EPM0F'),('diesel','EPD0')]:
                 fr,to=(partner,'USA') if direction=='imports' else ('USA',partner)
                 add(fr,to,product,value/365 if value is not None else None,'kbpd',2025,source,'USA')
 sources['insee-france']=dict(label='INSEE / SDES · 2025 provisoire',url='https://www.insee.fr/fr/statistiques/2119697',sha256=hashlib.sha256((RAW/'france-crude-imports-2025.html').read_bytes()).hexdigest(),boundary='Million tonnes; country of extraction; includes condensates and refinery feedstocks; provisional 2025')
-assert '2025' in (RAW/'france-crude-imports-2025.html').read_text()
-totals['FRA:crude:imports']=45.9
-for partner,value in [('DZA',4.3),('LBY',4.3),('NGA',5.5),('USA',10.1),('KAZ',6.8),('NOR',4.4),('SAU',1.1)]:
+from source_extract import france_rows
+france=france_rows(RAW/'france-crude-imports-2025.html')
+totals['FRA:crude:imports']=france['total']
+for partner,value in france['countries'].items():
     add(partner,'FRA','crude',value,'Mt',2025,'insee-france','FRA','Страна добычи по INSEE/SDES. Данные предварительные; не страна последней отгрузки. Включены конденсаты и другое сырьё НПЗ.')
-assert sum([4.3,4.3,5.5,10.1,6.8,4.4,1.1])==36.5
 sources['ei-gas']=dict(label='Energy Institute 2026 · газ · 2025',url='https://www.energyinst.org/statistical-review/resources-and-data-downloads',boundary='Billion cubic metres; rows are destinations, columns origins; re-exports included for LNG',sha256=hashlib.sha256((RAW/'EI-2026.xlsx').read_bytes()).hexdigest())
 w=openpyxl.load_workbook(RAW/'EI-2026.xlsx',read_only=True,data_only=True)
 for sheet,product,header,start in [('Gas trade 2025 - LNG','lng',3,4),('Gas trade 2025 - pipeline','pipeline',2,3)]:
@@ -86,7 +86,7 @@ for sheet,field in [('Gas Production - Bcm','production'),('Gas Consumption - Bc
         if code and not code.startswith('region:') and isinstance(v,(int,float)) and (not args.canary or code in {'USA','FRA','CAN','MEX'}):gas.setdefault(code,{})[field]=v
 if not args.canary:
     sources['ei-oil']=dict(label='Energy Institute 2025 · сырая нефть · 2024',url='https://www.energyinst.org/statistical-review/resources-and-data-downloads',boundary='Million tonnes; country and regional groups kept separate; 2024')
-    old=json.loads((ROOT/'data/trade.json').read_text())
+    old=json.loads((args.output_dir/'trade.json').read_text())
     for f in old['flows']:
         origin=aliases.get(f['fromCode']);dest=aliases.get(f['toCode'])
         if origin=='USA' or dest=='USA':continue # US national 2025 replaces regional 2024 series.
@@ -130,5 +130,5 @@ assert lookup['USA','CHN','crude','eia-crude-exports']['value']==8321/365
 assert lookup['USA','FRA','crude','insee-france']['value']==10.1
 assert lookup['MEX','USA','pipeline','ei-gas']['value']<0.01
 assert abs(lookup['USA','FRA','lng','ei-gas']['value']-14.278012644141281)<1e-9
-write(ROOT/'data/connections.json',output)
+write(args.output_dir/'connections.json',output)
 print(f'{"CANARY" if args.canary else "FULL"}: {len(flows)} directed flows; {len(sites)} sites; 2025 national + 2024 regional crude')

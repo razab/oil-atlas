@@ -4,3 +4,5 @@ node_modules/
 reports/
 data/raw/*.xlsx
 data/raw/*.download
+
+__pycache__/

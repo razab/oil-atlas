@@ -3,7 +3,7 @@ import argparse, json, math, os, urllib.request, urllib.parse, hashlib
 from pathlib import Path
 import openpyxl
 ROOT = Path(__file__).resolve().parents[1]
-p = argparse.ArgumentParser();p.add_argument('--canary', action='store_true');p.add_argument('--offline', action='store_true');a=p.parse_args()
+p = argparse.ArgumentParser();p.add_argument('--canary', action='store_true');p.add_argument('--offline', action='store_true');p.add_argument('--output-dir',type=Path,default=ROOT/'data');a=p.parse_args();a.output_dir.mkdir(parents=True,exist_ok=True)
 RAW=ROOT/'data/raw';RAW.mkdir(exist_ok=True)
 YEAR=2025
 CANARY={'USA','CHN','SAU','JPN','LUX'}
@@ -99,8 +99,8 @@ assert records['CHN']['balance']<0 and records['SAU']['balance']>0
 assert records['LUX']['production']==0 and records['JPN']['reserves'] is None
 assert 90<world['production']<120 and 90<world['consumption']<120
 assert all(c['balance'] is None or math.isclose(c['balance'],c['production']-c['consumption']) for c in records.values())
-durable(ROOT/'data/snapshot.json',result)
-durable(ROOT/'data/trade.json',dict(year=2024,unit='million tonnes per year',canary=a.canary,flows=sorted(flows,key=lambda t:-t['value'])))
+durable(a.output_dir/'snapshot.json',result)
+durable(a.output_dir/'trade.json',dict(year=2024,unit='million tonnes per year',canary=a.canary,flows=sorted(flows,key=lambda t:-t['value'])))
 provenance=dict(eiWorkbook=dict(publisher='Energy Institute',edition=2026,downloadMirror='https://nextbarrel.io/files/EI-Stats-Review-ALL-data.xlsx',sha256=hashlib.sha256((RAW/'EI-2026.xlsx').read_bytes()).hexdigest(),sheets=['Oil Production - barrels','Oil Consumption - barrels']),trade=dict(publisher='Energy Institute',edition=2025,year=2024,downloadMirror='https://energyinst.net/all-data/EI-stats-review-all-data.xlsx',sha256=hashlib.sha256((RAW/'EI-2025-trade.xlsx').read_bytes()).hexdigest(),sheet='Oil - Inter-area movements'),reserves=dict(publisher='OPEC',edition=2025,year=2024,table='3.1',printedPage=22,url=sources[2]['url']),retrieved='2026-10-02')
 durable(RAW/'provenance.json',provenance)
-print(json.dumps(dict(countries=len(records),balances=sum(c['balance'] is not None for c in records.values()),flows=len(flows),world=world,canary=a.canary,sha256=hashlib.sha256((ROOT/'data/snapshot.json').read_bytes()).hexdigest())))
+print(json.dumps(dict(countries=len(records),balances=sum(c['balance'] is not None for c in records.values()),flows=len(flows),world=world,canary=a.canary,sha256=hashlib.sha256((a.output_dir/'snapshot.json').read_bytes()).hexdigest())))

@@ -1,0 +1,40 @@
+{
+  "files": {
+    "EI-2025-trade.xlsx": "b50e7cb2964e3a73b0ea63838a99d1775cca18545dd702c26083a4488f205d63",
+    "EI-2026.xlsx": "846e72c22d0a6cc14358d0faa0caafa99d6080c65218b19954dd62b11b72c448",
+    "countries.json": "11e58223e2b015f09fb26f8b449eccd0f434f0788f493c688136ef0ac3f2fe08",
+    "eia-crude-ngl-2025.json": "03f5b06993f51d700b2ef0bc2082d251bc6903f36bafe7e90d1f33d168e6fa3d",
+    "france-crude-imports-2025.html": "01b0dce9d7470d4d04823a82e2c4ac8f678e1d256302bcc6deba801622b09365",
+    "opec-reserves-table-3.1-2024.txt": "b6bed89cd9297b8c867d15e3a99a3ecb82504c870dacdf79e9b80d7b5bcd71f6",
+    "us-crude-exports-2025.html": "d3a366566944a4bb739d9d891c4f4bcf1ba8adfb35d1a4fda82c86a697e84b6e",
+    "us-crude-imports-2025.html": "a9f9c16d09ec15601cb700c5fc8d1e2787b70854f9d35635df0860757f71a65c",
+    "us-diesel-exports-2025.html": "890ae9871d74146dc17e48e9b514e888b42cb5aae0b48f77d8046c1f78981a21",
+    "us-diesel-imports-2025.html": "561188496125bb4960fa49c1c21469b49e35f00c3cc638eb9bef76b6da0acb44",
+    "us-fuel-supply-2025.html": "84401eaee7c200e2c594d198d026d6311446fed99f0d800290ecb09100b79629",
+    "us-gasoline-exports-2025.html": "14b5c447a36b14c01559cfe00ff16015ca481827bb60182d1447596803b00145",
+    "us-gasoline-imports-2025.html": "078ba56d0175cfd24d597f64a3f877e3e5e13e0459e18751d458052f3afe0ea7",
+    "us-lng-exit-2025.html": "7f3fa95be33e46733da7cd0b8b905e36819d9d2aab50ef99be5ed430657c17d8",
+    "us-state-crude-2025.html": "3223e29093e8cd98844ee90df354d11bc6660d8f579656416646d7b81142cd51"
+  },
+  "metadata": {
+    "EI-2026.xlsx": {
+      "publisher": "Energy Institute",
+      "edition": 2026,
+      "url": "https://www.energyinst.org/statistical-review/resources-and-data-downloads",
+      "download": "https://nextbarrel.io/files/EI-Stats-Review-ALL-data.xlsx",
+      "authentication": "Public mirror; publisher download email gated; workbook identity pinned, not independently authenticated"
+    },
+    "EI-2025-trade.xlsx": {
+      "publisher": "Energy Institute",
+      "edition": 2025,
+      "url": "https://energyinst.net/all-data/EI-stats-review-all-data.xlsx"
+    },
+    "opec-reserves-table-3.1-2024.txt": {
+      "publisher": "OPEC",
+      "edition": 2025,
+      "url": "https://www.opec.org/assets/assetdb/asb-2025.pdf",
+      "pdfSha256": "6cd5cbb4789a0ae5c7e1b623b93852ebefadc436be9251ab1f32efcab6efd104",
+      "extraction": "pdftotext -f 24 -l 24 -layout; page visually reviewed; table3.1 printedp22"
+    }
+  }
+}

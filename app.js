@@ -216,7 +216,12 @@ function focusSites(){
  const xy=projection(state.country==='USA'?[-97,37]:[3,51]);const k=state.country==='USA'?3.8:5.7;const cx=W*.5,cy=H*.5;svg.call(zoom.transform,d3.zoomIdentity.translate(cx-k*xy[0],cy-k*xy[1]).scale(k));
 }
 async function main(){
+ if(new URLSearchParams(location.search).get('audit')==='canary'){
+  const b=await loadValidatedData('canary');data=b.views.snapshot;graph=b.views.connections;
+  [countries,usStates]=await Promise.all(['data/world.json','data/us-states.json'].map(async u=>(await fetch(u)).json()));
+ }else{
  [data,graph,countries,usStates]=await Promise.all(['data/snapshot.json','data/connections.json?v=2-full-1','data/world.json','data/us-states.json'].map(async u=>{const r=await fetch(u);if(!r.ok)throw Error('Не удалось загрузить '+u);return r.json();}));
+ }
  byCode=Object.fromEntries(data.countries.map(c=>[c.iso,c]));byId=Object.fromEntries(data.countries.filter(c=>c.id).map(c=>[String(+c.id),c]));
  features=topojson.feature(countries,countries.objects.countries).features.filter(f=>String(f.id)!=='010');usStates=topojson.feature(usStates,usStates.objects.states).features;
  if(graph.nodes[state.country]?.kind!=='country')state.country='FRA';
