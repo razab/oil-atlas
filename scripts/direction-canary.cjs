@@ -4,7 +4,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs');
  const base=process.argv[2]||'http://127.0.0.1:8109',out=process.env.REPORT_DIR||'../reports/direction-canary';fs.mkdirSync(out,{recursive:true});
  const browser=await chromium.launch({headless:true,channel:'chrome'}),page=await browser.newPage({viewport:{width:1440,height:900}}),errors=[];page.on('pageerror',e=>errors.push(e.message));
  await page.goto(base+'/#v=2&country=RUS&product=lng&mode=trade&direction=imports&sites=0&all=0');await page.waitForFunction(()=>window.oilAtlas);
- assert.equal(await page.locator('.edge-hit').count(),0);assert.equal(await page.evaluate(()=>oilAtlas.graph.flows.length),702);
+ assert.equal(await page.locator('.edge-hit').count(),0);assert.equal(await page.evaluate(()=>oilAtlas.graph.flows.length),706);
  assert.ok((await page.locator('#coverage-note').innerText()).includes('10 направлений экспорта'));
  assert.ok(!(await page.locator('#coverage-note').innerText()).includes('Нет национальной'));
  assert.equal(await page.locator('[data-direction="exports"]').innerText(),'Покупатели (10)');

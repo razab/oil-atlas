@@ -18,14 +18,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Gate canary data before publication
-        run: python3 scripts/normalize.py --verify data/validation-canary/manifest.json
+      - name: Gate normalized data before publication
+        run: |
+          python3 scripts/normalize.py --verify data/validated/manifest.json
+          python3 scripts/test_validation.py
+          python3 scripts/test_data.py
+          python3 scripts/test_connections.py
       - uses: actions/configure-pages@v5
       - name: Assemble public files
         run: |
           mkdir -p public/data public/vendor
           cp index.html app.js style.css data-loader.js validation.html validation.js public/
-          cp -R data/validation-canary public/data/
+          cp -R data/validation-canary data/validated public/data/
           cp data/snapshot.json data/world.json data/trade.json data/connections.json data/us-states.json public/data/
           cp vendor/* public/vendor/
           cp data/LICENSE-world-atlas.txt data/LICENSE-us-atlas.txt public/data/

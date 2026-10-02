@@ -2,7 +2,7 @@
 import copy,json,sys,tempfile,unittest
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parent))
-from normalize import ROOT,verify,validate,conversion
+from normalize import ROOT,verify,validate,conversion,views,encoded,comparisons
 from source_extract import france_rows,eia_rows,numeric
 MANIFEST=ROOT/('data/validated/manifest.json' if (ROOT/'data/validated/manifest.json').exists() else 'data/validation-canary/manifest.json')
 B=verify(MANIFEST)
@@ -39,6 +39,14 @@ class ValidationTests(unittest.TestCase):
   with tempfile.TemporaryDirectory() as tmp:
    m=json.loads(MANIFEST.read_text());p=Path(tmp);(p/'manifest.json').write_text(json.dumps(m));(p/m['bundle']).write_text('{}')
    with self.assertRaisesRegex(ValueError,'checksum'):verify(p/'manifest.json')
+ def test_forged_coherent_view_rejected_by_source_evidence(self):
+  import hashlib
+  b=copy.deepcopy(B);r=next(r for r in b['observations'] if r['status']=='observed' and r['source']=='EI-2026.xlsx' and r['product']=='oil_liquids')
+  r['rawValue']*=2;r['value']*=2;b['views']=views(b['observations'],b['views'],b['scope']);validate(b)
+  with tempfile.TemporaryDirectory() as tmp:
+   p=Path(tmp);m=json.loads(MANIFEST.read_text());(p/m['evidence']).write_bytes((MANIFEST.parent/m['evidence']).read_bytes())
+   (p/m['bundle']).write_bytes(encoded(b));m['sha256']=hashlib.sha256(encoded(b)).hexdigest();(p/'manifest.json').write_text(json.dumps(m))
+   with self.assertRaisesRegex(ValueError,'source facts'):verify(p/'manifest.json')
  def test_wrong_source_column(self):
   for name,parser in [('france-crude-imports-2025.html',france_rows),('us-crude-imports-2025.html',eia_rows)]:
    with tempfile.TemporaryDirectory() as tmp:

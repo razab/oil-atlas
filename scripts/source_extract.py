@@ -17,7 +17,7 @@ def numeric(v):
         if math.isfinite(v) and v>=0:return float(v)
         raise ValueError(f'Invalid source number: {v}')
     s=str(v).strip().replace(',','')
-    if re.fullmatch(r'\d+(\.\d+)?',s):return float(s)
+    if re.fullmatch(r'(\d+(\.\d+)?|\.\d+)',s):return float(s)
     raise ValueError(f'Unknown source flag: {v!r}')
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 def aliases():
@@ -82,12 +82,27 @@ def extract(scope):
         if rows[2][col-1]!=2024:raise ValueError('Not the annual year column')
         unit='kbpd' if product=='oil_liquids' else 'bcm'
         if rows[2][0]!=('Thousand barrels daily' if unit=='kbpd' else 'Billion cubic metres'):raise ValueError('Wrong EI unit')
+        if scope=='full':
+            regional=[r for r in rows[4:] if str(r[0] or '').strip() in {'Total North America','Total S. & Cent. America','Total Europe','Total CIS','Total Middle East','Total Africa','Total Asia Pacific'}]
+            world=next(r[col] for r in rows if r[0]=='Total World')
+            if len(regional)!=7:raise ValueError('EI annual regional boundary changed')
+            check(sheet+' / seven regions vs world',sum(r[col] for r in regional),world,1e-7,unit)
+            # Each regional block includes named countries and residual groups exactly once.
+            block=[]
+            for r in rows[4:]:
+                name=str(r[0] or '').strip()
+                if name=='Total World':break
+                if not name:continue
+                if name.startswith('Total '):
+                    check(sheet+' / '+name,sum(numeric(x[col]) or 0 for x in block),r[col],1e-7,unit);block=[]
+                else:block.append(r)
+        basis=('crude, condensates, oil sands and NGL; excludes biofuels, synthetic fuels and refinery gain' if measure=='production' else 'inland demand, aviation/marine bunkers, refinery fuel/loss; excludes biofuels; includes coal/gas derivatives') if product=='oil_liquids' else 'annual natural gas; gas-equivalent volume standardized at GCV 40 MJ/m3'
         for i,row in enumerate(rows[4:],5):
             name=str(row[0] or '').strip();code=a.get(name)
             if not name:continue
             if scope=='canary' and code not in {'USA','FRA','RUS','LUX','JPN','CHN','SAU','CAN','MEX'} and name!='Total World':continue
             if code or name=='Total World':
-                fact('EI-2026.xlsx',f'{sheet}!{openpyxl.utils.get_column_letter(col+1)}{i}',numeric(row[col]),unit,2025,country=code or 'WORLD',product=product,measure=measure,basis='national annual statistics')
+                fact('EI-2026.xlsx',f'{sheet}!{openpyxl.utils.get_column_letter(col+1)}{i}',numeric(row[col]),unit,2025,country=code or 'WORLD',product=product,measure=measure,basis=basis)
             else:excluded.append(dict(source='EI-2026.xlsx',table=sheet,label=name,reason='Aggregate or footnote, not a country'))
     for sheet,product,header in [('Gas trade 2025 - LNG','lng',3),('Gas trade 2025 - pipeline','pipeline',2)]:
         rows=list(w[sheet].values);labels=[str(v or '').strip() for v in rows[header]]
@@ -121,7 +136,7 @@ def extract(scope):
                     if r['value'] and r['value']>0:raise ValueError(f'Unmapped positive EIA country: {r["label"]}')
                     excluded.append(dict(source=fn,label=r['label'],value=r['value'],reason='Historical or unspecified category; no positive 2025 observation'));continue
                 origin,dest=(partner,'USA') if direction=='imports' else ('USA',partner)
-                fact(fn,r['locator'],r['value'],'thousand_barrels/year',2025,origin=origin,destination=dest,product=product,measure='trade',reporter='USA',basis='EIA customs import origin' if direction=='imports' else 'EIA export destination')
+                fact(fn,r['locator'],r['value'],'thousand_barrels/year',2025,origin=origin,destination=dest,product=product,measure='trade',reporter='USA',rawText=r['raw'],basis='EIA customs import origin' if direction=='imports' else 'EIA export destination')
     fn='france-crude-imports-2025.html';use(fn);fr=france_rows(RAW/fn)
     regions=[r for r in fr['rows'] if r['label'] in {'Afrique','Amérique du Nord','URSS/ex-URSS','Mer du Nord','Moyen-Orient','Autres'}]
     check('France / regions vs total',sum(r['value'] for r in regions),fr['total'],.05*(len(regions)+1),'Mt')
@@ -141,6 +156,13 @@ def extract(scope):
         values=re.findall(r'&s='+re.escape(key)+r'&f=A[^>]*>([\d,]+)</a>',h)
         if len(values)!=1:raise ValueError('US supply duplicate or missing series')
         fact(fn,f'series={key}/year=2025',numeric(values[0]),'thousand_barrels/year',2025,country='USA',product=product,measure=measure,basis='EIA annual supply; refinery input is not final demand; distillates include heating oil')
+    fn='us-basins-2025.html';use(fn);h=(RAW/fn).read_text()
+    paragraphs=[clean(x) for x in re.findall(r'<p>(.*?)</p>',h,re.S)]
+    patterns=[('permian',r'In 2025, the Permian region .*?to ([\d.]+) million b/d'),('eagle-ford',r'Eagle Ford production .*?to ([\d.]+) million b/d in 2025'),('bakken',r'Bakken production fell .*?to ([\d.]+) million b/d'),('gulf',r'Crude oil production in GOA .*?in 2025, averaging ([\d.]+) million b/d')]
+    for site,pattern in patterns:
+        hits=[(i,m) for i,p in enumerate(paragraphs,1) if (m:=re.search(pattern,p))]
+        if len(hits)!=1:raise ValueError('Basin source boundary changed: '+site)
+        i,m=hits[0];fact(fn,f'article-paragraph={i}/basin={site}',numeric(m[1]),'million_bbl/day',2025,country='USA',subdivision=site,product='crude',measure='production',basis='EIA STEO March2026; rounded regional estimate; overlaps state totals, do not add together')
     fn='opec-reserves-table-3.1-2024.txt';use(fn);h=(RAW/fn).read_text()
     if not all(s in h for s in ['Table 3.1','2024','(mb)','Data excludes oil sands']):raise ValueError('OPEC reserves boundary changed')
     for i,line in enumerate(h.splitlines(),1):
@@ -159,7 +181,7 @@ def extract(scope):
             code=r['countryRegionId']
             if r['countryRegionTypeId']!='c' or code not in a.values():
                 excluded.append(dict(source=fn,label=code,reason='Aggregate or historical entity'));continue
-            fact(fn,f'response.data[{i}]',numeric(r['value']),'kbpd',2025,country=code,product='crude' if r['productId']=='57' else 'ngpl',measure='production',basis='EIA international annual crude/NGPL, separate products')
+            fact(fn,f'response.data[{i}]',numeric(r['value']),'kbpd',2025,country=code,product='crude' if r['productId']=='57' else 'ngpl',measure='production',rawText=str(r['value']),basis='EIA international annual crude/NGPL, separate products')
         use('EI-2025-trade.xlsx');old=openpyxl.load_workbook(RAW/'EI-2025-trade.xlsx',read_only=True,data_only=True);sheet='Oil - Inter-area movements';rows=list(old[sheet].values)
         if '2024' not in rows[0][0] or rows[2][0]!='Crude (million tonnes)':raise ValueError('EI oil year/unit changed')
         labels=rows[2];totalcol=labels.index('Total');end=next(i for i,r in enumerate(rows) if r[0]=='Total imports');leaves=list(enumerate(rows[4:end],4))

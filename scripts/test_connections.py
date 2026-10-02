@@ -27,7 +27,7 @@ class GraphChecks(unittest.TestCase):
   self.assertAlmostEqual(G['states']['Texas']['crude'],2102613/365)
   self.assertEqual(len(G['sites']),6 if G['canary'] else 16)
  def test_graph_integrity_and_years(self):
-  self.assertEqual(len(G['flows']),55 if G['canary'] else 702)
+  self.assertEqual(len(G['flows']),55 if G['canary'] else 706)
   self.assertEqual(len({f['id'] for f in G['flows']}),len(G['flows']))
   for f in G['flows']:
    self.assertGreater(f['value'],0);self.assertIn(f['origin'],G['nodes']);self.assertIn(f['destination'],G['nodes'])

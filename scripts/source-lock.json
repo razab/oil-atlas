@@ -14,7 +14,8 @@
     "us-gasoline-exports-2025.html": "14b5c447a36b14c01559cfe00ff16015ca481827bb60182d1447596803b00145",
     "us-gasoline-imports-2025.html": "078ba56d0175cfd24d597f64a3f877e3e5e13e0459e18751d458052f3afe0ea7",
     "us-lng-exit-2025.html": "7f3fa95be33e46733da7cd0b8b905e36819d9d2aab50ef99be5ed430657c17d8",
-    "us-state-crude-2025.html": "3223e29093e8cd98844ee90df354d11bc6660d8f579656416646d7b81142cd51"
+    "us-state-crude-2025.html": "3223e29093e8cd98844ee90df354d11bc6660d8f579656416646d7b81142cd51",
+    "us-basins-2025.html": "3b22c50e3a279c3c39e298c9c7434a9b02d1e1e7c17b10c67b7a1ddae7b1f960"
   },
   "metadata": {
     "EI-2026.xlsx": {
@@ -35,6 +36,12 @@
       "url": "https://www.opec.org/assets/assetdb/asb-2025.pdf",
       "pdfSha256": "6cd5cbb4789a0ae5c7e1b623b93852ebefadc436be9251ab1f32efcab6efd104",
       "extraction": "pdftotext -f 24 -l 24 -layout; page visually reviewed; table3.1 printedp22"
+    },
+    "us-basins-2025.html": {
+      "publisher": "EIA",
+      "url": "https://www.eia.gov/todayinenergy/detail.php?id=67404",
+      "edition": "STEO March 2026; article March31,2026",
+      "retrieved": "2026-10-02"
     }
   }
 }

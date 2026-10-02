@@ -240,15 +240,15 @@
         -27
       ],
       "production": 0.34017255851715017,
-      "consumption": 1.0923163002853133,
+      "consumption": 1.0923163002853136,
       "crude": 0.246,
       "ngl": 0.094,
       "reserves": 1.803,
       "reserveYear": 2024,
       "productionSource": "Energy Institute 2026",
       "consumptionSource": "Energy Institute 2026",
-      "balance": -0.7521437417681631,
-      "yearsConsumption": 4.522248753503909,
+      "balance": -0.7521437417681633,
+      "yearsConsumption": 4.522248753503908,
       "yearsProduction": 20.0801871032409
     },
     {
@@ -283,7 +283,7 @@
         47.5,
         40.5
       ],
-      "production": 0.572370386281243,
+      "production": 0.5723703862812429,
       "consumption": 0.12857470228159337,
       "crude": 0.561,
       "ngl": 0.001,
@@ -291,7 +291,7 @@
       "reserveYear": 2024,
       "productionSource": "Energy Institute 2026",
       "consumptionSource": "Energy Institute 2026",
-      "balance": 0.44379568399964964,
+      "balance": 0.4437956839996495,
       "yearsConsumption": 149.15906357518617,
       "yearsProduction": 34.18552975362
     },
@@ -416,14 +416,14 @@
         43
       ],
       "production": 0.001,
-      "consumption": 0.11112020553474007,
+      "consumption": 0.11112020553474006,
       "crude": 0.001,
       "ngl": 0.0,
       "reserves": null,
       "reserveYear": null,
       "productionSource": "EIA crude + NGPL",
       "consumptionSource": "Energy Institute 2026",
-      "balance": -0.11012020553474007,
+      "balance": -0.11012020553474006,
       "yearsConsumption": null,
       "yearsProduction": null
     },
@@ -504,15 +504,15 @@
         53
       ],
       "production": 0.026,
-      "consumption": 0.1580745797041887,
+      "consumption": 0.15807457970418867,
       "crude": 0.026,
       "ngl": 0.0,
       "reserves": 0.198,
       "reserveYear": 2024,
       "productionSource": "EIA crude + NGPL",
       "consumptionSource": "Energy Institute 2026",
-      "balance": -0.1320745797041887,
-      "yearsConsumption": 3.431707706829241,
+      "balance": -0.13207457970418868,
+      "yearsConsumption": 3.4317077068292416,
       "yearsProduction": 20.864067439409904
     },
     {
@@ -592,15 +592,15 @@
         -10
       ],
       "production": 3.8810248460640437,
-      "consumption": 2.6096903438785963,
+      "consumption": 2.609690343878596,
       "crude": 3.769,
       "ngl": 0.083,
       "reserves": 15.894,
       "reserveYear": 2024,
       "productionSource": "Energy Institute 2026",
       "consumptionSource": "Energy Institute 2026",
-      "balance": 1.2713345021854474,
-      "yearsConsumption": 16.685966433371526,
+      "balance": 1.2713345021854479,
+      "yearsConsumption": 16.68596643337153,
       "yearsProduction": 11.553516975179638
     },
     {
@@ -747,14 +747,14 @@
         47
       ],
       "production": 0.0,
-      "consumption": 0.1875529402694311,
+      "consumption": 0.18755294026943106,
       "crude": 0.0,
       "ngl": 0.0,
       "reserves": null,
       "reserveYear": null,
       "productionSource": "EIA crude + NGPL",
       "consumptionSource": "Energy Institute 2026",
-      "balance": -0.1875529402694311,
+      "balance": -0.18755294026943106,
       "yearsConsumption": null,
       "yearsProduction": null
     },
@@ -790,7 +790,7 @@
         105,
         35
       ],
-      "production": 4.339500575342465,
+      "production": 4.339500575342466,
       "consumption": 17.36041634503618,
       "crude": 4.325,
       "ngl": 0.01,
@@ -923,15 +923,15 @@
         4
       ],
       "production": 0.7485226652090822,
-      "consumption": 0.4405142747665337,
+      "consumption": 0.44051427476653376,
       "crude": 0.746,
       "ngl": 0.007,
       "reserves": 2.019,
       "reserveYear": 2024,
       "productionSource": "Energy Institute 2026",
       "consumptionSource": "Energy Institute 2026",
-      "balance": 0.30800839044254846,
-      "yearsConsumption": 12.556929857146375,
+      "balance": 0.3080083904425484,
+      "yearsConsumption": 12.556929857146374,
       "yearsProduction": 7.414888537955856
     },
     {
@@ -1253,14 +1253,14 @@
         27
       ],
       "production": 0.5440943604467577,
-      "consumption": 0.779432430566873,
+      "consumption": 0.7794324305668731,
       "crude": 0.505,
       "ngl": 0.104,
       "reserves": 3.3,
       "reserveYear": 2024,
       "productionSource": "Energy Institute 2026",
       "consumptionSource": "Energy Institute 2026",
-      "balance": -0.2353380701201152,
+      "balance": -0.23533807012011532,
       "yearsConsumption": 11.599589054609217,
       "yearsProduction": 17.9031601790316
     },
@@ -1319,7 +1319,7 @@
         40
       ],
       "production": null,
-      "consumption": 1.2683275146527009,
+      "consumption": 1.268327514652701,
       "crude": null,
       "ngl": 0.002,
       "reserves": null,
@@ -1517,15 +1517,15 @@
         54
       ],
       "production": 0.6694226000113538,
-      "consumption": 1.3397615305544128,
+      "consumption": 1.3397615305544126,
       "crude": 0.616,
       "ngl": 0.059,
       "reserves": 1.5,
       "reserveYear": 2024,
       "productionSource": "Energy Institute 2026",
       "consumptionSource": "Energy Institute 2026",
-      "balance": -0.670338930543059,
-      "yearsConsumption": 3.0674033754315086,
+      "balance": -0.6703389305430588,
+      "yearsConsumption": 3.067403375431509,
       "yearsProduction": 6.671410780999822
     },
     {
@@ -1913,14 +1913,14 @@
         45.16666666
       ],
       "production": 0.009699999999999999,
-      "consumption": 0.08400656923804213,
+      "consumption": 0.08400656923804214,
       "crude": 0.009,
       "ngl": 0.0007,
       "reserves": null,
       "reserveYear": null,
       "productionSource": "EIA crude + NGPL",
       "consumptionSource": "Energy Institute 2026",
-      "balance": -0.07430656923804213,
+      "balance": -0.07430656923804214,
       "yearsConsumption": null,
       "yearsProduction": null
     },
@@ -1978,7 +1978,7 @@
         120,
         -5
       ],
-      "production": 0.6141074597738638,
+      "production": 0.6141074597738639,
       "consumption": 1.6986802573328639,
       "crude": 0.582,
       "ngl": 0.02,
@@ -1986,7 +1986,7 @@
       "reserveYear": 2024,
       "productionSource": "Energy Institute 2026",
       "consumptionSource": "Energy Institute 2026",
-      "balance": -1.084572797559,
+      "balance": -1.0845727975589998,
       "yearsConsumption": 3.886982083605603,
       "yearsProduction": 11.344913618603776
     },
@@ -2001,14 +2001,14 @@
         20
       ],
       "production": 0.7192160319633795,
-      "consumption": 5.642106199361829,
+      "consumption": 5.64210619936183,
       "crude": 0.581,
       "ngl": 0.111,
       "reserves": 4.981,
       "reserveYear": 2024,
       "productionSource": "Energy Institute 2026",
       "consumptionSource": "Energy Institute 2026",
-      "balance": -4.9228901673984495,
+      "balance": -4.92289016739845,
       "yearsConsumption": 2.4187023179410017,
       "yearsProduction": 23.48808148445052
     },
@@ -2023,14 +2023,14 @@
         53
       ],
       "production": 0.0,
-      "consumption": 0.1466780212319493,
+      "consumption": 0.14667802123194934,
       "crude": 0.0,
       "ngl": 0.0,
       "reserves": null,
       "reserveYear": null,
       "productionSource": "EIA crude + NGPL",
       "consumptionSource": "Energy Institute 2026",
-      "balance": -0.1466780212319493,
+      "balance": -0.14667802123194934,
       "yearsConsumption": null,
       "yearsProduction": null
     },
@@ -2066,16 +2066,16 @@
         44,
         33
       ],
-      "production": 4.3959355778789,
-      "consumption": 0.8931897073732764,
+      "production": 4.395935577878901,
+      "consumption": 0.8931897073732763,
       "crude": 4.388,
       "ngl": 0.125,
       "reserves": 145.019,
       "reserveYear": 2024,
       "productionSource": "Energy Institute 2026",
       "consumptionSource": "Energy Institute 2026",
-      "balance": 3.5027458705056236,
-      "yearsConsumption": 444.82412357342685,
+      "balance": 3.5027458705056245,
+      "yearsConsumption": 444.82412357342696,
       "yearsProduction": 90.54519798703814
     },
     {
@@ -2132,15 +2132,15 @@
         12.83333333,
         42.83333333
       ],
-      "production": 0.08043988821361095,
-      "consumption": 1.19679915977393,
+      "production": 0.08043988821361096,
+      "consumption": 1.1967991597739303,
       "crude": 0.084,
       "ngl": 0.0,
       "reserves": null,
       "reserveYear": null,
       "productionSource": "Energy Institute 2026",
       "consumptionSource": "Energy Institute 2026",
-      "balance": -1.116359271560319,
+      "balance": -1.1163592715603192,
       "yearsConsumption": null,
       "yearsProduction": null
     },
@@ -2374,7 +2374,7 @@
         45.75,
         29.5
       ],
-      "production": 2.820251942595795,
+      "production": 2.8202519425957946,
       "consumption": 0.5098290858936191,
       "crude": 2.584,
       "ngl": 0.225,
@@ -2382,7 +2382,7 @@
       "reserveYear": 2024,
       "productionSource": "Energy Institute 2026",
       "consumptionSource": "Energy Institute 2026",
-      "balance": 2.310422856702176,
+      "balance": 2.3104228567021754,
       "yearsConsumption": 545.4419911986868,
       "yearsProduction": 107.6169472835998
     },
@@ -2727,15 +2727,15 @@
         23
       ],
       "production": 1.779841728767123,
-      "consumption": 1.7888744249773774,
+      "consumption": 1.7888744249773776,
       "crude": 1.726,
       "ngl": 0.124,
       "reserves": 5.136,
       "reserveYear": 2024,
       "productionSource": "Energy Institute 2026",
       "consumptionSource": "Energy Institute 2026",
-      "balance": -0.009032696210254265,
-      "yearsConsumption": 7.865970176688214,
+      "balance": -0.009032696210254487,
+      "yearsConsumption": 7.865970176688213,
       "yearsProduction": 8.152510357307259
     },
     {
@@ -3012,7 +3012,7 @@
         112.5,
         2.5
       ],
-      "production": 0.5397129605913565,
+      "production": 0.5397129605913566,
       "consumption": 0.9651252211803402,
       "crude": 0.513,
       "ngl": 0.04,
@@ -3020,7 +3020,7 @@
       "reserveYear": 2024,
       "productionSource": "Energy Institute 2026",
       "consumptionSource": "Energy Institute 2026",
-      "balance": -0.4254122605889836,
+      "balance": -0.4254122605889835,
       "yearsConsumption": 7.664560112651304,
       "yearsProduction": 14.419610670511895
     },
@@ -3189,7 +3189,7 @@
         62
       ],
       "production": 2.0454361317174565,
-      "consumption": 0.20553006963518938,
+      "consumption": 0.2055300696351894,
       "crude": 1.858,
       "ngl": 0.187,
       "reserves": 6.912,
@@ -3197,7 +3197,7 @@
       "productionSource": "Energy Institute 2026",
       "consumptionSource": "Energy Institute 2026",
       "balance": 1.8399060620822671,
-      "yearsConsumption": 92.13730299893602,
+      "yearsConsumption": 92.137302998936,
       "yearsProduction": 10.192134715484316
     },
     {
@@ -3255,14 +3255,14 @@
         -41
       ],
       "production": 0.0119,
-      "consumption": 0.15886374829802952,
+      "consumption": 0.15886374829802954,
       "crude": 0.0079,
       "ngl": 0.004,
       "reserves": null,
       "reserveYear": null,
       "productionSource": "EIA crude + NGPL",
       "consumptionSource": "Energy Institute 2026",
-      "balance": -0.14696374829802952,
+      "balance": -0.14696374829802955,
       "yearsConsumption": null,
       "yearsProduction": null
     },
@@ -3343,14 +3343,14 @@
         -10
       ],
       "production": 0.11805784985870638,
-      "consumption": 0.2966876240756868,
+      "consumption": 0.2966876240756867,
       "crude": 0.044,
       "ngl": 0.073,
       "reserves": null,
       "reserveYear": null,
       "productionSource": "Energy Institute 2026",
       "consumptionSource": "Energy Institute 2026",
-      "balance": -0.1786297742169804,
+      "balance": -0.17862977421698034,
       "yearsConsumption": null,
       "yearsProduction": null
     },
@@ -3562,7 +3562,7 @@
         51.25,
         25.5
       ],
-      "production": 1.8375637093665478,
+      "production": 1.8375637093665476,
       "consumption": 0.39093202344625205,
       "crude": 1.297,
       "ngl": 0.419,
@@ -3570,7 +3570,7 @@
       "reserveYear": 2024,
       "productionSource": "Energy Institute 2026",
       "consumptionSource": "Energy Institute 2026",
-      "balance": 1.4466316859202957,
+      "balance": 1.4466316859202955,
       "yearsConsumption": 176.9147567547002,
       "yearsProduction": 53.32432061342825
     },
@@ -3607,14 +3607,14 @@
         46
       ],
       "production": 0.05602841095890412,
-      "consumption": 0.23700021559078518,
+      "consumption": 0.2370002155907852,
       "crude": 0.052,
       "ngl": 0.002,
       "reserves": null,
       "reserveYear": null,
       "productionSource": "Energy Institute 2026",
       "consumptionSource": "Energy Institute 2026",
-      "balance": -0.18097180463188106,
+      "balance": -0.1809718046318811,
       "yearsConsumption": null,
       "yearsProduction": null
     },
@@ -3672,16 +3672,16 @@
         45,
         25
       ],
-      "production": 11.407904031412023,
-      "consumption": 3.8617961490243444,
+      "production": 11.407904031412022,
+      "consumption": 3.861796149024344,
       "crude": 9.556,
       "ngl": 1.558,
       "reserves": 267.2,
       "reserveYear": 2024,
       "productionSource": "Energy Institute 2026",
       "consumptionSource": "Energy Institute 2026",
-      "balance": 7.546107882387679,
-      "yearsConsumption": 189.56329290076496,
+      "balance": 7.546107882387678,
+      "yearsConsumption": 189.563292900765,
       "yearsProduction": 76.60682236506362
     },
     {
@@ -3914,7 +3914,7 @@
         30,
         7
       ],
-      "production": 0.1326380682338185,
+      "production": 0.13263806823381852,
       "consumption": null,
       "crude": 0.113,
       "ngl": 0.0,
@@ -3981,7 +3981,7 @@
         48.66666666
       ],
       "production": null,
-      "consumption": 0.08214465163105256,
+      "consumption": 0.08214465163105254,
       "crude": null,
       "ngl": 0.0,
       "reserves": null,
@@ -4222,7 +4222,7 @@
         60,
         40
       ],
-      "production": 0.19080000000000003,
+      "production": 0.1908,
       "consumption": 0.15123074040654688,
       "crude": 0.191,
       "ngl": 0.044,
@@ -4230,7 +4230,7 @@
       "reserveYear": 2024,
       "productionSource": "Energy Institute 2026",
       "consumptionSource": "Energy Institute 2026",
-      "balance": 0.03956925959345314,
+      "balance": 0.039569259593453115,
       "yearsConsumption": 10.869718762331692,
       "yearsProduction": 8.606469196012336
     },
@@ -4288,7 +4288,7 @@
         -61,
         11
       ],
-      "production": 0.07134906235947461,
+      "production": 0.0713490623594746,
       "consumption": 0.03367425177353984,
       "crude": 0.051,
       "ngl": 0.015,
@@ -4296,7 +4296,7 @@
       "reserveYear": null,
       "productionSource": "Energy Institute 2026",
       "consumptionSource": "Energy Institute 2026",
-      "balance": 0.03767481058593477,
+      "balance": 0.037674810585934755,
       "yearsConsumption": null,
       "yearsProduction": null
     },
@@ -4464,7 +4464,7 @@
         -97,
         38
       ],
-      "production": 21.06536712328767,
+      "production": 21.065367123287672,
       "consumption": 19.403789298630137,
       "crude": 13.586,
       "ngl": 7.479,
@@ -4472,7 +4472,7 @@
       "reserveYear": 2024,
       "productionSource": "Energy Institute 2026",
       "consumptionSource": "Energy Institute 2026",
-      "balance": 1.661577824657531,
+      "balance": 1.6615778246575346,
       "yearsConsumption": 6.355770282764657,
       "yearsProduction": 9.077434667838972
     },
@@ -4685,14 +4685,14 @@
         -29
       ],
       "production": 0.002,
-      "consumption": 0.4746420933392328,
+      "consumption": 0.47464209333923285,
       "crude": 0.0004,
       "ngl": 0.0016,
       "reserves": null,
       "reserveYear": null,
       "productionSource": "EIA crude + NGPL",
       "consumptionSource": "Energy Institute 2026",
-      "balance": -0.4726420933392328,
+      "balance": -0.47264209333923285,
       "yearsConsumption": null,
       "yearsProduction": null
     },

@@ -5,24 +5,25 @@ import argparse, calendar, copy, hashlib, json, math, subprocess, sys, tempfile
 from pathlib import Path
 from source_extract import ROOT, RAW, sha
 FOCUS={'USA','FRA','RUS','CAN','MEX','CHN','SAU','JPN','LUX'}
-UNITS={'kbpd':('bbl/day',1000),'Mt':('tonne/year',1e6),'bcm':('m3/year',1e9),'million_barrels':('bbl',1e6)}
+UNITS={'million_bbl/day':('bbl/day',1e6),'kbpd':('bbl/day',1000),'Mt':('tonne/year',1e6),'bcm':('m3/year',1e9),'million_barrels':('bbl',1e6)}
 SOURCE_KEYS={'EI-2026.xlsx':'ei-gas','EI-2025-trade.xlsx':'ei-oil','france-crude-imports-2025.html':'insee-france'}
 for product in ['crude','gasoline','diesel']:
  for direction in ['imports','exports']:SOURCE_KEYS[f'us-{product}-{direction}-2025.html']=f'eia-{product}-{direction}'
 WARNINGS=[
+ 'Две серии EIA по добыче сырой нефти США за 2025 различаются примерно на 0,56%. Для карточки сырой нефти используется национальная годовая таблица; обе исходные серии сохранены. Причина расхождения требует отдельной сверки редакций.',
  'Проверена точность извлечения, единицы и согласованность с исходными итогами. Это не независимое подтверждение всей мировой статистики.',
  'Текущий срез — годовые данные 2025; запасы и межрегиональная торговля сырой нефтью — 2024. Поставок в реальном времени нет.',
  'Тонны не переводятся в баррели без данных о плотности. Объёмы с разными единицами, годами и определениями не складываются.',
  'У Франции названы 7 поставщиков: 36,5 из 45,9 млн тонн, 79,5%. Остаток 9,4 млн тонн не распределён по странам; опубликованный ноль России сохранён отдельно.',
  'Матрица трубопроводного газа исключает торговлю внутри укрупнённых регионов. Для Франции есть группа ЕС, отдельного национального ряда нет.',
  'EI 2026 получен через публичное зеркало: версия файла зафиксирована, подлинность независимо по файлу издателя не подтверждена.',
- 'Запасы OPEC: 41 явно названная страна; 1,9% мирового итога приходится на группы без разбиения. Запасы сырой нефти / спрос на все нефтяные жидкости — условное отношение, не прогноз.',
+ 'Запасы OPEC: 41 явно названная страна; 2,1% мирового итога приходится на группы без разбиения. Запасы сырой нефти / спрос на все нефтяные жидкости — условное отношение, не прогноз.',
  'Терминалы и районы добычи показаны приближённо. Потоки не распределены по терминалам; линии не восстанавливают реальные маршруты.'
 ]
 
 def encoded(obj):return (json.dumps(obj,ensure_ascii=False,sort_keys=True,separators=(',',':'),allow_nan=False)+'\n').encode()
-def write(path,obj):
- path.parent.mkdir(parents=True,exist_ok=True);tmp=path.with_suffix('.tmp');tmp.write_bytes(encoded(obj));tmp.replace(path)
+def write(path,obj,pretty=False):
+ path.parent.mkdir(parents=True,exist_ok=True);tmp=path.with_suffix('.tmp');tmp.write_bytes((json.dumps(obj,ensure_ascii=False,indent=2,allow_nan=False)+'\n').encode() if pretty else encoded(obj));tmp.replace(path)
 def conversion(unit,year):return ('bbl/day',1000/(366 if calendar.isleap(year) else 365)) if unit=='thousand_barrels/year' else UNITS[unit]
 def close(a,b):
  if a is None or b is None:return a is b
@@ -53,6 +54,11 @@ def views(records,template,scope):
    graph['flows'].append(dict(id=f'{key}:{prod}:{r["origin"]}:{r["destination"]}',origin=r['origin'],destination=r['destination'],product=prod,value=v/divisor,unit=unit,year=r['year'],source=key,owner=r.get('reporter'),note=note,observation=r['id']))
   elif measure.startswith('total_'):
    graph['totals'][f'{country}:{prod}:{measure[6:]}']=v/(1000 if r['unit']=='bbl/day' else 1e6)
+  elif src=='us-basins-2025.html':
+   site=next(s for s in graph['sites'] if s['id']==r['subdivision'])
+   site.update(production=v/1000,observation=r['id'],year=r['year'])
+   descriptions={'permian':'Западный Техас и юго-восток Нью-Мексико','eagle-ford':'Южный Техас','bakken':'Северная Дакота и Монтана','gulf':'Федеральный шельф Мексиканского залива'}
+   site['detail']=descriptions[site['id']]+'. Точка обозначает район, не границу месторождения. Округлённая оценка EIA STEO за март 2026; объёмы бассейнов пересекаются со статистикой штатов, их нельзя складывать.'
   elif src=='us-state-crude-2025.html':
    if not r['subdivision'].startswith('Federal Offshore'):graph['states'][r['subdivision']]=dict(crude=None if v is None else v/1000,year=r['year'])
   elif src=='us-fuel-supply-2025.html':
@@ -117,9 +123,20 @@ def validate(bundle):
  for s in g['sites']:
   if len(s['coordinates'])!=2 or not (-180<=s['coordinates'][0]<=180 and -90<=s['coordinates'][1]<=90) or not s['url'].startswith('https://'):raise ValueError('Invalid site metadata')
  v=bundle['validation'];actual=summary(bundle)
+ if v.get('comparisons')!=comparisons(records):raise ValueError('Cross-source comparisons are stale')
  if v['summary']!=actual or v['status']!='passed_with_limitations':raise ValueError('Report is stale or falsely complete')
  if v['limitations']!=WARNINGS:raise ValueError('Coverage caveats missing')
  return actual
+
+def comparisons(records):
+ result=[]
+ us=[r for r in records if r.get('country')=='USA' and r['product']=='crude' and r['measure']=='production' and not r.get('subdivision')]
+ if len(us)==2:
+  a=next(r for r in us if r['source']=='eia-crude-ngl-2025.json');b=next(r for r in us if r['source']=='us-fuel-supply-2025.html')
+  result.append(dict(label='Добыча сырой нефти США: две серии EIA, 2025',status='review_difference',observations=[a['id'],b['id']],values=[a['value'],b['value']],unit='bbl/day',difference=b['value']-a['value'],differencePercent=(b['value']/a['value']-1)*100,note='Расхождение около 0,56%. Обе серии сохранены; для карточки сырой нефти используется национальная годовая таблица. Разницу редакций необходимо исследовать отдельно.'))
+ same=[r for r in records if r.get('origin')=='USA' and r.get('destination')=='FRA' and r['product']=='crude' and r['year']==2025]
+ if len(same)==2:result.append(dict(label='США → Франция: EIA и INSEE, 2025',status='not_comparable',observations=[r['id'] for r in same],note='EIA учитывает экспорт в баррелях по назначению; INSEE — страну добычи в тоннах, включая другое сырьё НПЗ. Плотность и соответствие товарных границ отсутствуют; численное расхождение не рассчитывается.'))
+ return result
 
 def summary(bundle):
  r=bundle['observations'];v=bundle['views'];cs=v['snapshot']['countries'];g=v['connections']
@@ -129,6 +146,14 @@ def verify(manifest_path):
  manifest=json.loads(manifest_path.read_text());file=manifest_path.parent/manifest['bundle']
  if sha(file)!=manifest['sha256']:raise ValueError('Bundle checksum mismatch')
  bundle=json.loads(file.read_text());validate(bundle)
+ evidence_path=manifest_path.parent/manifest['evidence']
+ if sha(evidence_path)!=manifest['evidenceSha256'] or bundle['evidenceSha256']!=manifest['evidenceSha256']:raise ValueError('Source evidence checksum mismatch')
+ evidence=json.loads(evidence_path.read_text())
+ if encoded(normalize(evidence['facts'],evidence['sources']))!=encoded(bundle['observations']):raise ValueError('Normalized observations differ from extracted source facts')
+ if evidence['reconciliations']!=bundle['validation']['reconciliations'] or evidence['sources']!=bundle['sources']:raise ValueError('Source audit differs from publication report')
+ if bundle['scope']=='full' and manifest_path.resolve()==(ROOT/'data/validated/manifest.json').resolve():
+  for key in ['snapshot','connections']:
+   if encoded(json.loads((ROOT/f'data/{key}.json').read_text()))!=encoded(bundle['views'][key]):raise ValueError('Compatibility download differs from verified release: '+key)
  if manifest['scope']!=bundle['scope']:raise ValueError('Manifest scope mismatch')
  return bundle
 
@@ -151,15 +176,22 @@ def build(scope,resume=False):
     subprocess.run([sys.executable,str(ROOT/'scripts'/name),'--output-dir',tmp,*extra],check=True)
    template={key:json.loads((Path(tmp)/f'{key}.json').read_text()) for key in ['snapshot','connections']}
  # Canary uses the same source-to-view code, but no full rebuild or replacement of production data.
+ for file,source in evidence['sources'].items():
+  if file in SOURCE_KEYS:
+   desc=template['connections']['sources'].get(SOURCE_KEYS[file],{})
+   for key in ['url','label']:
+    if key in desc and key not in source:source[key]=desc[key]
+  if file=='eia-crude-ngl-2025.json':source['url']='https://www.eia.gov/international/data/world/petroleum-and-other-liquids'
  records=normalize(evidence['facts'],evidence['sources']);result=views(records,template,scope)
- bundle=dict(schemaVersion=1,scope=scope,retrieved='2026-10-02',pipelineSha256=codehash,sources=evidence['sources'],observations=records,views=result,validation=dict(status='passed_with_limitations',limitations=WARNINGS,reconciliations=evidence['reconciliations'],excluded=evidence['excluded']))
- bundle['validation']['summary']=summary(bundle);validate(bundle)
+ evidence_digest=hashlib.sha256(encoded(evidence)).hexdigest();evidence_name='source-'+evidence_digest+'.json';write(dest/evidence_name,evidence)
+ bundle=dict(schemaVersion=1,scope=scope,retrieved='2026-10-02',pipelineSha256=codehash,evidenceSha256=evidence_digest,sources=evidence['sources'],observations=records,views=result,validation=dict(status='passed_with_limitations',limitations=WARNINGS,reconciliations=evidence['reconciliations'],excluded=evidence['excluded']))
+ bundle['validation']['comparisons']=comparisons(records);bundle['validation']['summary']=summary(bundle);validate(bundle)
  digest=hashlib.sha256(encoded(bundle)).hexdigest();filename=digest+'.json';write(dest/filename,bundle)
- write(manifest_path,dict(schemaVersion=1,scope=scope,bundle=filename,sha256=digest))
- verify(manifest_path)
  if scope=='full':
-  # Compatibility downloads are projections of this exact verified release, never inputs to the UI.
-  write(ROOT/'data/snapshot.json',result['snapshot']);write(ROOT/'data/connections.json',result['connections'])
+  write(ROOT/'data/snapshot.json',result['snapshot'],pretty=True);write(ROOT/'data/connections.json',result['connections'],pretty=True)
+ # The small publication pointer is committed last, after all durable artifacts are validated.
+ write(manifest_path,dict(schemaVersion=1,scope=scope,bundle=filename,sha256=digest,evidence=evidence_name,evidenceSha256=evidence_digest))
+ verify(manifest_path)
  print('BUILT',manifest_path,summary(bundle))
 
 if __name__=='__main__':

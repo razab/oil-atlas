@@ -11,7 +11,7 @@ window.loadValidatedData=async function(scope='full'){
  if(bundle.schemaVersion!==1||bundle.scope!==scope||bundle.validation?.status!=='passed_with_limitations'||bundle.validation.summary.observations!==bundle.observations.length)throw Error('Набор не прошёл проверку');
  const ids=new Set();
  for(const r of bundle.observations){
-  if(ids.has(r.id)||!bundle.sources[r.source]||r.sourceSha256!==bundle.sources[r.source].sha256||![2024,2025].includes(r.year)||![null,'missing','reported_zero','observed'].includes(r.status)||!(r.value===null||Number.isFinite(r.value)&&r.value>=0))throw Error('Ошибка структуры проверенного набора');ids.add(r.id);
+  if(ids.has(r.id)||!bundle.sources[r.source]||r.sourceSha256!==bundle.sources[r.source].sha256||![2024,2025].includes(r.year)||!['missing','reported_zero','observed'].includes(r.status)||!(r.value===null||Number.isFinite(r.value)&&r.value>=0))throw Error('Ошибка структуры проверенного набора');ids.add(r.id);
  }
  for(const f of bundle.views.connections.flows)if(!ids.has(f.observation)||!bundle.views.connections.nodes[f.origin]||!bundle.views.connections.nodes[f.destination]||!(f.value>0))throw Error('Торговая связь не подтверждена исходной записью');
  return bundle;

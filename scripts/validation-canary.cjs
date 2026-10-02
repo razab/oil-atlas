@@ -8,6 +8,9 @@ const assert=require('node:assert/strict');
  await page.goto(base+(canary?'?audit=canary':'?version=5')+'#v=2&country=RUS&product=lng&mode=trade&direction=exports&all=1');await page.waitForFunction(()=>window.oilAtlas);
  const flows=await page.evaluate(()=>oilAtlas.visibleFlows);assert.equal(flows.length,10);assert.ok(Math.abs(flows.reduce((s,f)=>s+f.value,0)-42.56305480406593)<1e-8);
  await page.reload();await page.waitForFunction(()=>window.oilAtlas);assert.equal(await page.locator('.edge-hit').count(),10);
+ await page.evaluate(()=>oilAtlas.selectCountry('USA'));await page.click('#sites-button');await page.click('[data-site="permian"]');
+ assert.equal((await page.locator('#popup-content .big-number').textContent()).replace(/\s/g,''),'6600');
+ assert.ok(await page.locator('#popup-content a[href*="validation.html?q="]').count());
  await page.route('**/data/'+(canary?'validation-canary':'validated')+'/*.json',async route=>{
   if(route.request().url().endsWith('/manifest.json'))return route.continue();
   return route.fulfill({status:200,body:'{}',contentType:'application/json'});
