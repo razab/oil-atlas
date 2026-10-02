@@ -62,7 +62,7 @@ raw=cached('canary-eia-crude-ngl.json' if a.canary else 'eia-crude-ngl-2025.json
 response=raw['response'];assert len(response['data'])==int(response['total']),'Truncated API response; do not publish'
 for row in response['data']:
     assert row['period']==str(YEAR) and row['unit']=='TBPD' and row['activityId']=='1'
-    if row['countryRegionTypeId']!='c':continue
+    if row['countryRegionTypeId']!='c' or row['countryRegionId'] not in meta:continue
     c=record(row['countryRegionId'],row['countryRegionName']);field={'57':'crude','58':'ngl'}[row['productId']];v=number(row['value']);c[field]=v/1000 if v is not None else None
 reserves=json.loads((RAW/'reserves-2024.json').read_text())
 for c in records.values():

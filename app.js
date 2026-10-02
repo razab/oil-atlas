@@ -16,7 +16,7 @@ const chokes = [
  {name:'Турецкие проливы',value:3.7,coords:[26.5,40],short:'Турецкие'},
  {name:'Панамский канал',value:2.3,coords:[-79.7,9],short:'Панама'}
 ];
-let data, countries, byId, features, path, projection, svg, zoom, mapGroup, countryPaths, nodeGroup;
+let data, countries, byId, features, path, projection, svg, zoom, mapGroup, countryPaths, countryDots, nodeGroup;
 let mode='balance', selected='SAU', allRows=false;
 const stateFromHash = () => {
  const q = new URLSearchParams(location.hash.slice(1));
@@ -40,10 +40,11 @@ function color(v){
 }
 function renderMode(){
  if(!countryPaths)return;
+ if(countryDots)countryDots.attr('fill',c=>color(c[mode])).classed('selected',c=>c.iso===selected);
  countryPaths.attr('fill',f=>color(byId.get(String(+f.id))?.[mode]??null)).classed('selected',f=>byId.get(String(+f.id))?.iso===selected);
  document.querySelectorAll('[data-mode]').forEach(b=>{b.classList.toggle('active',b.dataset.mode===mode);b.setAttribute('aria-pressed',String(b.dataset.mode===mode));});
  $('#map-subtitle').textContent=modeNames[mode];$('#map-explainer').textContent=explanations[mode];
- const labels=mode==='balance'?['−12','Дефицит / избыток','+12']:['0',mode==='reserves'?'млрд барр.':'млн барр./сутки',mode==='reserves'?'303+':'25+'];
+ const labels=mode==='balance'?['≤ −12','Дефицит / избыток','≥ +12']:['0',mode==='reserves'?'млрд барр.':'млн барр./сутки',mode==='reserves'?'303+':'25+'];
  const ramp=mode==='balance'?'linear-gradient(90deg,#e68d52,#31494d,#36b38c)':`linear-gradient(90deg,#31494d,${mode==='consumption'?'#e69b65':mode==='reserves'?'#b6c781':'#43bf9d'})`;
  $('#legend').innerHTML=`<div class="legend-ramp" style="background:${ramp}"></div><div class="legend-labels">${labels.map(x=>`<span>${x}</span>`).join('')}</div><span class="legend-none">Нет данных</span>`;
 }
@@ -60,6 +61,9 @@ function initMap(world){
  countryPaths=mapGroup.append('g').selectAll('path').data(features).join('path').attr('class','country').attr('d',path).attr('data-id',f=>String(+f.id)).attr('data-iso',f=>byId.get(String(+f.id))?.iso??'').attr('aria-label',f=>byId.get(String(+f.id))?.name??f.properties.name).on('click',(e,f)=>{
   const c=byId.get(String(+f.id));if(c)selectCountry(c.iso);else showTip(e,f.properties.name,'Нет данных EIA в выбранном срезе');
  }).on('mousemove',(e,f)=>{const c=byId.get(String(+f.id));showTip(e,c?.name??f.properties.name,c?`${mode==='balance'?signed(c[mode]):fmt(c[mode])} ${mode==='reserves'?'млрд баррелей':'млн барр./сутки'}`:'Нет сопоставимых данных');}).on('mouseleave',()=>$('#tooltip').hidden=true);
+ const featureById=new Map(features.map(f=>[String(+f.id),f]));
+ const small=data.countries.filter(c=>c.id&&(!featureById.has(String(+c.id))||path.area(featureById.get(String(+c.id)))<4));
+ countryDots=mapGroup.append('g').selectAll('circle').data(small).join('circle').attr('class','country-dot').attr('cx',c=>projection(c.coordinates)[0]).attr('cy',c=>projection(c.coordinates)[1]).attr('r',2.7).attr('data-country-dot',c=>c.iso).on('click',(e,c)=>selectCountry(c.iso)).on('mousemove',(e,c)=>showTip(e,c.name,`${mode==='balance'?signed(c[mode]):fmt(c[mode])} ${mode==='reserves'?'млрд баррелей':'млн барр./сутки'}`)).on('mouseleave',()=>$('#tooltip').hidden=true);
  nodeGroup=mapGroup.append('g').attr('class','route-overlay').style('display','none');
  const lines=[[[51,27],[56.5,26.5],[60,22],[69,11],[82,5],[96,6],[101.5,3.5],[105,2],[113,10],[121,23]],[[56.5,26.5],[60,22],[59,15],[49,11],[43.3,12.6],[38,21],[34,27],[32.5,30],[31,32],[25,34],[16,35],[7,37],[-6,36],[-12,44],[-5,51],[3,53]],[[56.5,26.5],[61,20],[61,8],[53,-4],[46,-15],[37,-31],[22,-38],[12,-33],[3,-14],[-11,12],[-19,35],[-10,48],[2,53]]];
  for(const line of lines)nodeGroup.append('path').datum({type:'LineString',coordinates:line}).attr('d',path).attr('class','route-line');
@@ -102,7 +106,7 @@ async function start(){
  data=responses[0];countries=new Map(data.countries.map(c=>[c.iso,c]));byId=new Map(data.countries.filter(c=>c.id).map(c=>[String(+c.id),c]));
  if(!data.countries.length)throw Error('Нет данных стран');stateFromHash();
  $('#world-production').textContent=fmt(data.world.production,1);$('#world-consumption').textContent=fmt(data.world.consumption,1);$('#world-reserves').textContent=fmt(data.reservesWorld,0);
- const complete=data.countries.filter(c=>c.balance!=null).length;$('#coverage').textContent=`${complete} стран и территорий с балансом · 2025${data.canary?' · ПРОБНАЯ ВЕРСИЯ':''}`;
+ const complete=data.countries.filter(c=>c.balance!=null),share=complete.reduce((sum,c)=>sum+c.consumption,0)/data.world.consumption*100;$('#coverage').textContent=`${complete.length} стран с балансом · ${fmt(share,0)}% мирового спроса${data.canary?' · ПРОБНАЯ ВЕРСИЯ':''}`;
  renderCountry();initMap(responses[1]);renderRankings();renderTable();writeState();
  $('#trade-list').innerHTML=responses[2].flows.slice(0,8).map(t=>`<div class="trade-row"><span>${esc(t.fromName)}<span class="arrow">→</span>${esc(t.toName)}</span><b>${fmt(t.value,1)}</b></div>`).join('');
  $('#choke-list').innerHTML=chokes.map((c,i)=>`<div class="choke-row"><span>${c.name}</span><b>${fmt(c.value,1)}</b><button data-choke="${i}" aria-label="Показать ${c.name} на карте">↗</button></div>`).join('');

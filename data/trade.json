@@ -1,14 +1,1323 @@
 {
   "year": 2024,
   "unit": "million tonnes per year",
-  "canary": true,
+  "canary": false,
   "flows": [
+    {
+      "fromName": "Канада",
+      "toName": "США",
+      "fromCode": "Canada",
+      "toCode": "US",
+      "value": 203.11596180081855
+    },
+    {
+      "fromName": "Другой Ближний Восток",
+      "toName": "Китай",
+      "fromCode": "Other Middle East",
+      "toCode": "China",
+      "value": 121.53598116722372
+    },
+    {
+      "fromName": "Россия",
+      "toName": "Китай",
+      "fromCode": "Russia",
+      "toCode": "China",
+      "value": 108.471331436
+    },
+    {
+      "fromName": "США",
+      "toName": "Европа",
+      "fromCode": "US",
+      "toCode": "Europe",
+      "value": 95.83928051492232
+    },
+    {
+      "fromName": "Саудовская Аравия",
+      "toName": "Другие страны АТР",
+      "fromCode": "Saudi Arabia",
+      "toCode": "Other Asia Pacific",
+      "value": 87.934393608721
+    },
+    {
+      "fromName": "Россия",
+      "toName": "Индия",
+      "fromCode": "Russia",
+      "toCode": "India",
+      "value": 87.49554765
+    },
+    {
+      "fromName": "Другие страны СНГ",
+      "toName": "Европа",
+      "fromCode": "Other CIS",
+      "toCode": "Europe",
+      "value": 80.88378206400002
+    },
     {
       "fromName": "Саудовская Аравия",
       "toName": "Китай",
       "fromCode": "Saudi Arabia",
       "toCode": "China",
       "value": 78.638772617
+    },
+    {
+      "fromName": "Ирак",
+      "toName": "Китай",
+      "fromCode": "Iraq",
+      "toCode": "China",
+      "value": 63.836706416000006
+    },
+    {
+      "fromName": "ОАЭ",
+      "toName": "Другие страны АТР",
+      "fromCode": "UAE",
+      "toCode": "Other Asia Pacific",
+      "value": 59.15212810292392
+    },
+    {
+      "fromName": "Северная Африка",
+      "toName": "Европа",
+      "fromCode": "North Africa",
+      "toCode": "Europe",
+      "value": 57.800001564
+    },
+    {
+      "fromName": "Западная Африка",
+      "toName": "Европа",
+      "fromCode": "West Africa",
+      "toCode": "Europe",
+      "value": 55.732299803813966
+    },
+    {
+      "fromName": "Южная и Центральная Америка",
+      "toName": "США",
+      "fromCode": "S. & Cent. America",
+      "toCode": "US",
+      "value": 53.55688949522511
+    },
+    {
+      "fromName": "Южная и Центральная Америка",
+      "toName": "Китай",
+      "fromCode": "S. & Cent. America",
+      "toCode": "China",
+      "value": 52.59584729400001
+    },
+    {
+      "fromName": "Ирак",
+      "toName": "Индия",
+      "fromCode": "Iraq",
+      "toCode": "India",
+      "value": 50.10239626
+    },
+    {
+      "fromName": "ОАЭ",
+      "toName": "Япония",
+      "fromCode": "UAE",
+      "toCode": "Japan",
+      "value": 49.47870677600001
+    },
+    {
+      "fromName": "Южная и Центральная Америка",
+      "toName": "Европа",
+      "fromCode": "S. & Cent. America",
+      "toCode": "Europe",
+      "value": 47.23524557826481
+    },
+    {
+      "fromName": "Западная Африка",
+      "toName": "Китай",
+      "fromCode": "West Africa",
+      "toCode": "China",
+      "value": 46.568905613000005
+    },
+    {
+      "fromName": "Саудовская Аравия",
+      "toName": "Япония",
+      "fromCode": "Saudi Arabia",
+      "toCode": "Japan",
+      "value": 46.433668766
+    },
+    {
+      "fromName": "США",
+      "toName": "Другие страны АТР",
+      "fromCode": "US",
+      "toCode": "Other Asia Pacific",
+      "value": 40.51657649810475
+    },
+    {
+      "fromName": "Саудовская Аравия",
+      "toName": "Европа",
+      "fromCode": "Saudi Arabia",
+      "toCode": "Europe",
+      "value": 38.610013194000004
+    },
+    {
+      "fromName": "Ирак",
+      "toName": "Европа",
+      "fromCode": "Iraq",
+      "toCode": "Europe",
+      "value": 38.199481909
+    },
+    {
+      "fromName": "ОАЭ",
+      "toName": "Китай",
+      "fromCode": "UAE",
+      "toCode": "China",
+      "value": 35.535309481999995
+    },
+    {
+      "fromName": "Саудовская Аравия",
+      "toName": "Индия",
+      "fromCode": "Saudi Arabia",
+      "toCode": "India",
+      "value": 30.9606912
+    },
+    {
+      "fromName": "Россия",
+      "toName": "Европа",
+      "fromCode": "Russia",
+      "toCode": "Europe",
+      "value": 29.602209151
+    },
+    {
+      "fromName": "Кувейт",
+      "toName": "Другие страны АТР",
+      "fromCode": "Kuwait",
+      "toCode": "Other Asia Pacific",
+      "value": 25.84129728849088
+    },
+    {
+      "fromName": "Мексика",
+      "toName": "США",
+      "fromCode": "Mexico",
+      "toCode": "US",
+      "value": 23.174488403819915
+    },
+    {
+      "fromName": "ОАЭ",
+      "toName": "Индия",
+      "fromCode": "UAE",
+      "toCode": "India",
+      "value": 21.681919710000003
+    },
+    {
+      "fromName": "Другой Ближний Восток",
+      "toName": "Другие страны АТР",
+      "fromCode": "Other Middle East",
+      "toCode": "Other Asia Pacific",
+      "value": 18.683519241700374
+    },
+    {
+      "fromName": "США",
+      "toName": "Канада",
+      "fromCode": "US",
+      "toCode": "Canada",
+      "value": 17.74756339573697
+    },
+    {
+      "fromName": "Западная Африка",
+      "toName": "Другие страны АТР",
+      "fromCode": "West Africa",
+      "toCode": "Other Asia Pacific",
+      "value": 16.3579286985426
+    },
+    {
+      "fromName": "Россия",
+      "toName": "Другие страны СНГ",
+      "fromCode": "Russia",
+      "toCode": "Other CIS",
+      "value": 16.12381427
+    },
+    {
+      "fromName": "Кувейт",
+      "toName": "Китай",
+      "fromCode": "Kuwait",
+      "toCode": "China",
+      "value": 15.970072751
+    },
+    {
+      "fromName": "Ирак",
+      "toName": "Другие страны АТР",
+      "fromCode": "Iraq",
+      "toCode": "Other Asia Pacific",
+      "value": 15.453280777317195
+    },
+    {
+      "fromName": "Саудовская Аравия",
+      "toName": "США",
+      "fromCode": "Saudi Arabia",
+      "toCode": "US",
+      "value": 13.64474761255116
+    },
+    {
+      "fromName": "Западная Африка",
+      "toName": "Индия",
+      "fromCode": "West Africa",
+      "toCode": "India",
+      "value": 13.226541019999999
+    },
+    {
+      "fromName": "ОАЭ",
+      "toName": "Сингапур",
+      "fromCode": "UAE",
+      "toCode": "Singapore",
+      "value": 12.593222
+    },
+    {
+      "fromName": "Саудовская Аравия",
+      "toName": "Ближний Восток",
+      "fromCode": "Saudi Arabia",
+      "toCode": "Middle East",
+      "value": 12.482043676638472
+    },
+    {
+      "fromName": "Западная Африка",
+      "toName": "США",
+      "fromCode": "West Africa",
+      "toCode": "US",
+      "value": 12.204263133031379
+    },
+    {
+      "fromName": "Южная и Центральная Америка",
+      "toName": "Другие страны АТР",
+      "fromCode": "S. & Cent. America",
+      "toCode": "Other Asia Pacific",
+      "value": 11.489975976756249
+    },
+    {
+      "fromName": "США",
+      "toName": "Сингапур",
+      "fromCode": "US",
+      "toCode": "Singapore",
+      "value": 11.318294
+    },
+    {
+      "fromName": "Мексика",
+      "toName": "Европа",
+      "fromCode": "Mexico",
+      "toCode": "Europe",
+      "value": 10.453561464
+    },
+    {
+      "fromName": "Ирак",
+      "toName": "США",
+      "fromCode": "Iraq",
+      "toCode": "US",
+      "value": 9.897135061391541
+    },
+    {
+      "fromName": "США",
+      "toName": "Китай",
+      "fromCode": "US",
+      "toCode": "China",
+      "value": 9.639724833
+    },
+    {
+      "fromName": "Канада",
+      "toName": "Китай",
+      "fromCode": "Canada",
+      "toCode": "China",
+      "value": 9.169608353
+    },
+    {
+      "fromName": "США",
+      "toName": "Южная и Центральная Америка",
+      "fromCode": "US",
+      "toCode": "S. & Cent. America",
+      "value": 9.028772024783402
+    },
+    {
+      "fromName": "Южная и Центральная Америка",
+      "toName": "Индия",
+      "fromCode": "S. & Cent. America",
+      "toCode": "India",
+      "value": 8.9319089
+    },
+    {
+      "fromName": "Другой Ближний Восток",
+      "toName": "Ближний Восток",
+      "fromCode": "Other Middle East",
+      "toCode": "Middle East",
+      "value": 8.896062508543114
+    },
+    {
+      "fromName": "Кувейт",
+      "toName": "Япония",
+      "fromCode": "Kuwait",
+      "toCode": "Japan",
+      "value": 8.086065146
+    },
+    {
+      "fromName": "США",
+      "toName": "Индия",
+      "fromCode": "US",
+      "toCode": "India",
+      "value": 7.8603138
+    },
+    {
+      "fromName": "Западная Африка",
+      "toName": "Южная и Центральная Америка",
+      "fromCode": "West Africa",
+      "toCode": "S. & Cent. America",
+      "value": 6.4200047743250614
+    },
+    {
+      "fromName": "Кувейт",
+      "toName": "Индия",
+      "fromCode": "Kuwait",
+      "toCode": "India",
+      "value": 5.9977902400000005
+    },
+    {
+      "fromName": "Западная Африка",
+      "toName": "Африка",
+      "fromCode": "West Africa",
+      "toCode": "Africa",
+      "value": 5.872623643000001
+    },
+    {
+      "fromName": "Австралия и Океания",
+      "toName": "Другие страны АТР",
+      "fromCode": "Australasia",
+      "toCode": "Other Asia Pacific",
+      "value": 5.867505883814496
+    },
+    {
+      "fromName": "Канада",
+      "toName": "Европа",
+      "fromCode": "Canada",
+      "toCode": "Europe",
+      "value": 5.854603170219001
+    },
+    {
+      "fromName": "Другие страны АТР",
+      "toName": "Австралия и Океания",
+      "fromCode": "Other Asia Pacific",
+      "toCode": "Australasia",
+      "value": 5.697553556
+    },
+    {
+      "fromName": "Другой Ближний Восток",
+      "toName": "Япония",
+      "fromCode": "Other Middle East",
+      "toCode": "Japan",
+      "value": 5.2789856209999995
+    },
+    {
+      "fromName": "Другой Ближний Восток",
+      "toName": "Сингапур",
+      "fromCode": "Other Middle East",
+      "toCode": "Singapore",
+      "value": 5.188919
+    },
+    {
+      "fromName": "Северная Африка",
+      "toName": "США",
+      "fromCode": "North Africa",
+      "toCode": "US",
+      "value": 4.823328785811733
+    },
+    {
+      "fromName": "Европа",
+      "toName": "Китай",
+      "fromCode": "Europe",
+      "toCode": "China",
+      "value": 4.107023924
+    },
+    {
+      "fromName": "Западная Африка",
+      "toName": "Канада",
+      "fromCode": "West Africa",
+      "toCode": "Canada",
+      "value": 3.9389500264177824
+    },
+    {
+      "fromName": "Мексика",
+      "toName": "Другие страны АТР",
+      "fromCode": "Mexico",
+      "toCode": "Other Asia Pacific",
+      "value": 3.7775833999999997
+    },
+    {
+      "fromName": "Европа",
+      "toName": "США",
+      "fromCode": "Europe",
+      "toCode": "US",
+      "value": 3.65230603719236
+    },
+    {
+      "fromName": "Саудовская Аравия",
+      "toName": "Сингапур",
+      "fromCode": "Saudi Arabia",
+      "toCode": "Singapore",
+      "value": 3.5385630000000003
+    },
+    {
+      "fromName": "Северная Африка",
+      "toName": "Другие страны АТР",
+      "fromCode": "North Africa",
+      "toCode": "Other Asia Pacific",
+      "value": 3.4248370615410404
+    },
+    {
+      "fromName": "Другой Ближний Восток",
+      "toName": "Индия",
+      "fromCode": "Other Middle East",
+      "toCode": "India",
+      "value": 3.4201376999999997
+    },
+    {
+      "fromName": "Южная и Центральная Америка",
+      "toName": "Сингапур",
+      "fromCode": "S. & Cent. America",
+      "toCode": "Singapore",
+      "value": 3.3568189999999998
+    },
+    {
+      "fromName": "Саудовская Аравия",
+      "toName": "Южная и Центральная Америка",
+      "fromCode": "Saudi Arabia",
+      "toCode": "S. & Cent. America",
+      "value": 3.2180499217780354
+    },
+    {
+      "fromName": "Другие страны СНГ",
+      "toName": "Другие страны АТР",
+      "fromCode": "Other CIS",
+      "toCode": "Other Asia Pacific",
+      "value": 3.1194602247950827
+    },
+    {
+      "fromName": "Мексика",
+      "toName": "Индия",
+      "fromCode": "Mexico",
+      "toCode": "India",
+      "value": 3.05702705
+    },
+    {
+      "fromName": "США",
+      "toName": "Япония",
+      "fromCode": "US",
+      "toCode": "Japan",
+      "value": 2.826154608
+    },
+    {
+      "fromName": "Кувейт",
+      "toName": "Ближний Восток",
+      "fromCode": "Kuwait",
+      "toCode": "Middle East",
+      "value": 2.7770731530468753
+    },
+    {
+      "fromName": "США",
+      "toName": "Африка",
+      "fromCode": "US",
+      "toCode": "Africa",
+      "value": 2.7592960366466572
+    },
+    {
+      "fromName": "Саудовская Аравия",
+      "toName": "Африка",
+      "fromCode": "Saudi Arabia",
+      "toCode": "Africa",
+      "value": 2.6382903199100003
+    },
+    {
+      "fromName": "Южная и Центральная Америка",
+      "toName": "Африка",
+      "fromCode": "S. & Cent. America",
+      "toCode": "Africa",
+      "value": 2.561135042
+    },
+    {
+      "fromName": "Западная Африка",
+      "toName": "Ближний Восток",
+      "fromCode": "West Africa",
+      "toCode": "Middle East",
+      "value": 2.5524694598685906
+    },
+    {
+      "fromName": "Саудовская Аравия",
+      "toName": "Канада",
+      "fromCode": "Saudi Arabia",
+      "toCode": "Canada",
+      "value": 2.4863098434619983
+    },
+    {
+      "fromName": "Европа",
+      "toName": "Индия",
+      "fromCode": "Europe",
+      "toCode": "India",
+      "value": 2.31345367
+    },
+    {
+      "fromName": "Другие страны АТР",
+      "toName": "Китай",
+      "fromCode": "Other Asia Pacific",
+      "toCode": "China",
+      "value": 2.0668173420000002
+    },
+    {
+      "fromName": "Другие страны СНГ",
+      "toName": "Китай",
+      "fromCode": "Other CIS",
+      "toCode": "China",
+      "value": 2.033078503
+    },
+    {
+      "fromName": "Северная Африка",
+      "toName": "Ближний Восток",
+      "fromCode": "North Africa",
+      "toCode": "Middle East",
+      "value": 1.9608854480000002
+    },
+    {
+      "fromName": "ОАЭ",
+      "toName": "США",
+      "fromCode": "UAE",
+      "toCode": "US",
+      "value": 1.9407912687585265
+    },
+    {
+      "fromName": "Другие страны СНГ",
+      "toName": "США",
+      "fromCode": "Other CIS",
+      "toCode": "US",
+      "value": 1.911050477489768
+    },
+    {
+      "fromName": "Другие страны АТР",
+      "toName": "Сингапур",
+      "fromCode": "Other Asia Pacific",
+      "toCode": "Singapore",
+      "value": 1.801925
+    },
+    {
+      "fromName": "Северная Африка",
+      "toName": "Китай",
+      "fromCode": "North Africa",
+      "toCode": "China",
+      "value": 1.7561569970000002
+    },
+    {
+      "fromName": "Северная Африка",
+      "toName": "Индия",
+      "fromCode": "North Africa",
+      "toCode": "India",
+      "value": 1.75424195
+    },
+    {
+      "fromName": "Южная и Центральная Америка",
+      "toName": "Япония",
+      "fromCode": "S. & Cent. America",
+      "toCode": "Japan",
+      "value": 1.743500374
+    },
+    {
+      "fromName": "Другие страны СНГ",
+      "toName": "Ближний Восток",
+      "fromCode": "Other CIS",
+      "toCode": "Middle East",
+      "value": 1.732899038494995
+    },
+    {
+      "fromName": "ОАЭ",
+      "toName": "Европа",
+      "fromCode": "UAE",
+      "toCode": "Europe",
+      "value": 1.6537118922239533
+    },
+    {
+      "fromName": "Южная и Центральная Америка",
+      "toName": "Ближний Восток",
+      "fromCode": "S. & Cent. America",
+      "toCode": "Middle East",
+      "value": 1.6183200970316696
+    },
+    {
+      "fromName": "Австралия и Океания",
+      "toName": "Сингапур",
+      "fromCode": "Australasia",
+      "toCode": "Singapore",
+      "value": 1.6144800000000001
+    },
+    {
+      "fromName": "Западная Африка",
+      "toName": "Сингапур",
+      "fromCode": "West Africa",
+      "toCode": "Singapore",
+      "value": 1.588215
+    },
+    {
+      "fromName": "Ирак",
+      "toName": "Сингапур",
+      "fromCode": "Iraq",
+      "toCode": "Singapore",
+      "value": 1.548173
+    },
+    {
+      "fromName": "Другие страны АТР",
+      "toName": "Индия",
+      "fromCode": "Other Asia Pacific",
+      "toCode": "India",
+      "value": 1.4338235099999999
+    },
+    {
+      "fromName": "Европа",
+      "toName": "Другие страны АТР",
+      "fromCode": "Europe",
+      "toCode": "Other Asia Pacific",
+      "value": 1.15123809161366
+    },
+    {
+      "fromName": "Кувейт",
+      "toName": "США",
+      "fromCode": "Kuwait",
+      "toCode": "US",
+      "value": 1.0637107776261936
+    },
+    {
+      "fromName": "Северная Африка",
+      "toName": "Южная и Центральная Америка",
+      "fromCode": "North Africa",
+      "toCode": "S. & Cent. America",
+      "value": 1.0598012085155457
+    },
+    {
+      "fromName": "Мексика",
+      "toName": "Китай",
+      "fromCode": "Mexico",
+      "toCode": "China",
+      "value": 1.047572474
+    },
+    {
+      "fromName": "Южная и Центральная Америка",
+      "toName": "Канада",
+      "fromCode": "S. & Cent. America",
+      "toCode": "Canada",
+      "value": 0.9034751537013661
+    },
+    {
+      "fromName": "Китай",
+      "toName": "Другие страны АТР",
+      "fromCode": "China",
+      "toCode": "Other Asia Pacific",
+      "value": 0.804912622
+    },
+    {
+      "fromName": "Канада",
+      "toName": "Другие страны АТР",
+      "fromCode": "Canada",
+      "toCode": "Other Asia Pacific",
+      "value": 0.772841708
+    },
+    {
+      "fromName": "США",
+      "toName": "Австралия и Океания",
+      "fromCode": "US",
+      "toCode": "Australasia",
+      "value": 0.742837653478854
+    },
+    {
+      "fromName": "Восточная и Южная Африка",
+      "toName": "Другие страны АТР",
+      "fromCode": "East & S. Africa",
+      "toCode": "Other Asia Pacific",
+      "value": 0.621856104
+    },
+    {
+      "fromName": "Европа",
+      "toName": "Южная и Центральная Америка",
+      "fromCode": "Europe",
+      "toCode": "S. & Cent. America",
+      "value": 0.600613755753105
+    },
+    {
+      "fromName": "Австралия и Океания",
+      "toName": "Китай",
+      "fromCode": "Australasia",
+      "toCode": "China",
+      "value": 0.597646232
+    },
+    {
+      "fromName": "Другой Ближний Восток",
+      "toName": "Европа",
+      "fromCode": "Other Middle East",
+      "toCode": "Europe",
+      "value": 0.586323071602082
+    },
+    {
+      "fromName": "Другие страны АТР",
+      "toName": "Япония",
+      "fromCode": "Other Asia Pacific",
+      "toCode": "Japan",
+      "value": 0.583678809
+    },
+    {
+      "fromName": "Австралия и Океания",
+      "toName": "Ближний Восток",
+      "fromCode": "Australasia",
+      "toCode": "Middle East",
+      "value": 0.578113984
+    },
+    {
+      "fromName": "Другие страны СНГ",
+      "toName": "Африка",
+      "fromCode": "Other CIS",
+      "toCode": "Africa",
+      "value": 0.5401353999999999
+    },
+    {
+      "fromName": "ОАЭ",
+      "toName": "Австралия и Океания",
+      "fromCode": "UAE",
+      "toCode": "Australasia",
+      "value": 0.5364569920000001
+    },
+    {
+      "fromName": "Восточная и Южная Африка",
+      "toName": "Европа",
+      "fromCode": "East & S. Africa",
+      "toCode": "Europe",
+      "value": 0.5316729510299999
+    },
+    {
+      "fromName": "Восточная и Южная Африка",
+      "toName": "Китай",
+      "fromCode": "East & S. Africa",
+      "toCode": "China",
+      "value": 0.514919591
+    },
+    {
+      "fromName": "Россия",
+      "toName": "Ближний Восток",
+      "fromCode": "Russia",
+      "toCode": "Middle East",
+      "value": 0.505587208
+    },
+    {
+      "fromName": "Европа",
+      "toName": "Сингапур",
+      "fromCode": "Europe",
+      "toCode": "Singapore",
+      "value": 0.475901
+    },
+    {
+      "fromName": "Ирак",
+      "toName": "Ближний Восток",
+      "fromCode": "Iraq",
+      "toCode": "Middle East",
+      "value": 0.456983244
+    },
+    {
+      "fromName": "Канада",
+      "toName": "Индия",
+      "fromCode": "Canada",
+      "toCode": "India",
+      "value": 0.40158178999999994
+    },
+    {
+      "fromName": "Россия",
+      "toName": "Африка",
+      "fromCode": "Russia",
+      "toCode": "Africa",
+      "value": 0.39226340800000004
+    },
+    {
+      "fromName": "Россия",
+      "toName": "Другие страны АТР",
+      "fromCode": "Russia",
+      "toCode": "Other Asia Pacific",
+      "value": 0.383357392
+    },
+    {
+      "fromName": "Австралия и Океания",
+      "toName": "Япония",
+      "fromCode": "Australasia",
+      "toCode": "Japan",
+      "value": 0.36727852
+    },
+    {
+      "fromName": "Северная Африка",
+      "toName": "Австралия и Океания",
+      "fromCode": "North Africa",
+      "toCode": "Australasia",
+      "value": 0.352629904
+    },
+    {
+      "fromName": "Западная Африка",
+      "toName": "Австралия и Океания",
+      "fromCode": "West Africa",
+      "toCode": "Australasia",
+      "value": 0.341901496
+    },
+    {
+      "fromName": "Восточная и Южная Африка",
+      "toName": "Сингапур",
+      "fromCode": "East & S. Africa",
+      "toCode": "Singapore",
+      "value": 0.29403799999999997
+    },
+    {
+      "fromName": "Кувейт",
+      "toName": "Европа",
+      "fromCode": "Kuwait",
+      "toCode": "Europe",
+      "value": 0.281510463
+    },
+    {
+      "fromName": "Другие страны СНГ",
+      "toName": "Южная и Центральная Америка",
+      "fromCode": "Other CIS",
+      "toCode": "S. & Cent. America",
+      "value": 0.2670066
+    },
+    {
+      "fromName": "Северная Африка",
+      "toName": "Африка",
+      "fromCode": "North Africa",
+      "toCode": "Africa",
+      "value": 0.133912638
+    },
+    {
+      "fromName": "Ирак",
+      "toName": "Африка",
+      "fromCode": "Iraq",
+      "toCode": "Africa",
+      "value": 0.128362896
+    },
+    {
+      "fromName": "Европа",
+      "toName": "Африка",
+      "fromCode": "Europe",
+      "toCode": "Africa",
+      "value": 0.12721479569406124
+    },
+    {
+      "fromName": "Мексика",
+      "toName": "Япония",
+      "fromCode": "Mexico",
+      "toCode": "Japan",
+      "value": 0.10769405600000001
+    },
+    {
+      "fromName": "Россия",
+      "toName": "Южная и Центральная Америка",
+      "fromCode": "Russia",
+      "toCode": "S. & Cent. America",
+      "value": 0.10731392930479092
+    },
+    {
+      "fromName": "Китай",
+      "toName": "Сингапур",
+      "fromCode": "China",
+      "toCode": "Singapore",
+      "value": 0.101078
+    },
+    {
+      "fromName": "Другие страны АТР",
+      "toName": "Европа",
+      "fromCode": "Other Asia Pacific",
+      "toCode": "Europe",
+      "value": 0.09282048772395987
+    },
+    {
+      "fromName": "Япония",
+      "toName": "Другие страны АТР",
+      "fromCode": "Japan",
+      "toCode": "Other Asia Pacific",
+      "value": 0.091720496
+    },
+    {
+      "fromName": "ОАЭ",
+      "toName": "Африка",
+      "fromCode": "UAE",
+      "toCode": "Africa",
+      "value": 0.08127177307014846
+    },
+    {
+      "fromName": "Южная и Центральная Америка",
+      "toName": "Австралия и Океания",
+      "fromCode": "S. & Cent. America",
+      "toCode": "Australasia",
+      "value": 0.07903725260791823
+    },
+    {
+      "fromName": "Мексика",
+      "toName": "Канада",
+      "fromCode": "Mexico",
+      "toCode": "Canada",
+      "value": 0.07148588723719723
+    },
+    {
+      "fromName": "Другие страны СНГ",
+      "toName": "Австралия и Океания",
+      "fromCode": "Other CIS",
+      "toCode": "Australasia",
+      "value": 0.0604327
+    },
+    {
+      "fromName": "Северная Африка",
+      "toName": "Сингапур",
+      "fromCode": "North Africa",
+      "toCode": "Singapore",
+      "value": 0.051081
+    },
+    {
+      "fromName": "Индия",
+      "toName": "Ближний Восток",
+      "fromCode": "India",
+      "toCode": "Middle East",
+      "value": 0.050906341625000004
+    },
+    {
+      "fromName": "Австралия и Океания",
+      "toName": "Европа",
+      "fromCode": "Australasia",
+      "toCode": "Europe",
+      "value": 0.0494093
+    },
+    {
+      "fromName": "Другие страны АТР",
+      "toName": "Южная и Центральная Америка",
+      "fromCode": "Other Asia Pacific",
+      "toCode": "S. & Cent. America",
+      "value": 0.03964793
+    },
+    {
+      "fromName": "Канада",
+      "toName": "Япония",
+      "fromCode": "Canada",
+      "toCode": "Japan",
+      "value": 0.038984252
+    },
+    {
+      "fromName": "Кувейт",
+      "toName": "Африка",
+      "fromCode": "Kuwait",
+      "toCode": "Africa",
+      "value": 0.03804878000000001
+    },
+    {
+      "fromName": "Кувейт",
+      "toName": "Сингапур",
+      "fromCode": "Kuwait",
+      "toCode": "Singapore",
+      "value": 0.034477
+    },
+    {
+      "fromName": "Другие страны СНГ",
+      "toName": "Россия",
+      "fromCode": "Other CIS",
+      "toCode": "Russia",
+      "value": 0.033667248000000004
+    },
+    {
+      "fromName": "Восточная и Южная Африка",
+      "toName": "Япония",
+      "fromCode": "East & S. Africa",
+      "toCode": "Japan",
+      "value": 0.01392543
+    },
+    {
+      "fromName": "Восточная и Южная Африка",
+      "toName": "Южная и Центральная Америка",
+      "fromCode": "East & S. Africa",
+      "toCode": "S. & Cent. America",
+      "value": 0.008436188287876798
+    },
+    {
+      "fromName": "Сингапур",
+      "toName": "Другие страны АТР",
+      "fromCode": "Singapore",
+      "toCode": "Other Asia Pacific",
+      "value": 0.004004038546374458
+    },
+    {
+      "fromName": "Сингапур",
+      "toName": "Австралия и Океания",
+      "fromCode": "Singapore",
+      "toCode": "Australasia",
+      "value": 0.003
+    },
+    {
+      "fromName": "Восточная и Южная Африка",
+      "toName": "Африка",
+      "fromCode": "East & S. Africa",
+      "toCode": "Africa",
+      "value": 0.00113333453
+    },
+    {
+      "fromName": "Другие страны АТР",
+      "toName": "Африка",
+      "fromCode": "Other Asia Pacific",
+      "toCode": "Africa",
+      "value": 0.000527028
+    },
+    {
+      "fromName": "ОАЭ",
+      "toName": "Ближний Восток",
+      "fromCode": "UAE",
+      "toCode": "Middle East",
+      "value": 0.000368535203125
+    },
+    {
+      "fromName": "США",
+      "toName": "Ближний Восток",
+      "fromCode": "US",
+      "toCode": "Middle East",
+      "value": 0.00013642564802182812
+    },
+    {
+      "fromName": "Другие страны АТР",
+      "toName": "США",
+      "fromCode": "Other Asia Pacific",
+      "toCode": "US",
+      "value": 3.3867e-05
+    },
+    {
+      "fromName": "Европа",
+      "toName": "Ближний Восток",
+      "fromCode": "Europe",
+      "toCode": "Middle East",
+      "value": 3.203318820953369e-05
+    },
+    {
+      "fromName": "Индия",
+      "toName": "Южная и Центральная Америка",
+      "fromCode": "India",
+      "toCode": "S. & Cent. America",
+      "value": 3.1418e-05
+    },
+    {
+      "fromName": "Япония",
+      "toName": "Сингапур",
+      "fromCode": "Japan",
+      "toCode": "Singapore",
+      "value": 3.1e-05
+    },
+    {
+      "fromName": "Европа",
+      "toName": "Канада",
+      "fromCode": "Europe",
+      "toCode": "Canada",
+      "value": 2.9551789219648512e-05
+    },
+    {
+      "fromName": "Другой Ближний Восток",
+      "toName": "Другие страны СНГ",
+      "fromCode": "Other Middle East",
+      "toCode": "Other CIS",
+      "value": 2.799e-05
+    },
+    {
+      "fromName": "Ирак",
+      "toName": "Другие страны СНГ",
+      "fromCode": "Iraq",
+      "toCode": "Other CIS",
+      "value": 2.2e-05
+    },
+    {
+      "fromName": "Индия",
+      "toName": "Австралия и Океания",
+      "fromCode": "India",
+      "toCode": "Australasia",
+      "value": 1.6e-05
+    },
+    {
+      "fromName": "Канада",
+      "toName": "Ближний Восток",
+      "fromCode": "Canada",
+      "toCode": "Middle East",
+      "value": 1.29702744140625e-05
+    },
+    {
+      "fromName": "Япония",
+      "toName": "Ближний Восток",
+      "fromCode": "Japan",
+      "toCode": "Middle East",
+      "value": 9.406377433776855e-06
+    },
+    {
+      "fromName": "Япония",
+      "toName": "Канада",
+      "fromCode": "Japan",
+      "toCode": "Canada",
+      "value": 6.00664054665075e-06
+    },
+    {
+      "fromName": "Другой Ближний Восток",
+      "toName": "Канада",
+      "fromCode": "Other Middle East",
+      "toCode": "Canada",
+      "value": 5.148549039986358e-06
+    },
+    {
+      "fromName": "Европа",
+      "toName": "Другие страны СНГ",
+      "fromCode": "Europe",
+      "toCode": "Other CIS",
+      "value": 3.918000000000001e-06
+    },
+    {
+      "fromName": "Индия",
+      "toName": "Другие страны АТР",
+      "fromCode": "India",
+      "toCode": "Other Asia Pacific",
+      "value": 2.1549999999999997e-06
+    },
+    {
+      "fromName": "ОАЭ",
+      "toName": "Канада",
+      "fromCode": "UAE",
+      "toCode": "Canada",
+      "value": 1.7161830133287859e-06
+    },
+    {
+      "fromName": "Китай",
+      "toName": "Канада",
+      "fromCode": "China",
+      "toCode": "Canada",
+      "value": 1.7161830133287859e-06
+    },
+    {
+      "fromName": "Другой Ближний Восток",
+      "toName": "Африка",
+      "fromCode": "Other Middle East",
+      "toCode": "Africa",
+      "value": 1.48527294921875e-06
+    },
+    {
+      "fromName": "Другие страны АТР",
+      "toName": "Ближний Восток",
+      "fromCode": "Other Asia Pacific",
+      "toCode": "Middle East",
+      "value": 1.145746978759766e-06
+    },
+    {
+      "fromName": "Восточная и Южная Африка",
+      "toName": "Ближний Восток",
+      "fromCode": "East & S. Africa",
+      "toCode": "Middle East",
+      "value": 1.0502259979248046e-06
+    },
+    {
+      "fromName": "Индия",
+      "toName": "Европа",
+      "fromCode": "India",
+      "toCode": "Europe",
+      "value": 7.045000000000001e-07
+    },
+    {
+      "fromName": "Сингапур",
+      "toName": "Европа",
+      "fromCode": "Singapore",
+      "toCode": "Europe",
+      "value": 6.869999999999999e-07
+    },
+    {
+      "fromName": "ОАЭ",
+      "toName": "Россия",
+      "fromCode": "UAE",
+      "toCode": "Russia",
+      "value": 9.222200012207032e-08
+    },
+    {
+      "fromName": "Индия",
+      "toName": "Китай",
+      "fromCode": "India",
+      "toCode": "China",
+      "value": 8.9e-08
+    },
+    {
+      "fromName": "Австралия и Океания",
+      "toName": "Канада",
+      "fromCode": "Australasia",
+      "toCode": "Canada",
+      "value": 8.603099822998047e-08
+    },
+    {
+      "fromName": "ОАЭ",
+      "toName": "Южная и Центральная Америка",
+      "fromCode": "UAE",
+      "toCode": "S. & Cent. America",
+      "value": 8.29800033569336e-08
+    },
+    {
+      "fromName": "Канада",
+      "toName": "Южная и Центральная Америка",
+      "fromCode": "Canada",
+      "toCode": "S. & Cent. America",
+      "value": 6.579299926757813e-08
+    },
+    {
+      "fromName": "Другой Ближний Восток",
+      "toName": "Южная и Центральная Америка",
+      "fromCode": "Other Middle East",
+      "toCode": "S. & Cent. America",
+      "value": 3.591999816894531e-08
+    },
+    {
+      "fromName": "Австралия и Океания",
+      "toName": "Индия",
+      "fromCode": "Australasia",
+      "toCode": "India",
+      "value": 2e-08
+    },
+    {
+      "fromName": "Другие страны АТР",
+      "toName": "Канада",
+      "fromCode": "Other Asia Pacific",
+      "toCode": "Canada",
+      "value": 1.6275999069213867e-08
+    },
+    {
+      "fromName": "Япония",
+      "toName": "Европа",
+      "fromCode": "Japan",
+      "toCode": "Europe",
+      "value": 1.5420000076293947e-08
+    },
+    {
+      "fromName": "Австралия и Океания",
+      "toName": "Африка",
+      "fromCode": "Australasia",
+      "toCode": "Africa",
+      "value": 1.2999999999999999e-08
+    },
+    {
+      "fromName": "Япония",
+      "toName": "Южная и Центральная Америка",
+      "fromCode": "Japan",
+      "toCode": "S. & Cent. America",
+      "value": 1.009519419605168e-08
+    },
+    {
+      "fromName": "Мексика",
+      "toName": "Южная и Центральная Америка",
+      "fromCode": "Mexico",
+      "toCode": "S. & Cent. America",
+      "value": 1e-08
+    },
+    {
+      "fromName": "Япония",
+      "toName": "Африка",
+      "fromCode": "Japan",
+      "toCode": "Africa",
+      "value": 1e-08
+    },
+    {
+      "fromName": "Канада",
+      "toName": "Африка",
+      "fromCode": "Canada",
+      "toCode": "Africa",
+      "value": 9.000000000000001e-09
+    },
+    {
+      "fromName": "Индия",
+      "toName": "Африка",
+      "fromCode": "India",
+      "toCode": "Africa",
+      "value": 1.0000000000000003e-09
     }
   ]
 }
