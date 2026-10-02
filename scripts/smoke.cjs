@@ -1,0 +1,40 @@
+const { chromium } = require(process.env.PLAYWRIGHT_PACKAGE || '/Users/dcor/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+(async()=>{
+ const base=process.argv[2]||'http://localhost:8109';
+ const out=process.env.REPORT_DIR||'../reports';fs.mkdirSync(out,{recursive:true});
+ const browser=await chromium.launch({headless:true,channel:process.env.CHROME_CHANNEL||'chrome'});
+ const page=await browser.newPage({viewport:{width:1440,height:1100}});
+ const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto(base);await page.waitForFunction(()=>window.oilAtlas,{timeout:30000});
+ const snapshot=await page.evaluate(()=>window.oilAtlas.data);assert.equal(snapshot.snapshot,'2025');
+ const byCode=Object.fromEntries(snapshot.countries.map(c=>[c.iso,c]));
+ assert.ok(byCode.SAU.balance>0);assert.ok(byCode.CHN.balance<0);assert.equal(byCode.LUX.production,0);assert.equal(byCode.JPN.reserves,null);
+ assert.equal(await page.locator('#country-details .country-name').innerText(),'Саудовская Аравия');
+ assert.ok(await page.locator('#world-map .country').count()>170);
+ await page.locator('#world-map [data-iso="USA"]').click();
+ assert.equal(await page.locator('#country-details .country-name').innerText(),'США');
+ for(const mode of ['production','consumption','reserves','balance']){
+  await page.locator(`[data-mode="${mode}"]`).click();assert.equal(await page.locator(`[data-mode="${mode}"]`).getAttribute('aria-pressed'),'true');
+ }
+ await page.locator('#country-search').fill('Китай');await page.locator('#search-results [data-country="CHN"]').click();assert.equal(await page.locator('#country-details .country-name').innerText(),'Китай');
+ await page.locator('[data-mode="reserves"]').click();await page.locator('#routes-toggle').check();
+ assert.equal(await page.locator('.route-overlay circle').count(),8);assert.ok(await page.locator('.route-overlay').isVisible());
+ await page.reload();await page.waitForFunction(()=>window.oilAtlas);
+ assert.equal(await page.locator('#country-details .country-name').innerText(),'Китай');assert.equal(await page.locator('[data-mode="reserves"]').getAttribute('aria-pressed'),'true');assert.equal(await page.locator('#routes-toggle').isChecked(),true);
+ await page.locator('#country-search').fill('zzzzzz');assert.ok((await page.locator('#search-results').innerText()).includes('не найдена'));await page.locator('#country-search').press('Escape');assert.equal(await page.locator('#search-results').isVisible(),false);
+ await page.locator('#country-search').fill('Japan');await page.locator('#search-results [data-country="JPN"]').click();assert.equal(await page.locator('#world-map [data-iso="JPN"]').getAttribute('fill'),'#344852');assert.ok((await page.locator('#country-details').innerText()).includes('Нет отдельного значения'));
+ await page.locator('#country-search').fill('LUX');await page.locator('#search-results [data-country="LUX"]').click();assert.ok((await page.locator('#country-details').innerText()).includes('0,00 млн'));
+ await page.locator('#region-filter').selectOption('Asia');assert.ok(await page.locator('#country-table tr').count()>0);
+ await page.locator('#sort-by').selectOption('consumption');const first=await page.locator('#country-table tr').first().innerText();assert.ok(first.includes('Китай'));
+ const downloadWait=page.waitForEvent('download');await page.locator('#download-csv').click();const download=await downloadWait;const path=await download.path();const csv=fs.readFileSync(path,'utf8');assert.ok(csv.includes('2025'));assert.equal(csv.trim().split('\r\n').length,snapshot.countries.length+1);
+ await page.locator('#country-search').fill('SAU');await page.locator('#search-results [data-country="SAU"]').click();await page.locator('[data-mode="balance"]').click();await page.locator('#routes-toggle').uncheck();await page.evaluate(()=>scrollTo(0,0));await page.screenshot({path:`${out}/desktop.png`,fullPage:true});await page.screenshot({path:`${out}/hero.png`});
+ await page.setViewportSize({width:390,height:844});await page.reload();await page.waitForFunction(()=>window.oilAtlas);
+ assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,'Mobile layout overflow');
+ await page.screenshot({path:`${out}/mobile.png`,fullPage:true});
+ await page.locator('#country-search').fill('China');await page.locator('#search-results [data-country="CHN"]').click();assert.equal(await page.locator('#country-details .country-name').innerText(),'Китай');
+ const failure=await browser.newPage();await failure.route('**/data/snapshot.json',r=>r.fulfill({status:404,body:'missing'}));await failure.goto(base);await failure.locator('#error-message').waitFor({state:'visible'});await failure.close();
+ assert.deepEqual(errors,[]);await browser.close();
+ console.log(JSON.stringify({status:'PASS',base,countries:snapshot.countries.length,checks:['real-data-boundaries','zero-versus-null','map-selection','four-map-layers','Russian-English-ISO-search','unknown-search','URL-resume','chokepoints','region-and-sort','CSV-export','desktop-mobile-overflow','missing-source-error','no-runtime-errors']}));
+})().catch(e=>{console.error(e);process.exit(1)});

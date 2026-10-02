@@ -1,0 +1,6 @@
+.DS_Store
+node_modules/
+*.tmp
+reports/
+data/raw/*.xlsx
+data/raw/*.download

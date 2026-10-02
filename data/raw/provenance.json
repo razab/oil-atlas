@@ -1,0 +1,29 @@
+{
+  "eiWorkbook": {
+    "publisher": "Energy Institute",
+    "edition": 2026,
+    "downloadMirror": "https://nextbarrel.io/files/EI-Stats-Review-ALL-data.xlsx",
+    "sha256": "846e72c22d0a6cc14358d0faa0caafa99d6080c65218b19954dd62b11b72c448",
+    "sheets": [
+      "Oil Production - barrels",
+      "Oil Consumption - barrels"
+    ]
+  },
+  "trade": {
+    "publisher": "Energy Institute",
+    "edition": 2025,
+    "year": 2024,
+    "downloadMirror": "https://energyinst.net/all-data/EI-stats-review-all-data.xlsx",
+    "sha256": "b50e7cb2964e3a73b0ea63838a99d1775cca18545dd702c26083a4488f205d63",
+    "sheet": "Oil - Inter-area movements"
+  },
+  "reserves": {
+    "publisher": "OPEC",
+    "edition": 2025,
+    "year": 2024,
+    "table": "3.1",
+    "printedPage": 22,
+    "url": "https://www.opec.org/assets/assetdb/asb-2025.pdf"
+  },
+  "retrieved": "2026-10-02"
+}

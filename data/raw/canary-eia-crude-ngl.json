@@ -1,0 +1,203 @@
+{
+  "response": {
+    "total": "10",
+    "dateFormat": "YYYY",
+    "frequency": "annual",
+    "data": [
+      {
+        "period": "2025",
+        "productId": "57",
+        "productName": "Crude oil including lease condensate",
+        "activityId": "1",
+        "activityName": "Production",
+        "countryRegionId": "CHN",
+        "countryRegionName": "China",
+        "countryRegionTypeId": "c",
+        "countryRegionTypeName": "Country",
+        "dataFlagId": null,
+        "dataFlagDescription": null,
+        "unitName": "thousand barrels per day",
+        "value": "4325",
+        "unit": "TBPD"
+      },
+      {
+        "period": "2025",
+        "productId": "57",
+        "productName": "Crude oil including lease condensate",
+        "activityId": "1",
+        "activityName": "Production",
+        "countryRegionId": "JPN",
+        "countryRegionName": "Japan",
+        "countryRegionTypeId": "c",
+        "countryRegionTypeName": "Country",
+        "dataFlagId": null,
+        "dataFlagDescription": null,
+        "unitName": "thousand barrels per day",
+        "value": "3.1",
+        "unit": "TBPD"
+      },
+      {
+        "period": "2025",
+        "productId": "57",
+        "productName": "Crude oil including lease condensate",
+        "activityId": "1",
+        "activityName": "Production",
+        "countryRegionId": "LUX",
+        "countryRegionName": "Luxembourg",
+        "countryRegionTypeId": "c",
+        "countryRegionTypeName": "Country",
+        "dataFlagId": null,
+        "dataFlagDescription": null,
+        "unitName": "thousand barrels per day",
+        "value": "0",
+        "unit": "TBPD"
+      },
+      {
+        "period": "2025",
+        "productId": "57",
+        "productName": "Crude oil including lease condensate",
+        "activityId": "1",
+        "activityName": "Production",
+        "countryRegionId": "SAU",
+        "countryRegionName": "Saudi Arabia",
+        "countryRegionTypeId": "c",
+        "countryRegionTypeName": "Country",
+        "dataFlagId": null,
+        "dataFlagDescription": null,
+        "unitName": "thousand barrels per day",
+        "value": "9556",
+        "unit": "TBPD"
+      },
+      {
+        "period": "2025",
+        "productId": "57",
+        "productName": "Crude oil including lease condensate",
+        "activityId": "1",
+        "activityName": "Production",
+        "countryRegionId": "USA",
+        "countryRegionName": "United States",
+        "countryRegionTypeId": "c",
+        "countryRegionTypeName": "Country",
+        "dataFlagId": null,
+        "dataFlagDescription": null,
+        "unitName": "thousand barrels per day",
+        "value": "13586",
+        "unit": "TBPD"
+      },
+      {
+        "period": "2025",
+        "productId": "58",
+        "productName": "NGPL",
+        "activityId": "1",
+        "activityName": "Production",
+        "countryRegionId": "CHN",
+        "countryRegionName": "China",
+        "countryRegionTypeId": "c",
+        "countryRegionTypeName": "Country",
+        "dataFlagId": null,
+        "dataFlagDescription": null,
+        "unitName": "thousand barrels per day",
+        "value": "10",
+        "unit": "TBPD"
+      },
+      {
+        "period": "2025",
+        "productId": "58",
+        "productName": "NGPL",
+        "activityId": "1",
+        "activityName": "Production",
+        "countryRegionId": "JPN",
+        "countryRegionName": "Japan",
+        "countryRegionTypeId": "c",
+        "countryRegionTypeName": "Country",
+        "dataFlagId": null,
+        "dataFlagDescription": null,
+        "unitName": "thousand barrels per day",
+        "value": "4.3",
+        "unit": "TBPD"
+      },
+      {
+        "period": "2025",
+        "productId": "58",
+        "productName": "NGPL",
+        "activityId": "1",
+        "activityName": "Production",
+        "countryRegionId": "LUX",
+        "countryRegionName": "Luxembourg",
+        "countryRegionTypeId": "c",
+        "countryRegionTypeName": "Country",
+        "dataFlagId": null,
+        "dataFlagDescription": null,
+        "unitName": "thousand barrels per day",
+        "value": "0",
+        "unit": "TBPD"
+      },
+      {
+        "period": "2025",
+        "productId": "58",
+        "productName": "NGPL",
+        "activityId": "1",
+        "activityName": "Production",
+        "countryRegionId": "SAU",
+        "countryRegionName": "Saudi Arabia",
+        "countryRegionTypeId": "c",
+        "countryRegionTypeName": "Country",
+        "dataFlagId": null,
+        "dataFlagDescription": null,
+        "unitName": "thousand barrels per day",
+        "value": "1558",
+        "unit": "TBPD"
+      },
+      {
+        "period": "2025",
+        "productId": "58",
+        "productName": "NGPL",
+        "activityId": "1",
+        "activityName": "Production",
+        "countryRegionId": "USA",
+        "countryRegionName": "United States",
+        "countryRegionTypeId": "c",
+        "countryRegionTypeName": "Country",
+        "dataFlagId": null,
+        "dataFlagDescription": null,
+        "unitName": "thousand barrels per day",
+        "value": "7479",
+        "unit": "TBPD"
+      }
+    ],
+    "description": "Country level production, consumption, imports, exports by energy source (petroleum, natural gas, electricity, renewable, etc.)  \r\n        Interactive product:  https://www.eia.gov/international/data/world"
+  },
+  "request": {
+    "command": "/v2/international/data/",
+    "params": {
+      "frequency": "annual",
+      "data": [
+        "value"
+      ],
+      "start": "2025",
+      "end": "2025",
+      "length": "5000",
+      "facets": {
+        "unit": [
+          "TBPD"
+        ],
+        "activityId": [
+          "1"
+        ],
+        "productId": [
+          "57",
+          "58"
+        ],
+        "countryRegionId": [
+          "CHN",
+          "JPN",
+          "LUX",
+          "SAU",
+          "USA"
+        ]
+      }
+    }
+  },
+  "apiVersion": "2.1.14",
+  "ExcelAddInVersion": "2.1.0"
+}

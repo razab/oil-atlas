@@ -1,0 +1,14 @@
+{
+  "year": 2024,
+  "unit": "million tonnes per year",
+  "canary": true,
+  "flows": [
+    {
+      "fromName": "Саудовская Аравия",
+      "toName": "Китай",
+      "fromCode": "Saudi Arabia",
+      "toCode": "China",
+      "value": 78.638772617
+    }
+  ]
+}

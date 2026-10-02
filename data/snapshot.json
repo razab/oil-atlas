@@ -1,0 +1,145 @@
+{
+  "snapshot": "2025",
+  "retrieved": "2026-10-02",
+  "canary": true,
+  "world": {
+    "production": 100.58955408398654,
+    "consumption": 103.03872689873116
+  },
+  "reservesWorld": 1566.869,
+  "reservesYear": 2024,
+  "countries": [
+    {
+      "iso": "CHN",
+      "id": "156",
+      "name": "Китай",
+      "english": "China",
+      "region": "Asia",
+      "coordinates": [
+        105,
+        35
+      ],
+      "production": 4.339500575342465,
+      "consumption": 17.36041634503618,
+      "crude": 4.325,
+      "ngl": 0.01,
+      "reserves": 28.182,
+      "reserveYear": 2024,
+      "productionSource": "Energy Institute 2026",
+      "consumptionSource": "Energy Institute 2026",
+      "balance": -13.020915769693715,
+      "yearsConsumption": 4.447529216439922,
+      "yearsProduction": 17.852244833320135
+    },
+    {
+      "iso": "JPN",
+      "id": "392",
+      "name": "Япония",
+      "english": "Japan",
+      "region": "Asia",
+      "coordinates": [
+        138,
+        36
+      ],
+      "production": 0.0074,
+      "consumption": 3.3143168360815385,
+      "crude": 0.0031,
+      "ngl": 0.0043,
+      "reserves": null,
+      "reserveYear": null,
+      "productionSource": "EIA crude + NGPL",
+      "consumptionSource": "Energy Institute 2026",
+      "balance": -3.3069168360815384,
+      "yearsConsumption": null,
+      "yearsProduction": null
+    },
+    {
+      "iso": "LUX",
+      "id": "442",
+      "name": "Люксембург",
+      "english": "Luxembourg",
+      "region": "Europe",
+      "coordinates": [
+        6.16666666,
+        49.75
+      ],
+      "production": 0.0,
+      "consumption": 0.04269966648227424,
+      "crude": 0.0,
+      "ngl": 0.0,
+      "reserves": null,
+      "reserveYear": null,
+      "productionSource": "EIA crude + NGPL",
+      "consumptionSource": "Energy Institute 2026",
+      "balance": -0.04269966648227424,
+      "yearsConsumption": null,
+      "yearsProduction": null
+    },
+    {
+      "iso": "SAU",
+      "id": "682",
+      "name": "Саудовская Аравия",
+      "english": "Saudi Arabia",
+      "region": "Asia",
+      "coordinates": [
+        45,
+        25
+      ],
+      "production": 11.407904031412023,
+      "consumption": 3.8617961490243444,
+      "crude": 9.556,
+      "ngl": 1.558,
+      "reserves": 267.2,
+      "reserveYear": 2024,
+      "productionSource": "Energy Institute 2026",
+      "consumptionSource": "Energy Institute 2026",
+      "balance": 7.546107882387679,
+      "yearsConsumption": 189.56329290076496,
+      "yearsProduction": 76.60682236506362
+    },
+    {
+      "iso": "USA",
+      "id": "840",
+      "name": "США",
+      "english": "US",
+      "region": "Americas",
+      "coordinates": [
+        -97,
+        38
+      ],
+      "production": 21.06536712328767,
+      "consumption": 19.403789298630137,
+      "crude": 13.586,
+      "ngl": 7.479,
+      "reserves": 45.014,
+      "reserveYear": 2024,
+      "productionSource": "Energy Institute 2026",
+      "consumptionSource": "Energy Institute 2026",
+      "balance": 1.661577824657531,
+      "yearsConsumption": 6.355770282764657,
+      "yearsProduction": 9.077434667838972
+    }
+  ],
+  "sources": [
+    {
+      "name": "Energy Institute 2026 · производство и спрос · 2025",
+      "url": "https://www.energyinst.org/statistical-review/resources-and-data-downloads",
+      "year": 2025
+    },
+    {
+      "name": "EIA · добыча сырой нефти и газовых жидкостей · 2025",
+      "url": "https://www.eia.gov/international/data/world/petroleum-and-other-liquids",
+      "year": 2025
+    },
+    {
+      "name": "OPEC ASB 2025 · запасы · таблица 3.1",
+      "url": "https://www.opec.org/assets/assetdb/asb-2025.pdf",
+      "year": 2024
+    },
+    {
+      "name": "EIA · морские узлы · I пол. 2025",
+      "url": "https://www.eia.gov/international/content/analysis/special_topics/World_Oil_Transit_Chokepoints/",
+      "year": "1H2025"
+    }
+  ]
+}
