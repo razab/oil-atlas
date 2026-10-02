@@ -33,35 +33,36 @@ function selectedBounds(){
  return [Math.max(0,a[0]-12),Math.max(0,a[1]-12),Math.min(W,b[0]+12),Math.min(H,b[1]+12)];
 }
 function positionPanel(){
- const card=$('#country-card'),r=selectedBounds(),gap=14,top=74,bottom=H-54;
+ const card=$('#country-card'),gap=14,top=74,bottom=H-54,blockers=[selectedBounds()];
+ for(const selector of ['#map-settings','.search','#search-results','#detail-popup','.zoom-controls']){
+  const el=$(selector);if(!el.hidden&&el.getClientRects().length){const b=el.getBoundingClientRect();blockers.push([b.left,b.top,b.right,b.bottom]);}
+ }
  card.classList.remove('auto-compact');card.style.visibility='visible';card.style.removeProperty('--panel-height');
  const width=Math.min(280,W-28),height=Math.min(card.scrollHeight,bottom-top);
- const area=(a,b)=>Math.max(0,Math.min(a[2],b[2])-Math.max(a[0],b[0]))*Math.max(0,Math.min(a[3],b[3])-Math.max(a[1],b[1]));
- const preferred=screen(state.country)[0]<W/2?'right':'left';
- const candidates=[];
+ const preferred=screen(state.country)[0]<W/2?'right':'left',spaces=[];
  for(const side of [preferred,preferred==='left'?'right':'left']){
-  const x=side==='left'?gap:W-gap-width;
-  for(const y of [top,Math.max(top,bottom-height)]){
-   candidates.push({side,x,y,height,overlap:area([x,y,x+width,y+height],r)});
+  const x=side==='left'?gap:W-gap-width;let free=[[top,bottom]];
+  for(const b of blockers){
+   if(b[2]<=x||b[0]>=x+width)continue;
+   free=free.flatMap(([a,z])=>b[3]+8<=a||b[1]-8>=z?[[a,z]]:[[a,Math.min(z,b[1]-8)],[Math.max(a,b[3]+8),z]].filter(([lo,hi])=>hi>lo));
   }
-  for(const [y,h] of [[top,Math.min(height,r[1]-top-8)],[Math.max(top,r[3]+8),Math.min(height,bottom-r[3]-8)]]){
-   if(h>=90)candidates.push({side,x,y,height:h,overlap:area([x,y,x+width,y+h],r)});
-  }
+  for(const [a,z] of free)spaces.push({side,x,y:a,height:Math.min(height,z-a),room:z-a});
  }
- candidates.sort((a,b)=>a.overlap-b.overlap||b.height-a.height);
+ const candidates=spaces.filter(s=>s.room>=Math.min(90,height));
+ candidates.sort((a,b)=>b.height-a.height);
  let best=candidates[0];
- if(best.overlap>0){
-  const compact=[];
-  for(const side of [preferred,preferred==='left'?'right':'left']){
-   const x=side==='left'?gap:W-gap-width;
-   for(const y of [top,bottom-64])compact.push({side,x,y,height:64,overlap:area([x,y,x+width,y+64],r)});
-  }
-  compact.sort((a,b)=>a.overlap-b.overlap);best=compact[0];card.classList.add('auto-compact');
-  if(best.overlap>0)card.style.visibility='hidden';
+ if(!best){
+  best=spaces.find(s=>s.room>=64);card.classList.add('auto-compact');
+  if(best)best={...best,height:64};
+  else {best={side:preferred,x:preferred==='left'?gap:W-gap-width,y:top,height:64};card.style.visibility='hidden';}
  }
  $('#country-info').hidden=card.style.visibility!=='hidden';
  card.dataset.side=best.side;card.style.left=best.x+'px';card.style.right='auto';card.style.top=best.y+'px';card.style.bottom='auto';
  card.style.setProperty('--panel-height',best.height+'px');
+}
+function closeMapMenus(){
+ $('.search').hidden=true;$('#search-results').hidden=true;$('#map-settings').hidden=true;
+ $('#search-toggle').setAttribute('aria-expanded','false');$('#filters-toggle').setAttribute('aria-expanded','false');
 }
 function placeLabel(xy,width,height,placed){
  const left=8,top=64,bottom=H-45,card=$('#country-card').getBoundingClientRect();
@@ -93,9 +94,9 @@ function visibleSelection(all){
 function choose(code){
  if(!graph.nodes[code]||graph.nodes[code].kind!=='country')return;
  if(code!==state.country){const previous=state.country;state.partner=state.mode==='trade'&&graph.flows.some(f=>f.product===state.product&&((f.origin===previous&&f.destination===code)||(f.origin===code&&f.destination===previous)))?previous:null;}
- state.country=code;state.direction='both';state.sites=false;state.all=false;$('#detail-popup').hidden=true;$('#search-results').hidden=true;$('#country-search').value='';$('.search').hidden=true;$('#search-toggle').setAttribute('aria-expanded','false');render();
+ state.country=code;state.direction='both';state.sites=false;state.all=false;$('#detail-popup').hidden=true;closeMapMenus();$('#country-search').value='';render();
 }
-function showPopup(html){$('#popup-content').innerHTML=html;$('#detail-popup').hidden=false;}
+function showPopup(html){closeMapMenus();$('#popup-content').innerHTML=html;$('#detail-popup').hidden=false;mapOverlays();}
 function showState(s){
  const v=graph.states[s.properties.name];
  showPopup(`<p class="eyebrow">ШТАТ / США · 2025</p><h2>${esc(s.properties.name)}</h2><p class="big-number">${fmt(v?.crude)}</p><p>тыс. барр./сутки · добыча сырой нефти с конденсатом${v?'':' · нет отдельного значения'}</p><p>Потребление штата пока не загружено. Бассейны могут пересекать границы нескольких штатов; их объёмы нельзя складывать с объёмами штатов.</p><a href="https://www.eia.gov/dnav/pet/pet_crd_crpdn_adc_mbbl_a.htm" target="_blank" rel="noopener">EIA · добыча по штатам ↗</a>`);
@@ -266,24 +267,24 @@ async function main(){
  if(graph.nodes[state.country]?.kind!=='country')state.country='FRA';
  $('#about-content').innerHTML=`<p><strong>Набор прошёл проверку:</strong> ${release.validation.summary.observations} исходных записей, ${release.validation.summary.reconciliations} сверок итогов. <a href="validation.html" target="_blank" rel="noopener">Отчёт, ограничения и поиск исходных чисел ↗</a></p><p><strong>Внутренние производство и спрос:</strong> Energy Institute 2026, год 2025. Нефтяные жидкости: нефть, конденсат и NGL. Для небольших производителей — EIA 2025. Спрос на нефтяные жидкости не равен объёму переработки сырой нефти.</p><p><strong>Торговля США:</strong> национальные таблицы EIA 2025. Годовые тысячи баррелей делятся на 365 для среднего суточного объёма. Бензин — finished motor gasoline; дистилляты включают дизель и отопительное топливо.</p><p><strong>Импорт Франции:</strong> INSEE/SDES, предварительные данные 2025, млн тонн/год. Страна происхождения — страна добычи, поэтому серия может отличаться от EIA, учитывающей экспорт из США. Показаны семь поставщиков, 79,5% полного импорта. Непоказанный остаток не распределён.</p><p><strong>Газ:</strong> матрицы трубопроводной торговли и СПГ Energy Institute 2026 за 2025. Они содержат страны и сводные группы. Для Франции в трубопроводной матрице есть только ЕС; его объём не присвоен Франции. Вместо этого отдельно показан существующий газопровод Franpipe.</p><p><strong>Другие связи сырой нефти:</strong> матрица EI 2025 за 2024. Она не содержит полного разбиения всех стран. Бензин и дистилляты вне торговли с США пока не покрыты.</p><p><strong>Запасы:</strong> OPEC ASB 2025, состояние на конец 2024. Границы стран: Natural Earth; штаты США: Census 2017 / us-atlas.</p>${Object.values(graph.sources).map(s=>`<p><a href="${s.url}" target="_blank" rel="noopener">${esc(s.label)} ↗</a></p>`).join('')}`;
  initMap();
- $('#search-toggle').onclick=()=>{const open=$('.search').hidden;$('.search').hidden=!open;$('#search-toggle').setAttribute('aria-expanded',open);$('#map-settings').hidden=true;$('#filters-toggle').setAttribute('aria-expanded','false');if(open)$('#country-search').focus();};
- $('#filters-toggle').onclick=()=>{const open=$('#map-settings').hidden;$('#map-settings').hidden=!open;$('#filters-toggle').setAttribute('aria-expanded',open);$('.search').hidden=true;$('#search-toggle').setAttribute('aria-expanded','false');};
+ $('#search-toggle').onclick=()=>{const open=$('.search').hidden;$('.search').hidden=!open;$('#search-toggle').setAttribute('aria-expanded',open);$('#map-settings').hidden=true;$('#filters-toggle').setAttribute('aria-expanded','false');if(open){$('#detail-popup').hidden=true;$('#country-search').focus();}mapOverlays();};
+ $('#filters-toggle').onclick=()=>{const open=$('#map-settings').hidden;$('#map-settings').hidden=!open;$('#filters-toggle').setAttribute('aria-expanded',open);$('.search').hidden=true;$('#search-toggle').setAttribute('aria-expanded','false');if(open)$('#detail-popup').hidden=true;mapOverlays();};
  $('#country-info').onclick=()=>showPopup($('#country-details').innerHTML);
- $$('[data-product]').forEach(b=>b.onclick=()=>{state.product=b.dataset.product;state.mode='trade';state.all=false;state.sites=false;$('#detail-popup').hidden=true;svg.call(zoom.transform,d3.zoomIdentity);render();});
+ $$('[data-product]').forEach(b=>b.onclick=()=>{state.product=b.dataset.product;state.mode='trade';state.all=false;state.sites=false;$('#detail-popup').hidden=true;closeMapMenus();svg.call(zoom.transform,d3.zoomIdentity);render();});
  $$('[data-direction]').forEach(b=>b.onclick=()=>{state.direction=b.dataset.direction;render();});
  $('#all-flows').onclick=()=>{state.all=!state.all;render();};
  $('#opposite-flows').onclick=()=>{state.direction=$('#opposite-flows').dataset.directionToShow;state.all=true;render();};
- $('#map-mode').onchange=e=>{state.mode=e.target.value;state.sites=false;svg.call(zoom.transform,d3.zoomIdentity);render();};
+ $('#map-mode').onchange=e=>{state.mode=e.target.value;state.sites=false;$('#detail-popup').hidden=true;closeMapMenus();svg.call(zoom.transform,d3.zoomIdentity);render();};
  $('#sites-button').onclick=()=>{state.sites=!state.sites;render();if(state.sites)focusSites();else svg.call(zoom.transform,d3.zoomIdentity);};
  $('#reset-map').onclick=()=>svg.call(zoom.transform,d3.zoomIdentity);$('#zoom-in').onclick=()=>svg.call(zoom.scaleBy,1.4);$('#zoom-out').onclick=()=>svg.call(zoom.scaleBy,1/1.4);
- $('#world-button').onclick=()=>{state.sites=false;svg.call(zoom.transform,d3.zoomIdentity);render();};
+ $('#world-button').onclick=()=>{state.sites=false;closeMapMenus();svg.call(zoom.transform,d3.zoomIdentity);render();};
  $('#collapse-card').onclick=()=>{$('#country-card').classList.toggle('collapsed');positionPanel();mapOverlays();$('#collapse-card').textContent=$('#country-card').classList.contains('collapsed')?'+':'−';};
- $('#close-popup').onclick=()=>$('#detail-popup').hidden=true;
+ $('#close-popup').onclick=()=>{$('#detail-popup').hidden=true;mapOverlays();};
  $('#about-button').onclick=()=>$('#about').showModal();$('#close-about').onclick=()=>$('#about').close();
  $('#fullscreen').onclick=()=>document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen?.();
- $('#country-search').oninput=e=>{const term=e.target.value.trim().toLowerCase();const found=Object.values(graph.nodes).filter(c=>c.kind==='country'&&(c.name.toLowerCase().includes(term)||c.code.toLowerCase().includes(term)||metadataName(c.code).includes(term))).slice(0,9);$('#search-results').hidden=!term;$('#search-results').innerHTML=found.length?found.map(c=>`<button data-country="${c.code}">${esc(c.name)}</button>`).join(''):'<p>Страна не найдена</p>';$$('#search-results button').forEach(b=>b.onclick=()=>choose(b.dataset.country));};
+ $('#country-search').oninput=e=>{const term=e.target.value.trim().toLowerCase();const found=Object.values(graph.nodes).filter(c=>c.kind==='country'&&(c.name.toLowerCase().includes(term)||c.code.toLowerCase().includes(term)||metadataName(c.code).includes(term))).slice(0,9);$('#search-results').hidden=!term;$('#search-results').innerHTML=found.length?found.map(c=>`<button data-country="${c.code}">${esc(c.name)}</button>`).join(''):'<p>Страна не найдена</p>';$$('#search-results button').forEach(b=>b.onclick=()=>choose(b.dataset.country));mapOverlays();};
  $('#country-search').onkeydown=e=>{if(e.key==='Escape')$('#search-results').hidden=true;if(e.key==='Enter')$('#search-results button')?.click();};
- document.addEventListener('keydown',e=>{if(e.key==='Escape'){$('#detail-popup').hidden=true;$('#search-results').hidden=true;$('.search').hidden=true;$('#map-settings').hidden=true;$('#search-toggle').setAttribute('aria-expanded','false');$('#filters-toggle').setAttribute('aria-expanded','false');}if(e.key==='/'&&document.activeElement.tagName!=='INPUT'){e.preventDefault();$('.search').hidden=false;$('#search-toggle').setAttribute('aria-expanded','true');$('#country-search').focus();}});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'){$('#detail-popup').hidden=true;closeMapMenus();mapOverlays();}if(e.key==='/'&&document.activeElement.tagName!=='INPUT'){e.preventDefault();if($('.search').hidden)$('#search-toggle').click();else $('#country-search').focus();}});
  let resize;window.addEventListener('resize',()=>{clearTimeout(resize);resize=setTimeout(initMap,150);});
 }
 function metadataName(code){return (byCode[code]?.english||'').toLowerCase();}
