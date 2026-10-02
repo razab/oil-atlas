@@ -96,8 +96,10 @@ sites=[dict(id=i,country='USA',name=n,coordinates=xy,kind='basin',detail=f'{v} �
 for i,n,xy in [('sabine','Sabine Pass · Луизиана',[-93.87,29.74]),('corpus','Corpus Christi · Техас',[-97.28,27.88]),('freeport','Freeport · Техас',[-95.31,28.93]),('cameron','Cameron · Луизиана',[-93.31,29.77]),('calcasieu','Calcasieu Pass · Луизиана',[-93.33,29.75]),('plaquemines','Plaquemines · Луизиана',[-89.96,29.66]),('cove','Cove Point · Мэриленд',[-76.38,38.39]),('elba','Elba Island · Джорджия',[-80.96,32.08])]:
     sites.append(dict(id=i,country='USA',name=n,coordinates=xy,kind='terminal',detail='Экспортный терминал СПГ, работавший в 2025 году. Положение приблизительное. Межстрановые потоки не распределены по терминалам: эта карта не отслеживает отдельные грузы.',url='https://www.eia.gov/dnav/ng/ng_move_poe2_a_epg0_eng_mmcf_a.htm',year=2025))
 sites.append(dict(id='dunkerque',country='FRA',name='Dunkerque · приём газа',coordinates=[2.2,51.03],kind='pipeline-terminal',detail='Franpipe: газопровод от платформы Draupner E в Северном море к Дюнкерку, 840 км. Это инфраструктурная связь, без оценки фактического потока за 2025 год.',url='https://gassco.eu/rorledningsnettverk/franpipe/',year=2025))
+for i,n,xy in [('montoir','Montoir-de-Bretagne',[-2.17,47.31]),('fos-cavaou','Fos Cavaou',[4.93,43.43]),('fos-tonkin','Fos Tonkin',[4.90,43.44])]:
+    sites.append(dict(id=i,country='FRA',name=n,coordinates=xy,kind='terminal',detail='Приёмный терминал СПГ Elengy: выгрузка газовозов и регазификация. Положение приблизительное. Это часть терминалов Франции, не полный список; национальные потоки не распределены по терминалам.',url='https://www.elengy.com/en/our-locations',year=2025))
 infra=[dict(id='franpipe',country='FRA',origin='NOR',destination='FRA',product='pipeline',coordinates=[[2.47,58.19],[2.2,51.03]],name='Franpipe',url='https://gassco.eu/rorledningsnettverk/franpipe/')]
-if args.canary:sites=[s for s in sites if s['id'] in ['permian','eagle-ford','sabine','corpus','dunkerque']]
+if args.canary:sites=[s for s in sites if s['id'] in ['permian','eagle-ford','sabine','corpus','dunkerque','montoir']]
 output=dict(version=2,canary=args.canary,flows=flows,nodes=nodes,sources=sources,totals=totals,gas=gas,sites=sites,infrastructure=infra)
 state_values={}
 for name,value in eia_rows('us-state-crude-2025.html'):
@@ -107,6 +109,18 @@ for name,value in eia_rows('us-state-crude-2025.html'):
 output['states']=state_values
 sources['eia-states']=dict(label='EIA · добыча по штатам · 2025',url='https://www.eia.gov/dnav/pet/pet_crd_crpdn_adc_mbbl_a.htm',sha256=hashlib.sha256((RAW/'us-state-crude-2025.html').read_bytes()).hexdigest(),boundary='Thousand barrels per year; crude including lease condensate; annual 2025')
 assert abs(state_values['Texas']['crude']-2102613/365)<1e-9
+supply=(RAW/'us-fuel-supply-2025.html').read_text();assert '2025 (Current)' in supply
+def series(key):
+    values=re.findall(r'&s='+re.escape(key)+r'&f=A[^>]*>([\d,]+)</a>',supply)
+    assert len(values)==1,f'Unexpected supply series: {key}'
+    return float(values[0].replace(',',''))/365
+output['domestic']={'USA':{
+ 'crude':dict(production=series('MCRFPUS1'),consumption=series('MCRRIUS1'),productionLabel='Добыча сырой нефти',consumptionLabel='Сырая нефть на входе НПЗ',note='EIA 2025: сырая нефть с конденсатом. Вход на НПЗ — объём переработки, а не конечное потребление топлива.'),
+ 'gasoline':dict(production=series('MGFRPUS1'),consumption=series('MGFUPUS1'),productionLabel='Выпуск бензина на НПЗ',consumptionLabel='Бензин для внутреннего рынка',note='EIA 2025: finished motor gasoline. Выпуск НПЗ и блендеров; product supplied — оценка внутреннего спроса.'),
+ 'diesel':dict(production=series('MDIRPUS1'),consumption=series('MDIUPUS1'),productionLabel='Выпуск дистиллятов на НПЗ',consumptionLabel='Дистилляты для внутреннего рынка',note='EIA 2025: distillate fuel oil, включая дизель и отопительное топливо. Product supplied — оценка внутреннего спроса.')
+}}
+sources['eia-domestic']=dict(label='EIA · внутренний выпуск и использование топлива · 2025',url='https://www.eia.gov/dnav/pet/pet_sum_snd_d_nus_mbbl_a_cur.htm',sha256=hashlib.sha256((RAW/'us-fuel-supply-2025.html').read_bytes()).hexdigest(),boundary='Current annual table verified as 2025; MBBL/365 = thousand barrels daily; refinery input ≠ final crude demand')
+assert output['domestic']['USA']['gasoline']['consumption']==3261180/365
 assert len(set(f['id'] for f in flows))==len(flows),'Duplicate directed edge'
 assert all(f['value']>0 and f['origin'] in nodes and f['destination'] in nodes for f in flows)
 lookup={(f['origin'],f['destination'],f['product'],f['source']):f for f in flows}

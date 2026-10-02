@@ -23,7 +23,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs');
  await select('USA');assert.ok(await page.locator('[data-partner="VEN"]').count());
  await page.locator('[data-partner="VEN"]').click();assert.ok((await page.locator('#popup-content').innerText()).includes('Венесуэла → США'));assert.ok((await page.locator('#popup-content').innerText()).includes('139,8'));await page.locator('#close-popup').click();
  await page.locator('[data-direction="exports"]').click();await page.locator('#all-flows').click({force:true});assert.ok(await page.locator('[data-partner="CHN"]').count());
- await page.locator('[data-product="gasoline"]').click();await page.locator('[data-partner="MEX"]').click();assert.ok((await page.locator('#popup-content').innerText()).toLowerCase().includes('автомобильный бензин'));await page.locator('#close-popup').click();
+ await page.locator('[data-product="gasoline"]').click();assert.equal((await page.locator('[data-stat="consumption"]').innerText()).replace(/\s/g,''),'8935');await page.locator('[data-partner="MEX"]').click();assert.ok((await page.locator('#popup-content').innerText()).toLowerCase().includes('автомобильный бензин'));await page.locator('#close-popup').click();
  await page.locator('[data-product="diesel"]').click();assert.ok(await page.locator('[data-partner="MEX"]').count());
  await page.locator('[data-product="pipeline"]').click();await page.locator('[data-direction="both"]').click();
  const pipes=await page.evaluate(()=>oilAtlas.visibleFlows);assert.equal(pipes.length,4);assert.ok(pipes.find(f=>f.origin==='CAN'&&f.destination==='USA').value>87);assert.ok(pipes.find(f=>f.origin==='USA'&&f.destination==='MEX').value>66);assert.ok(pipes.find(f=>f.origin==='MEX'&&f.destination==='USA').value<.01);

@@ -3167,6 +3167,12 @@
       "url": "https://www.eia.gov/dnav/pet/pet_crd_crpdn_adc_mbbl_a.htm",
       "sha256": "3223e29093e8cd98844ee90df354d11bc6660d8f579656416646d7b81142cd51",
       "boundary": "Thousand barrels per year; crude including lease condensate; annual 2025"
+    },
+    "eia-domestic": {
+      "label": "EIA · внутренний выпуск и использование топлива · 2025",
+      "url": "https://www.eia.gov/dnav/pet/pet_sum_snd_d_nus_mbbl_a_cur.htm",
+      "sha256": "84401eaee7c200e2c594d198d026d6311446fed99f0d800290ecb09100b79629",
+      "boundary": "Current annual table verified as 2025; MBBL/365 = thousand barrels daily; refinery input ≠ final crude demand"
     }
   },
   "totals": {
@@ -3260,6 +3266,19 @@
       "detail": "Franpipe: газопровод от платформы Draupner E в Северном море к Дюнкерку, 840 км. Это инфраструктурная связь, без оценки фактического потока за 2025 год.",
       "url": "https://gassco.eu/rorledningsnettverk/franpipe/",
       "year": 2025
+    },
+    {
+      "id": "montoir",
+      "country": "FRA",
+      "name": "Montoir-de-Bretagne",
+      "coordinates": [
+        -2.17,
+        47.31
+      ],
+      "kind": "terminal",
+      "detail": "Приёмный терминал СПГ Elengy: выгрузка газовозов и регазификация. Положение приблизительное. Это часть терминалов Франции, не полный список; национальные потоки не распределены по терминалам.",
+      "url": "https://www.elengy.com/en/our-locations",
+      "year": 2025
     }
   ],
   "infrastructure": [
@@ -3291,6 +3310,31 @@
     "Texas": {
       "crude": 5760.583561643835,
       "year": 2025
+    }
+  },
+  "domestic": {
+    "USA": {
+      "crude": {
+        "production": 13661.934246575342,
+        "consumption": 16368.750684931507,
+        "productionLabel": "Добыча сырой нефти",
+        "consumptionLabel": "Сырая нефть на входе НПЗ",
+        "note": "EIA 2025: сырая нефть с конденсатом. Вход на НПЗ — объём переработки, а не конечное потребление топлива."
+      },
+      "gasoline": {
+        "production": 9462.35890410959,
+        "consumption": 8934.739726027397,
+        "productionLabel": "Выпуск бензина на НПЗ",
+        "consumptionLabel": "Бензин для внутреннего рынка",
+        "note": "EIA 2025: finished motor gasoline. Выпуск НПЗ и блендеров; product supplied — оценка внутреннего спроса."
+      },
+      "diesel": {
+        "production": 4993.1123287671235,
+        "consumption": 3908.230136986301,
+        "productionLabel": "Выпуск дистиллятов на НПЗ",
+        "consumptionLabel": "Дистилляты для внутреннего рынка",
+        "note": "EIA 2025: distillate fuel oil, включая дизель и отопительное топливо. Product supplied — оценка внутреннего спроса."
+      }
     }
   }
 }

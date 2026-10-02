@@ -28,16 +28,18 @@ function showEdge(f){
 }
 function countryCard(){
  const c=byCode[state.country],node=graph.nodes[state.country];if(!node)return;
- const gas=state.product==='pipeline'||state.product==='lng';const g=graph.gas[state.country]||{};
- const production=gas?g.production:c?.production,consumption=gas?g.consumption:c?.consumption;
- const factor=gas?1:1000,unit=gas?'млрд м³/год':'тыс. барр./сутки',bal=production!=null&&consumption!=null?production-consumption:null;
+ const gas=state.mode==='trade'&&(state.product==='pipeline'||state.product==='lng');const g=graph.gas[state.country]||{};
+ const domestic=state.mode==='trade'?graph.domestic?.[state.country]?.[state.product]:null;
+ const production=domestic?domestic.production:gas?g.production:c?.production,consumption=domestic?domestic.consumption:gas?g.consumption:c?.consumption;
+ const factor=gas||domestic?1:1000,unit=gas?'млрд м³/год':'тыс. барр./сутки',bal=production!=null&&consumption!=null?production-consumption:null;
  let note=gas?'Внутренние производство и спрос на весь природный газ · 2025. СПГ — форма перевозки этого газа.':'Внутренние производство и спрос на все нефтяные жидкости · 2025. Производство включает NGL; это не только сырая нефть.';
+ if(domestic)note=domestic.note;
  let explain='';
  if(state.country==='USA'&&!gas)explain=`США добывают лёгкую нефть и импортируют более тяжёлые сорта для своих НПЗ. Из них также делают бензин и дизель для экспорта. <a href="https://www.eia.gov/todayinenergy/detail.php?id=42936" target="_blank" rel="noopener">Почему импортируют ↗</a>`;
  if(state.country==='USA'&&gas)explain='Канада → США — импорт трубопроводного газа. США → Мексика — экспорт. СПГ — отдельный морской поток: переключатель сверху.';
  if(state.country==='FRA'&&state.product==='crude')explain='Поставщики на карте — страны добычи сырья по INSEE/SDES. Это сырьё для НПЗ; внутренний спрос включает уже готовые нефтепродукты.';
  const reserve=c?.reserves!=null?`<div class="reserves">Доказанные запасы · 2024<br><strong>${fmt(c.reserves)} млрд баррелей</strong>${c.yearsConsumption!=null?` · ${fmt(c.yearsConsumption)} условных лет при спросе 2025`:''}${c.reserveNote?`<br>${esc(c.reserveNote)}`:''}</div>`:'';
- $('#country-details').innerHTML=`<p class="eyebrow">${state.country} / ${products[state.product]}</p><h1 class="country-name">${esc(node.name)}</h1><div class="stats"><div><span class="stat-label">Производство внутри страны</span><strong class="stat-value" data-stat="production">${fmt(production==null?null:production*factor,gas?1:0)}</strong><span class="stat-unit">${unit}</span></div><div><span class="stat-label">Потребление внутри страны</span><strong class="stat-value" data-stat="consumption">${fmt(consumption==null?null:consumption*factor,gas?1:0)}</strong><span class="stat-unit">${unit}</span></div><div class="stat-balance"><span class="stat-label">${bal==null?'Баланс неизвестен':bal>=0?'Производство выше спроса':'Спрос выше производства'}</span><strong class="${bal>=0?'incoming':'outgoing'}" data-stat="balance">${bal==null?'—':fmt(Math.abs(bal)*factor,gas?1:0)}</strong></div></div><p class="context-note">${note} Разница не равна фактическому экспорту.</p>${explain?`<p class="explanation">${explain}</p>`:''}${state.mode==='reserves'?reserve:''}`;
+ $('#country-details').innerHTML=`<p class="eyebrow">${state.country} / ${state.mode==='trade'?products[state.product]:'Нефтяные жидкости'}</p><h1 class="country-name">${esc(node.name)}</h1><div class="stats"><div><span class="stat-label">${domestic?domestic.productionLabel:gas?'Производство газа внутри страны':'Производство нефти и NGL'}</span><strong class="stat-value" data-stat="production">${fmt(production==null?null:production*factor,gas?1:0)}</strong><span class="stat-unit">${unit}</span></div><div><span class="stat-label">${domestic?domestic.consumptionLabel:gas?'Потребление газа внутри страны':'Спрос на нефтяные жидкости'}</span><strong class="stat-value" data-stat="consumption">${fmt(consumption==null?null:consumption*factor,gas?1:0)}</strong><span class="stat-unit">${unit}</span></div><div class="stat-balance"><span class="stat-label">${bal==null?'Баланс неизвестен':domestic&&state.product==='crude'?(bal<0?'НПЗ перерабатывают сверх добычи':'Добыча выше переработки'):bal>=0?'Производство выше спроса':'Спрос выше производства'}</span><strong class="${bal>=0?'incoming':'outgoing'}" data-stat="balance">${bal==null?'—':fmt(Math.abs(bal)*factor,gas?1:0)}</strong></div></div><p class="context-note">${note} Разница не равна фактическому экспорту.</p>${explain?`<p class="explanation">${explain}</p>`:''}${state.mode==='reserves'?reserve:''}`;
  const all=selectedFlows();currentFlows=state.all?all:all.slice(0,9);
  const incoming=all.filter(f=>f.destination===state.country),outgoing=all.filter(f=>f.origin===state.country);
  let coverage=`${all.length} ${all.length===1?'связь':'связей'} в наборе · ${[...new Set(all.map(f=>f.year))].join(' / ')||'нет годовых связей'}. `;
@@ -53,8 +55,8 @@ function countryCard(){
  $('#country-controls').style.display=state.mode==='trade'?'':'none';
  const hasSites=graph.sites.some(s=>s.country===state.country);
  $('#sites-button').hidden=!hasSites;$('#sites-button').classList.toggle('active',state.sites);
- $('#sites-button').textContent=state.sites?'← Вернуться к мировым связям':state.country==='USA'?'Где именно? Добыча и СПГ ↗':'Где именно? Приём газа ↗';
- $('#map-caption').innerHTML=`<strong>${state.sites?'Внутри страны':products[state.product]+' · '+node.name}</strong>${state.sites?'Нажмите на район добычи или терминал.':state.direction==='imports'?'Откуда поступает → сюда':state.direction==='exports'?'Отсюда → кто покупает':'Поставщики и покупатели'}${!state.sites&&state.mode==='trade'?`<br>${incoming.length} поставщиков · ${outgoing.length} покупателей в выбранном направлении`:''}`;
+ $('#sites-button').textContent=state.sites?'← Вернуться к мировым связям':state.country==='USA'?'Где именно? Добыча и СПГ ↗':'Где именно? СПГ и газопровод ↗';
+ $('#map-caption').innerHTML=`<strong>${state.sites?'Внутри страны':(state.mode==='trade'?products[state.product]:({balance:'Избыток и дефицит',production:'Производство',consumption:'Спрос',reserves:'Запасы'}[state.mode]))+' · '+node.name}</strong>${state.sites?'Нажмите на район добычи или терминал.':state.direction==='imports'?'Откуда поступает → сюда':state.direction==='exports'?'Отсюда → кто покупает':'Поставщики и покупатели'}${!state.sites&&state.mode==='trade'?`<br>${incoming.length} поставщиков · ${outgoing.length} покупателей в выбранном направлении`:''}`;
 }
 function metricColor(c){
  if(!c||c[state.mode]==null)return colors.empty;
