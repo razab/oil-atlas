@@ -5,12 +5,22 @@ const colors={imports:'#76d6b0',exports:'#efaa70',selected:'#efe5cc',empty:'#263
 const products={crude:'Сырая нефть',gasoline:'Готовый автомобильный бензин',diesel:'Дизель и другие дистилляты',pipeline:'Трубопроводный газ',lng:'Сжиженный природный газ'};
 const units={kbpd:'тыс. барр./сутки',Mt:'млн тонн/год',bcm:'млрд м³/год'};
 const params=new URLSearchParams(location.hash.slice(1));
-const state={country:params.get('country')||'FRA',product:params.get('product')||'crude',direction:params.get('direction')||'both',mode:params.get('v')==='2'?(params.get('mode')||'trade'):'trade',sites:params.get('sites')==='1',all:params.get('all')==='1'};
+const state={country:params.get('country')||'FRA',product:params.get('product')||'crude',direction:params.get('direction')||'both',mode:params.get('v')==='2'?(params.get('mode')||'trade'):'trade',sites:params.get('sites')==='1',all:params.get('all')==='1',partner:params.get('partner')||null};
 if(!products[state.product])state.product='crude';if(!['imports','exports','both'].includes(state.direction))state.direction='both';if(!['trade','balance','reserves','production','consumption'].includes(state.mode))state.mode='trade';
 let release,byObservation={},data,graph,countries,byCode,byId,features,usStates,svg,projection,path,zoom,layer,transform=d3.zoomIdentity,W,H,currentFlows=[];
 const fmt=(v,d=1)=>v==null?'нет данных':d&&v>0&&v<.1?new Intl.NumberFormat('ru-RU',{maximumFractionDigits:Math.min(6,Math.ceil(-Math.log10(v))+1)}).format(v):(d?nf:whole).format(v);
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const amount=f=>`${fmt(f.value)} ${units[f.unit]}`;
+const productTags={crude:'Нефть',gasoline:'Бензин',diesel:'Дистилляты',pipeline:'Газ · труба',lng:'СПГ'};
+function displayQuantity(f){
+ if(f.unit==='bcm'&&f.value<1)return {value:f.value*1000,unit:'млн м³/год'};
+ if(f.unit==='Mt'&&f.value<.01)return {value:f.value*1e6,unit:'тонн/год'};
+ if(f.unit==='kbpd'&&f.value<1)return {value:f.value*1000,unit:'барр./сутки'};
+ return {value:f.value,unit:units[f.unit]};
+}
+const amount=f=>{const q=displayQuantity(f);return `${fmt(q.value)} ${q.unit}`;};
+const nodeName=code=>graph.nodes[code].name;
+const flowRoute=f=>`${graph.nodes[f.origin].name} → ${graph.nodes[f.destination].name}`;
+const flowDirection=f=>f.destination===state.country?'imports':'exports';
 function selectedBounds(){
  const feature=features.find(f=>byId[String(+f.id)]?.iso===state.country);
  if(!feature){const p=screen(state.country);return [p[0]-12,p[1]-12,p[0]+12,p[1]+12];}
@@ -65,23 +75,35 @@ function placeLabel(xy,width,height,placed){
  candidates.sort((a,b)=>a.cost-b.cost);
  return candidates.find(a=>![...placed,...blockers].some(b=>a.x<b.x+b.w+5&&a.x+a.w>b.x-5&&a.y<b.y+b.h+5&&a.y+a.h>b.y-5))||candidates[0];
 }
-function save(){const p=new URLSearchParams({v:'2',country:state.country,product:state.product,mode:state.mode,direction:state.direction,sites:state.sites?'1':'0',all:state.all?'1':'0'});history.replaceState(null,'','#'+p);}
+function save(){const p=new URLSearchParams({v:'2',country:state.country,product:state.product,mode:state.mode,direction:state.direction,sites:state.sites?'1':'0',all:state.all?'1':'0'});if(state.partner)p.set('partner',state.partner);history.replaceState(null,'','#'+p);}
 function selectedFlows(direction=state.direction){
  const related=graph.flows.filter(f=>f.product===state.product&&(f.origin===state.country||f.destination===state.country));
  const unique=new Map();related.sort((a,b)=>(a.owner===state.country?-1:0)-(b.owner===state.country?-1:0));
  for(const f of related){const key=f.origin+':'+f.destination;if(!unique.has(key))unique.set(key,f);}
  return [...unique.values()].filter(f=>direction==='both'||(direction==='imports'?f.destination===state.country:f.origin===state.country)).sort((a,b)=>b.year-a.year||a.unit.localeCompare(b.unit)||b.value-a.value);
 }
-function choose(code){if(!graph.nodes[code]||graph.nodes[code].kind!=='country')return;state.country=code;state.direction='both';state.sites=false;state.all=false;$('#detail-popup').hidden=true;$('#search-results').hidden=true;$('#country-search').value='';$('.search').hidden=true;$('#search-toggle').setAttribute('aria-expanded','false');render();}
+function visibleSelection(all){
+ if(state.all)return all;
+ const shown=new Set(all.slice(0,9).map(f=>f.id));
+ // Keep both directions represented, and retain the bilateral context on a country jump.
+ if(state.direction==='both')for(const direction of ['imports','exports']){const f=all.find(f=>flowDirection(f)===direction);if(f)shown.add(f.id);}
+ if(state.partner)for(const f of all)if(f.origin===state.partner||f.destination===state.partner)shown.add(f.id);
+ return all.filter(f=>shown.has(f.id));
+}
+function choose(code){
+ if(!graph.nodes[code]||graph.nodes[code].kind!=='country')return;
+ if(code!==state.country){const previous=state.country;state.partner=state.mode==='trade'&&graph.flows.some(f=>f.product===state.product&&((f.origin===previous&&f.destination===code)||(f.origin===code&&f.destination===previous)))?previous:null;}
+ state.country=code;state.direction='both';state.sites=false;state.all=false;$('#detail-popup').hidden=true;$('#search-results').hidden=true;$('#country-search').value='';$('.search').hidden=true;$('#search-toggle').setAttribute('aria-expanded','false');render();
+}
 function showPopup(html){$('#popup-content').innerHTML=html;$('#detail-popup').hidden=false;}
 function showState(s){
  const v=graph.states[s.properties.name];
  showPopup(`<p class="eyebrow">ШТАТ / США · 2025</p><h2>${esc(s.properties.name)}</h2><p class="big-number">${fmt(v?.crude)}</p><p>тыс. барр./сутки · добыча сырой нефти с конденсатом${v?'':' · нет отдельного значения'}</p><p>Потребление штата пока не загружено. Бассейны могут пересекать границы нескольких штатов; их объёмы нельзя складывать с объёмами штатов.</p><a href="https://www.eia.gov/dnav/pet/pet_crd_crpdn_adc_mbbl_a.htm" target="_blank" rel="noopener">EIA · добыча по штатам ↗</a>`);
 }
 function showEdge(f){
- const src=graph.sources[f.source],a=graph.nodes[f.origin],b=graph.nodes[f.destination],observation=byObservation[f.observation];
+ const src=graph.sources[f.source],a=graph.nodes[f.origin],b=graph.nodes[f.destination],observation=byObservation[f.observation],q=displayQuantity(f);
  const transport={pipeline:'По трубопроводам. Межстрановая связь; точная трасса здесь не восстановлена.',lng:'СПГ перевозят морскими газовозами, затем регазифицируют. Связь не привязана к конкретному терминалу или рейсу.',crude:'Перевозка танкерами и/или по трубопроводам. Этот набор торговли не разделяет объём по способам перевозки.',gasoline:'Готовое топливо после переработки: танкеры и/или другие виды транспорта. Вид транспорта не разделён в исходной таблице.',diesel:'Дистиллятное топливо после переработки, включая дизель и отопительное топливо. Вид транспорта не разделён в исходной таблице.'};
- showPopup(`<p class="eyebrow">${esc(products[f.product])} · ${f.year}</p><h2>${esc(a.name)} → ${esc(b.name)}</h2><p class="big-number">${fmt(f.value)}</p><p>${units[f.unit]}${f.unit==='kbpd'?' · среднее за год':''}</p><p>${transport[f.product]}</p>${f.note?`<p>${esc(f.note)}</p>`:''}${observation?`<p class="context-note">Проверено по исходной записи: ${esc(observation.locator)}.<br><a href="validation.html?q=${encodeURIComponent(observation.id)}" target="_blank" rel="noopener">Число, единицы и проверка ↗</a></p>`:''}${a.kind==='region'||b.kind==='region'?'<p>Это региональная группа. Объём не распределён по входящим в неё странам.</p>':''}<a href="${src.url}" target="_blank" rel="noopener">${esc(src.label)} ↗</a><button class="jump" data-jump="${f.origin===state.country?f.destination:f.origin}">Перейти к ${esc(f.origin===state.country?b.name:a.name)} ↗</button>`);
+ showPopup(`<p class="eyebrow">${esc(products[f.product])} · ${f.year}</p><h2>${esc(a.name)} → ${esc(b.name)}</h2><p class="big-number">${fmt(q.value)}</p><p>${q.unit}${f.unit==='kbpd'?' · среднее за год':''}</p><p><strong>${flowDirection(f)==='imports'?'Импорт в выбранную страну':'Экспорт из выбранной страны'} · ${esc(nodeName(state.country))}</strong></p><p>${transport[f.product]}${f.product==='lng'?' Объём СПГ указан в газовом эквиваленте.':''}</p>${f.note?`<p>${esc(f.note)}</p>`:''}${observation?`<p class="context-note">Проверено по исходной записи: ${esc(observation.locator)}.<br><a href="validation.html?q=${encodeURIComponent(observation.id)}" target="_blank" rel="noopener">Число, единицы и проверка ↗</a></p>`:''}${a.kind==='region'||b.kind==='region'?'<p>Это региональная группа. Объём не распределён по входящим в неё странам.</p>':''}<a href="${src.url}" target="_blank" rel="noopener">${esc(src.label)} ↗</a><button class="jump" data-jump="${f.origin===state.country?f.destination:f.origin}">Перейти к ${esc(f.origin===state.country?b.name:a.name)} ↗</button>`);
  $('.jump').onclick=()=>choose($('.jump').dataset.jump);
 }
 function countryCard(){
@@ -95,16 +117,17 @@ function countryCard(){
  let explain='';
  if(state.country==='USA'&&!gas)explain=`США добывают лёгкую нефть и импортируют более тяжёлые сорта для своих НПЗ. Из них также делают бензин и дизель для экспорта. <a href="https://www.eia.gov/todayinenergy/detail.php?id=42936" target="_blank" rel="noopener">Почему импортируют ↗</a>`;
  if(state.country==='USA'&&gas)explain='Канада → США — импорт трубопроводного газа. США → Мексика — экспорт. СПГ — отдельный морской поток: переключатель сверху.';
+ if(state.country==='CAN'&&state.product==='lng')explain='Входящие линии показывают импорт СПГ в Канаду, включая Перу и США. Канада также экспортирует СПГ: LNG Canada отправил первый груз 30 июня 2025. <a href="https://www.lngcanada.ca/news/first-cargo-puts-canada-on-the-map-of-lng-exporting-nations/" target="_blank" rel="noopener">Источник ↗</a>';
  if(state.country==='FRA'&&state.product==='crude')explain='Поставщики на карте — страны добычи сырья по INSEE/SDES. Это сырьё для НПЗ; внутренний спрос включает уже готовые нефтепродукты.';
  const reserve=c?.reserves!=null?`<div class="reserves">Доказанные запасы · 2024<br><strong>${fmt(c.reserves)} млрд баррелей</strong>${c.yearsConsumption!=null?` · ${fmt(c.yearsConsumption)} условных лет при спросе 2025`:''}${c.reserveNote?`<br>${esc(c.reserveNote)}`:''}</div>`:'';
  $('#country-details').innerHTML=`<p class="eyebrow">${state.country} / ${state.mode==='trade'?products[state.product]:'Нефтяные жидкости'}</p><h1 class="country-name">${esc(node.name)}</h1><div class="stats"><div><span class="stat-label">${domestic?domestic.productionLabel:gas?'Производство газа внутри страны':'Производство нефти и NGL'}</span><strong class="stat-value" data-stat="production">${fmt(production==null?null:production*factor,gas?1:0)}</strong><span class="stat-unit">${unit}</span></div><div><span class="stat-label">${domestic?domestic.consumptionLabel:gas?'Потребление газа внутри страны':'Спрос на нефтяные жидкости'}</span><strong class="stat-value" data-stat="consumption">${fmt(consumption==null?null:consumption*factor,gas?1:0)}</strong><span class="stat-unit">${unit}</span></div><div class="stat-balance"><span class="stat-label">${bal==null?'Баланс неизвестен':domestic&&state.product==='crude'?(bal<0?'НПЗ перерабатывают сверх добычи':'Добыча выше переработки'):bal>=0?'Производство выше спроса':'Спрос выше производства'}</span><strong class="${bal>=0?'incoming':'outgoing'}" data-stat="balance">${bal==null?'—':fmt(Math.abs(bal)*factor,gas?1:0)}</strong></div></div><p class="context-note">${note} Разница не равна фактическому экспорту.</p>${explain?`<p class="explanation">${explain}</p>`:''}${state.mode==='reserves'?reserve:''}`;
- const all=selectedFlows();currentFlows=state.all?all:all.slice(0,9);
+ const all=selectedFlows();currentFlows=visibleSelection(all);
  const incoming=selectedFlows('imports'),outgoing=selectedFlows('exports'),both=selectedFlows('both');
  for(const b of $$('[data-direction]')){
   const direction=b.dataset.direction,count={imports:incoming.length,exports:outgoing.length,both:both.length}[direction];
   b.textContent=({imports:'Поставщики',exports:'Покупатели',both:'Оба'}[direction])+` (${count})`;
  }
- let coverage=`${all.length} ${all.length===1?'связь':'связей'} в наборе · ${[...new Set(all.map(f=>f.year))].join(' / ')||'нет годовых связей'}. `;
+ let coverage=`На карте ${currentFlows.length} из ${all.length} связей в выборке. ${all.length} ${all.length===1?'связь':'связей'} в наборе · ${[...new Set(all.map(f=>f.year))].join(' / ')||'нет годовых связей'}. `;
  const fuelGenitive=({crude:'сырой нефти',gasoline:'бензина',diesel:'дистиллятов',pipeline:'трубопроводного газа',lng:'СПГ'}[state.product]);
  if(!all.length&&both.length)coverage=state.direction==='imports'?`Входящие поставки ${fuelGenitive} в эту страну в наборе не указаны. Есть ${outgoing.length} направлений экспорта — откройте «Покупатели».`:`Исходящие поставки ${fuelGenitive} из этой страны в наборе не указаны. Есть ${incoming.length} направлений импорта — откройте «Поставщики».`;
  else if(state.country==='FRA'&&state.product==='crude')coverage+=(graph.canary?'Проверка показывает 5 из 7 поставщиков. Полный источник: ':'')+'7 поставщиков покрывают 36,5 из 45,9 млн тонн импорта (79,5%). Остальные не распределены по странам в этой таблице.';
@@ -113,13 +136,15 @@ function countryCard(){
  }else if(!all.length)coverage+='Нет национальной торговой таблицы для этой страны и топлива. Это не означает отсутствия поставок.';
  else coverage+='Показаны опубликованные связи; региональные группы подписаны отдельно. Этот набор может не покрывать всю торговлю страны.';
  if(new Set(all.map(f=>f.unit)).size>1)coverage+=' Разные единицы показаны отдельно; общая сумма и общий рейтинг не рассчитываются.';
+ if(state.partner&&currentFlows.some(f=>f.origin===state.partner||f.destination===state.partner))coverage+=` Связь с ${graph.nodes[state.partner].name} сохранена при переходе.`;
+ if(state.country==='CAN'&&state.product==='lng')coverage+=' Экспорт СПГ Канады в этой матрице не выделен отдельным столбцом; отсутствие отдельных исходящих связей не означает нулевой экспорт.';
  if(graph.canary)coverage+=' Проверочный срез данных.';
  $('#coverage-note').textContent=coverage;
  const alternate=state.direction==='imports'?'exports':'imports';
  $('#opposite-flows').hidden=all.length>0||both.length===0;
  $('#opposite-flows').dataset.directionToShow=alternate;
  $('#opposite-flows').textContent=alternate==='exports'?`Показать экспорт: ${outgoing.length} направлений →`:`Показать импорт: ${incoming.length} направлений →`;
- $('#all-flows').textContent=state.all?'Показать 9 связей':`Все связи на карте (${all.length})`;
+ $('#all-flows').textContent=state.all?'Основные связи':`Все связи на карте (${all.length})`;
  $('#all-flows').disabled=all.length<=9;
  $('#country-controls').style.display=state.mode==='trade'?'':'none';
  const hasSites=graph.sites.some(s=>s.country===state.country);
@@ -133,35 +158,47 @@ function metricColor(c){
  const max={production:22,consumption:20,reserves:310}[state.mode];return d3.scaleSequentialSqrt(d3.interpolateRgb('#263d49','#8bd9bf')).domain([0,max])(c[state.mode]);
 }
 function paintCountries(){
- const partners=new Map();for(const f of currentFlows){const code=f.origin===state.country?f.destination:f.origin;partners.set(code,f.destination===state.country?'imports':'exports');}
- layer.selectAll('.country').attr('fill',f=>{const code=byId[String(+f.id)]?.iso;return state.mode!=='trade'?metricColor(byCode[code]):code===state.country?colors.selected:!state.sites&&partners.has(code)?d3.color(colors[partners.get(code)]).darker(1.6):colors.empty;}).classed('selected',f=>byId[String(+f.id)]?.iso===state.country);
+ const partners=new Map();for(const f of currentFlows){const code=f.origin===state.country?f.destination:f.origin;if(!partners.has(code))partners.set(code,new Set());partners.get(code).add(flowDirection(f));}
+ layer.selectAll('.country').attr('fill',f=>{const code=byId[String(+f.id)]?.iso,dirs=partners.get(code);return state.mode!=='trade'?metricColor(byCode[code]):code===state.country?colors.selected:!state.sites&&dirs?(dirs.size===2?'url(#trade-both-country)':d3.color(colors[[...dirs][0]]).darker(1.6)):colors.empty;}).classed('selected',f=>byId[String(+f.id)]?.iso===state.country);
 }
+
 function point(code){return projection(graph.nodes[code]?.coordinates||[0,0]);}
 function screen(code){return transform.apply(point(code));}
 function curve(f){
  const a=point(f.origin),b=point(f.destination),dx=b[0]-a[0],dy=b[1]-a[1],dist=Math.hypot(dx,dy)||1;
- const bend=Math.min(90,dist*.2)*(f.origin<f.destination?1:-1),mx=(a[0]+b[0])/2-dy/dist*bend,my=(a[1]+b[1])/2+dx/dist*bend;
- return `M${a}Q${mx},${my} ${b}`;
+ // Reverse flows bend onto opposite sides of the chord, so both can be read and clicked.
+ const bend=Math.min(90,dist*.2),c=[(a[0]+b[0])/2-dy/dist*bend,(a[1]+b[1])/2+dx/dist*bend],t=.56;
+ const left=a.map((v,i)=>(1-t)*v+t*c[i]),right=c.map((v,i)=>(1-t)*v+t*b[i]),mid=left.map((v,i)=>(1-t)*v+t*right[i]);
+ // Exact quadratic subdivision places an arrow midway along the same smooth path.
+ return `M${a}Q${left} ${mid}Q${right} ${b}`;
 }
 function mapOverlays(){
  positionPanel();
+ svg.selectAll('marker').attr('markerWidth',12/transform.k).attr('markerHeight',12/transform.k);
  svg.selectAll('.screen-layer').remove();const overlay=svg.append('g').attr('class','screen-layer');
  layer.select('.flow-layer').remove();const edges=layer.append('g').attr('class','flow-layer');
  if(state.mode==='trade'&&!state.sites){
   for(const f of currentFlows){const direction=f.destination===state.country?'imports':'exports';
    edges.append('path').datum(f).attr('class','edge-hit').attr('d',curve(f)).attr('data-origin',f.origin).attr('data-destination',f.destination).attr('data-flow',f.id).on('click',(e,x)=>{e.stopPropagation();showEdge(x);});
-   edges.append('path').attr('class','edge').attr('d',curve(f)).attr('stroke',colors[direction]).attr('stroke-width',1.3+2.7*Math.sqrt(f.value/Math.max(...currentFlows.filter(x=>x.unit===f.unit&&x.year===f.year).map(x=>x.value)))).attr('marker-end',`url(#arrow-${direction})`);
+   edges.append('path').attr('class','edge').attr('data-flow',f.id).attr('data-origin',f.origin).attr('data-destination',f.destination).attr('d',curve(f)).attr('stroke',colors[direction]).attr('stroke-width',1.3+2.7*Math.sqrt(f.value/Math.max(...currentFlows.filter(x=>x.unit===f.unit&&x.year===f.year).map(x=>x.value)))).attr('marker-mid',`url(#arrow-${direction})`);
   }
   const grouped=d3.group(currentFlows,f=>f.origin===state.country?f.destination:f.origin),labels=[];
-  for(const [code,fs] of grouped){const xy=screen(code),f=fs[0],dir=f.destination===state.country?'imports':'exports';
-   overlay.append('circle').attr('class','map-dot').attr('cx',xy[0]).attr('cy',xy[1]).attr('r',4).attr('fill',colors[dir]);
+  for(const [code,fs] of grouped){const xy=screen(code),f=fs[0],dirs=new Set(fs.map(flowDirection));
+   overlay.append('circle').attr('class','map-dot').attr('cx',xy[0]).attr('cy',xy[1]).attr('r',4).attr('fill',dirs.size===2?'url(#trade-both-dot)':colors[flowDirection(f)]);
    if(xy[0]<-20||xy[0]>W+20||xy[1]<-20||xy[1]>H+20)continue;
-   const name=graph.nodes[code].name,lines=fs.map(x=>`${x.destination===state.country?'→':'←'} ${amount(x)} · ${x.year}`),width=Math.min(225,Math.max(name.length*6.2,...lines.map(l=>l.length*5.4))+18),height=21+lines.length*15;
+   const name=fs.length===1?flowRoute(f):graph.nodes[code].name,lines=fs.flatMap(x=>fs.length===1?[`${amount(x)} · ${productTags[x.product]} · ${x.year}`]:[flowRoute(x),`${amount(x)} · ${productTags[x.product]} · ${x.year}`]);
+   const width=Math.min(W-28,340,Math.max(name.length*6.2,...lines.map(l=>l.length*5.4))+18),height=21+lines.length*15;
    const position=placeLabel(xy,width,height,labels),{x,y}=position;labels.push(position);
    overlay.append('line').attr('class','label-link').attr('x1',xy[0]).attr('y1',xy[1]).attr('x2',x+width/2).attr('y2',y+height/2);
-   const g=overlay.append('g').attr('class','partner-label').attr('data-partner',code).attr('role','button').attr('tabindex',0).attr('aria-label',`${name}: ${lines.join('; ')}`).attr('transform',`translate(${x},${y})`).on('click',()=>showEdge(f)).on('keydown',e=>{if(e.key==='Enter')showEdge(f);});
+   const g=overlay.append('g').attr('class','partner-label').attr('data-partner',code).attr('role',fs.length===1?'button':'group').attr('tabindex',fs.length===1?0:null).attr('aria-label',fs.map(x=>`${flowRoute(x)}: ${amount(x)} · ${products[x.product]} · ${x.year}`).join('; ')).attr('transform',`translate(${x},${y})`).on('click',()=>showEdge(f)).on('keydown',e=>{if(e.key==='Enter'&&fs.length===1)showEdge(f);});
    g.append('rect').attr('width',width).attr('height',height).attr('rx',6);g.append('text').attr('x',9).attr('y',15).text(name);
-   lines.forEach((l,i)=>g.append('text').attr('class','amount').attr('x',9).attr('y',30+15*i).style('fill',colors[fs[i].destination===state.country?'imports':'exports']).text(l));
+   let row=0;
+   for(const flow of fs){
+    const texts=fs.length===1?[`${amount(flow)} · ${productTags[flow.product]} · ${flow.year}`]:[flowRoute(flow),`${amount(flow)} · ${productTags[flow.product]} · ${flow.year}`];
+    const rg=g.append('g').attr('class','flow-row').attr('data-flow',flow.id).attr('role',fs.length>1?'button':null).attr('tabindex',fs.length>1?0:null).attr('aria-label',`${flowRoute(flow)}: ${amount(flow)}`).on('click',e=>{e.stopPropagation();showEdge(flow);}).on('keydown',e=>{if(e.key==='Enter'){e.stopPropagation();showEdge(flow);}});
+    rg.append('rect').attr('class','flow-row-hit').attr('x',4).attr('y',18+row*15).attr('width',width-8).attr('height',texts.length*15);
+    for(const l of texts)rg.append('text').attr('class','amount').attr('x',9).attr('y',30+(row++)*15).style('fill',colors[flowDirection(flow)]).text(l);
+   }
   }
   const xy=screen(state.country);overlay.append('circle').attr('cx',xy[0]).attr('cy',xy[1]).attr('r',7).attr('fill',colors.selected).attr('stroke','#0c1820').attr('stroke-width',2);
  }
@@ -201,14 +238,17 @@ function render(){
  save();countryCard();paintCountries();mapOverlays();$('#edition').textContent=graph.canary?'2025 · проверочный срез':'2025';$('#current-fuel').textContent=({crude:'Нефть',gasoline:'Бензин',diesel:'Дизель',pipeline:'Газ',lng:'СПГ'}[state.product]);
  $$('[data-product]').forEach(b=>{const active=b.dataset.product===state.product;b.classList.toggle('active',active);b.setAttribute('aria-pressed',active);});
  $$('[data-direction]').forEach(b=>{const active=b.dataset.direction===state.direction;b.classList.toggle('active',active);b.setAttribute('aria-pressed',active);});$('#map-mode').value=state.mode;
- $('#legend').innerHTML=state.sites?'<span><i style="background:#efc278"></i>Район добычи</span><span><i style="background:#8ec9ed"></i>Терминал СПГ</span>':state.mode==='trade'?`<span><i style="background:${colors.imports}"></i>Поставщики → сюда</span><span><i style="background:${colors.exports}"></i>Отсюда → покупатели</span>`:state.mode==='balance'?'<span>Дефицит</span><span class="legend-bar"></span><span>Избыток</span>':`<span>${{production:'Производство',consumption:'Спрос',reserves:'Запасы'}[state.mode]}</span><span class="legend-bar"></span><span>Больше</span>`;
+ $('#legend').innerHTML=state.sites?'<span><i style="background:#efc278"></i>Район добычи</span><span><i style="background:#8ec9ed"></i>Терминал СПГ</span>':state.mode==='trade'?`<span><i style="background:${colors.imports}"></i>Импорт в выбранную страну</span><span><i style="background:${colors.exports}"></i>Экспорт из неё</span><span><i style="background:linear-gradient(90deg,${colors.imports} 50%,${colors.exports} 50%)"></i>Оба направления</span>`:state.mode==='balance'?'<span>Дефицит</span><span class="legend-bar"></span><span>Избыток</span>':`<span>${{production:'Производство',consumption:'Спрос',reserves:'Запасы'}[state.mode]}</span><span class="legend-bar"></span><span>Больше</span>`;
  $('#route-note').textContent=state.sites?'Положение объектов приблизительное. Нажмите на точку.':'Линии — торговые связи, не путь судна. Нажмите на линию или подпись.';
  window.oilAtlas={data,graph,state,validation:release.validation,visibleFlows:currentFlows,selectCountry:choose,getSelectedBounds:selectedBounds,getView:()=>({x:transform.x,y:transform.y,k:transform.k,translate:projection.translate(),scale:projection.scale()})};
 }
 function initMap(){
  W=innerWidth;H=innerHeight;svg=d3.select('#world-map').attr('viewBox',`0 0 ${W} ${H}`);svg.selectAll('*').remove();
  projection=d3.geoNaturalEarth1().scale(Math.min((W-32)/6.25,(H-32)/3.1)).translate([W/2,H/2]);path=d3.geoPath(projection);
- const defs=svg.append('defs');for(const dir of ['imports','exports'])defs.append('marker').attr('id','arrow-'+dir).attr('viewBox','0 0 10 10').attr('refX',9).attr('refY',5).attr('markerWidth',4).attr('markerHeight',4).attr('orient','auto').append('path').attr('d','M0,0L10,5L0,10Z').attr('fill',colors[dir]);
+ const defs=svg.append('defs');for(const dir of ['imports','exports'])defs.append('marker').attr('id','arrow-'+dir).attr('viewBox','0 0 10 10').attr('markerUnits','userSpaceOnUse').attr('refX',5).attr('refY',5).attr('markerWidth',4).attr('markerHeight',4).attr('orient','auto').append('path').attr('d','M0,0L10,5L0,10Z').attr('fill',colors[dir]);
+ for(const [id,dark] of [['trade-both-country',true],['trade-both-dot',false]]){
+  const gradient=defs.append('linearGradient').attr('id',id);for(const [offset,direction] of [['0%','imports'],['50%','imports'],['50%','exports'],['100%','exports']])gradient.append('stop').attr('offset',offset).attr('stop-color',dark?d3.color(colors[direction]).darker(1.6):colors[direction]);
+ }
  layer=svg.append('g').attr('class','geo-layer');layer.append('path').datum(d3.geoGraticule10()).attr('class','graticule').attr('d',path);
  layer.append('g').selectAll('path').data(features).join('path').attr('class','country').attr('data-iso',f=>byId[String(+f.id)]?.iso||'').attr('d',path).on('click',(e,f)=>{const c=byId[String(+f.id)];if(c){e.stopPropagation();choose(c.iso);}}).append('title').text(f=>byId[String(+f.id)]?.name||f.properties?.name||'');
  zoom=d3.zoom().scaleExtent([1,18]).on('zoom',e=>{transform=e.transform;layer.attr('transform',transform);if(graph)mapOverlays();});svg.call(zoom);transform=d3.zoomIdentity;render();if(state.sites)focusSites();
@@ -219,6 +259,7 @@ function focusSites(){
 async function main(){
  release=await loadValidatedData(new URLSearchParams(location.search).get('audit')==='canary'?'canary':'full');
  data=release.views.snapshot;graph=release.views.connections;byObservation=Object.fromEntries(release.observations.map(r=>[r.id,r]));
+ if(!graph.nodes[state.partner]||state.partner===state.country)state.partner=null;
  [countries,usStates]=await Promise.all(['data/world.json','data/us-states.json'].map(async u=>{const r=await fetch(u);if(!r.ok)throw Error('Не удалось загрузить геометрию');return r.json();}));
  byCode=Object.fromEntries(data.countries.map(c=>[c.iso,c]));byId=Object.fromEntries(data.countries.filter(c=>c.id).map(c=>[String(+c.id),c]));
  features=topojson.feature(countries,countries.objects.countries).features.filter(f=>String(f.id)!=='010');usStates=topojson.feature(usStates,usStates.objects.states).features;
