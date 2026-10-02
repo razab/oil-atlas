@@ -4,11 +4,14 @@ Extraction needs openpyxl. Verification/publication gate uses only Python stdlib
 import argparse, calendar, copy, hashlib, json, math, subprocess, sys, tempfile
 from pathlib import Path
 from source_extract import ROOT, RAW, sha
-FOCUS={'USA','FRA','RUS','CAN','MEX','CHN','SAU','JPN','LUX'}
+FOCUS={'USA','FRA','RUS','CAN','MEX','CHN','SAU','JPN','LUX','EGY','MDA','DEU'}
 UNITS={'million_bbl/day':('bbl/day',1e6),'kbpd':('bbl/day',1000),'Mt':('tonne/year',1e6),'bcm':('m3/year',1e9),'million_barrels':('bbl',1e6)}
+UNITS.update({'kg':('tonne/year',.001),'tonne/year':('tonne/year',1),'percent':('percent',1),'bbl/day':('bbl/day',1),'tonne':('tonne',1)})
 SOURCE_KEYS={'EI-2026.xlsx':'ei-gas','EI-2025-trade.xlsx':'ei-oil','france-crude-imports-2025.html':'insee-france'}
 for product in ['crude','gasoline','diesel']:
  for direction in ['imports','exports']:SOURCE_KEYS[f'us-{product}-{direction}-2025.html']=f'eia-{product}-{direction}'
+for file,meta in json.loads((ROOT/'scripts/source-lock.json').read_text())['metadata'].items():
+ if file.startswith('comtrade-') or meta.get('publisher') in {'ANRE Moldova','MIDOR','BAFA'}:SOURCE_KEYS[file]='national-'+Path(file).stem
 WARNINGS=[
  'Две серии EIA по добыче сырой нефти США за 2025 различаются примерно на 0,56%. Для карточки сырой нефти используется национальная годовая таблица; обе исходные серии сохранены. Причина расхождения требует отдельной сверки редакций.',
  'Проверена точность извлечения, единицы и согласованность с исходными итогами. Это не независимое подтверждение всей мировой статистики.',
@@ -50,10 +53,11 @@ def views(records,template,scope):
    if v is None or v<=0 or r['origin']==r['destination']:continue
    if src=='EI-2025-trade.xlsx' and 'USA' in [r['origin'],r['destination']]:continue
    key=SOURCE_KEYS[src];unit={'bbl/day':'kbpd','tonne/year':'Mt','m3/year':'bcm'}[r['unit']];divisor={'kbpd':1000,'Mt':1e6,'bcm':1e9}[unit]
-   note='Страна добычи по INSEE/SDES. Данные предварительные; не страна последней отгрузки. Включены конденсаты и другое сырьё НПЗ.' if key=='insee-france' else None
+   note='Страна добычи по INSEE/SDES. Данные предварительные; не страна последней отгрузки. Включены конденсаты и другое сырьё НПЗ.' if key=='insee-france' else 'Масса оценена UN Comtrade; не переводится в баррели.' if src.startswith('comtrade-') and r.get('estimated') else 'Приблизительная масса: годовой импорт × доля страны, округлённая ANRE до 0,1%. Для дизеля: только дизельное топливо, без отопительного.' if src=='moldova-anre-2025.txt' else None
    graph['flows'].append(dict(id=f'{key}:{prod}:{r["origin"]}:{r["destination"]}',origin=r['origin'],destination=r['destination'],product=prod,value=v/divisor,unit=unit,year=r['year'],source=key,owner=r.get('reporter'),note=note,observation=r['id']))
+   if r.get('estimated'):graph['flows'][-1]['estimated']=True
   elif measure.startswith('total_'):
-   graph['totals'][f'{country}:{prod}:{measure[6:]}']=v/(1000 if r['unit']=='bbl/day' else 1e6)
+   if v is not None:graph['totals'][f'{country}:{prod}:{measure[6:]}']=v/(1000 if r['unit']=='bbl/day' else 1e6)
   elif src=='us-basins-2025.html':
    site=next(s for s in graph['sites'] if s['id']==r['subdivision'])
    site.update(production=v/1000,observation=r['id'],year=r['year'])
@@ -89,7 +93,30 @@ def views(records,template,scope):
   file='EI-2025-trade.xlsx' if source=='ei-oil' else 'EI-2026.xlsx'
   observed=next((r for r in records if r['source']==file),None)
   if observed and source in graph['sources']:graph['sources'][source]['sha256']=observed['sourceSha256']
+ if any(r['source'].startswith('comtrade-') for r in records):national_views(records,graph)
  return dict(snapshot=snapshot,connections=graph)
+
+def national_views(records,graph):
+ lock=json.loads((ROOT/'scripts/source-lock.json').read_text())['metadata']
+ graph['tradeCoverage']={};graph['totalYears']={}
+ graph['nodes']['MDA']['name']='Молдова'
+ graph['sites']=[s for s in graph['sites'] if s['id']!='midor']
+ for r in records:
+  src=r['source'];v=r['value'];prod=r['product'];country=r.get('country');measure=r['measure']
+  if not(src.startswith('comtrade-') or src in {'moldova-anre-2025.txt','midor-sustainability-2025.txt','germany-bafa-2025.txt'}):continue
+  graph['sources'][SOURCE_KEYS[src]]=dict(label=lock[src]['label'],url=lock[src]['url'],year=r['year'],sha256=r['sourceSha256'])
+  if measure.startswith('total_') and v is not None:
+   key=f'{country}:{prod}:{measure[6:]}';unit={'tonne/year':'Mt','bbl/day':'kbpd'}[r['unit']];divisor=1e6 if unit=='Mt' else 1000
+   graph['totalUnits'][key]=unit;graph['totalYears'][key]=r['year']
+   flows=[f for f in graph['flows'] if f['product']==prod and f['owner']==country and f['year']==r['year'] and f['unit']==unit and (f['destination']==country if measure=='total_imports' else f['origin']==country)]
+   known=sum(f['value'] for f in flows)
+   graph['tradeCoverage'][key]=dict(total=v/divisor,known=known,unit=unit,year=r['year'],estimated=r.get('estimated',False) or any(f.get('estimated') for f in flows),source=SOURCE_KEYS[src],note='Нефтепродукты: сумма опубликованных HS 271012/271019/271020; не отдельные бензин/дизель.' if prod=='refined' else 'Отчёт ANRE: объёмы стран рассчитаны из округлённых долей; нераспределённый остаток показан отдельно.' if src=='moldova-anre-2025.txt' else 'BAFA: национальные итоги, поставщики по этому продукту ещё не распределены.' if src=='germany-bafa-2025.txt' else 'UN Comtrade, HS 270900: таможенная торговля сырой нефтью.')
+  elif measure in {'production','consumption'}:
+   d=graph['domestic'].setdefault(country,{}).setdefault(prod,dict(unit='Mt',production=None,consumption=None,year=r['year'],productionLabel='Добыча сырой нефти' if prod=='crude' else 'Выпуск топлива',consumptionLabel='Потребление топлива',note='ANRE 2025: внутреннее потребление бензина / дизельного топлива; данные добычи/выпуска не опубликованы в этой таблице.' if country=='MDA' else 'BAFA 2025, предварительно: бензин / дизель без отопительного топлива. Потребление — внутренние поставки; полный итог бензина скрыт по правилам конфиденциальности BAFA.'))
+   d[measure]=None if v is None else v/1e6
+  elif measure=='refining_capacity':
+   graph['sites'].append(dict(id='midor',name='НПЗ MIDOR · Александрия',country='EGY',kind='refinery',coordinates=[29.85,31.02],capacity=v/1000,year=r['year'],observation=r['id'],url=lock[src]['url'],detail='Проектная мощность 160 тыс. баррелей в сутки, отчёт MIDOR 2025. Это не добыча и не фактический объём переработки. Точка приблизительно обозначает район НПЗ у Александрии.'))
+   graph.setdefault('refining',{})['EGY']=dict(capacity=v/1000,year=r['year'],partial=True,label='НПЗ MIDOR',source=SOURCE_KEYS[src])
 
 def validate(bundle):
  if bundle.get('schemaVersion')!=1 or bundle.get('scope') not in {'canary','full'}:raise ValueError('Unknown bundle schema/scope')
@@ -108,6 +135,15 @@ def validate(bundle):
   if r['unit']!=unit or not close(r['value'],expected):raise ValueError('Incorrect unit conversion')
   if r['status']!=('missing' if v is None else 'reported_zero' if v==0 else 'observed'):raise ValueError('Missing/zero confused')
   if not r.get('locator') or not r.get('basis'):raise ValueError('Observation lacks source boundary')
+ byid={r['id']:r for r in records}
+ for r in records:
+  d=r.get('derivation')
+  if not d:continue
+  inputs=[byid[i] for i in d['inputs']]
+  if any(x['year']!=r['year'] or x['product']!=r['product'] for x in inputs):raise ValueError('Derived product/year mismatch')
+  values=[x['rawValue'] for x in inputs]
+  expected=None if any(x is None for x in values) else sum(values) if d['operation']=='sum' else values[0]*values[1]/100 if d['operation']=='share' else None
+  if not close(r['rawValue'],expected):raise ValueError('Incorrect derived trade amount')
  for check in bundle['validation']['reconciliations']:
   if not math.isclose(check['actual'],check['expected'],abs_tol=check['tolerance'],rel_tol=0):raise ValueError('Failed source reconciliation: '+check['label'])
  expected=views(records,bundle['views'],bundle['scope'])
@@ -159,7 +195,7 @@ def verify(manifest_path):
 
 def build(scope,resume=False):
  dest=ROOT/'data'/('validation-canary' if scope=='canary' else 'validated');manifest_path=dest/'manifest.json'
- codehash=hashlib.sha256(b''.join((ROOT/'scripts'/name).read_bytes() for name in ['normalize.py','source_extract.py','source-lock.json'])).hexdigest()
+ codehash=hashlib.sha256(b''.join((ROOT/'scripts'/name).read_bytes() for name in ['normalize.py','source_extract.py','coverage_extract.py','source-lock.json'])).hexdigest()
  if resume and manifest_path.exists():
   b=verify(manifest_path)
   if b['pipelineSha256']!=codehash:raise ValueError('Pipeline changed; rebuild instead of resuming stale data')

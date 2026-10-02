@@ -100,7 +100,7 @@ def extract(scope):
         for i,row in enumerate(rows[4:],5):
             name=str(row[0] or '').strip();code=a.get(name)
             if not name:continue
-            if scope=='canary' and code not in {'USA','FRA','RUS','LUX','JPN','CHN','SAU','CAN','MEX'} and name!='Total World':continue
+            if scope=='canary' and code not in {'USA','FRA','RUS','LUX','JPN','CHN','SAU','CAN','MEX','EGY','MDA','DEU'} and name!='Total World':continue
             if code or name=='Total World':
                 fact('EI-2026.xlsx',f'{sheet}!{openpyxl.utils.get_column_letter(col+1)}{i}',numeric(row[col]),unit,2025,country=code or 'WORLD',product=product,measure=measure,basis=basis)
             else:excluded.append(dict(source='EI-2026.xlsx',table=sheet,label=name,reason='Aggregate or footnote, not a country'))
@@ -192,4 +192,6 @@ def extract(scope):
             for j,v in enumerate(vs,1):fact('EI-2025-trade.xlsx',f'{sheet}!{openpyxl.utils.get_column_letter(j+1)}{i+1}',v,'Mt',2024,origin=code(r[0]),destination=code(labels[j]),product='crude',measure='trade',reporter=None,basis='inter-area crude matrix; regional groups retained')
         for j,n in enumerate(labels[1:totalcol],1):check('EI oil2024 / imports '+n,sum(r[j] for _,r in leaves),rows[end][j],1e-7,'Mt')
     w.close()
+    from coverage_extract import extract as national_extract
+    national_extract(scope,registry,use,fact,check,excluded)
     return dict(schemaVersion=1,scope=scope,sources=source_files,facts=facts,reconciliations=checks,excluded=excluded)

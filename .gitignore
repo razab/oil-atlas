@@ -6,3 +6,5 @@ data/raw/*.xlsx
 data/raw/*.download
 
 __pycache__/
+
+data/raw/midor-sustainability-2025.pdf

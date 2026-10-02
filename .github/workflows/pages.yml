@@ -21,6 +21,8 @@ jobs:
       - name: Gate normalized data before publication
         run: |
           python3 scripts/normalize.py --verify data/validated/manifest.json
+          python3 scripts/normalize.py --verify data/validation-canary/manifest.json
+          python3 scripts/test_coverage.py
           python3 scripts/test_validation.py
           python3 scripts/test_data.py
           python3 scripts/test_connections.py
