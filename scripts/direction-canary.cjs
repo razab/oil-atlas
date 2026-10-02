@@ -1,0 +1,22 @@
+const {chromium}=require(process.env.PLAYWRIGHT_PACKAGE||'/Users/dcor/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const assert=require('node:assert/strict'),fs=require('node:fs');
+(async()=>{
+ const base=process.argv[2]||'http://127.0.0.1:8109',out=process.env.REPORT_DIR||'../reports/direction-canary';fs.mkdirSync(out,{recursive:true});
+ const browser=await chromium.launch({headless:true,channel:'chrome'}),page=await browser.newPage({viewport:{width:1440,height:900}}),errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto(base+'/#v=2&country=RUS&product=lng&mode=trade&direction=imports&sites=0&all=0');await page.waitForFunction(()=>window.oilAtlas);
+ assert.equal(await page.locator('.edge-hit').count(),0);assert.equal(await page.evaluate(()=>oilAtlas.graph.flows.length),702);
+ assert.ok((await page.locator('#coverage-note').innerText()).includes('10 направлений экспорта'));
+ assert.ok(!(await page.locator('#coverage-note').innerText()).includes('Нет национальной'));
+ assert.equal(await page.locator('[data-direction="exports"]').innerText(),'Покупатели (10)');
+ await page.locator('#opposite-flows').click();assert.equal(await page.locator('.edge-hit').count(),10);
+ const rows=await page.evaluate(()=>oilAtlas.visibleFlows);assert.ok(rows.every(f=>f.origin==='RUS'&&f.product==='lng'&&f.year===2025));
+ assert.ok(Math.abs(rows.reduce((sum,f)=>sum+f.value,0)-42.56305480406593)<1e-9);
+ for(const [code,value] of [['CHN',10.373135013522154],['FRA',8.563071155706238],['JPN',7.8994044]])assert.ok(Math.abs(rows.find(f=>f.destination===code).value-value)<1e-9);
+ await page.screenshot({path:out+'/russia-lng.png'});
+ await page.reload();await page.waitForFunction(()=>window.oilAtlas);assert.equal(await page.evaluate(()=>oilAtlas.state.direction),'exports');assert.equal(await page.locator('.edge-hit').count(),10);
+ await page.locator('#search-toggle').click();await page.locator('#country-search').fill('FRA');await page.locator('[data-country="FRA"]').click();assert.equal(await page.evaluate(()=>oilAtlas.state.direction),'both');assert.ok(await page.locator('[data-partner="RUS"]').count());
+ await page.locator('[data-direction="exports"]').click();assert.ok((await page.locator('#coverage-note').innerText()).includes('направлений импорта'));assert.ok(await page.locator('#opposite-flows').isVisible());await page.locator('#opposite-flows').click();assert.equal(await page.evaluate(()=>oilAtlas.state.direction),'imports');
+ await page.goto(base+'/#v=2&country=RUS&product=lng&mode=trade');await page.reload();await page.waitForFunction(()=>window.oilAtlas);assert.equal(await page.evaluate(()=>oilAtlas.state.direction),'both');assert.ok(await page.locator('.edge-hit').count());
+ await page.setViewportSize({width:390,height:844});await page.reload();await page.waitForFunction(()=>window.oilAtlas);assert.equal(await page.evaluate(()=>oilAtlas.state.direction),'both');assert.ok(await page.locator('.edge-hit').count());await page.screenshot({path:out+'/russia-mobile.png'});
+ assert.deepEqual(errors,[]);fs.writeFileSync(out+'/result.json',JSON.stringify({status:'PASS',base,exports:10,exportBcm:42.56305480406593,variants:['explicit empty import filter explained','other direction recovery','country selection defaults both','explicit filter resume','default URL both','reverse empty export explained','mobile'],errors},null,2));await browser.close();console.log('PASS Russia LNG direction canary',base);
+})().catch(e=>{console.error(e);process.exit(1)});

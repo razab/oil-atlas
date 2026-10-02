@@ -3,7 +3,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs');
 (async()=>{
  const base=process.argv[2]||'http://127.0.0.1:8109',out=process.env.REPORT_DIR||'../reports';fs.mkdirSync(out,{recursive:true});
  const browser=await chromium.launch({headless:true,channel:'chrome'}),page=await browser.newPage({viewport:{width:1440,height:900}}),errors=[];page.on('pageerror',e=>errors.push(e.message));
- await page.goto(base+'/#country=FRA&mode=balance');await page.waitForFunction(()=>window.oilAtlas);
+ await page.goto(base+'/#country=FRA&mode=balance&direction=imports');await page.waitForFunction(()=>window.oilAtlas);
  async function menu(){if(!(await page.locator('#map-settings').isVisible()))await page.locator('#filters-toggle').click();}
  const info=await page.evaluate(()=>({canary:oilAtlas.graph.canary,count:oilAtlas.graph.flows.length,countries:oilAtlas.data.countries.length,state:oilAtlas.state}));
  if(process.env.EXPECT_CANARY)assert.equal(info.canary,process.env.EXPECT_CANARY==='1');
@@ -21,7 +21,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs');
  for(const f of await page.evaluate(()=>oilAtlas.visibleFlows))assert.equal(f.destination,'FRA');
  await page.screenshot({path:out+'/v2-france.png'});
  async function select(code){if(!(await page.locator('.search').isVisible()))await page.locator('#search-toggle').click();await page.locator('#country-search').fill(code);await page.locator(`[data-country="${code}"]`).click();assert.equal(await page.evaluate(()=>oilAtlas.state.country),code);}
- await select('USA');assert.ok(await page.locator('[data-partner="VEN"]').count());
+ await select('USA');await page.locator('[data-direction="imports"]').click();assert.ok(await page.locator('[data-partner="VEN"]').count());
  await page.locator('[data-partner="VEN"]').click();assert.ok((await page.locator('#popup-content').innerText()).includes('Венесуэла → США'));assert.ok((await page.locator('#popup-content').innerText()).includes('139,8'));await page.locator('#close-popup').click();
  await page.locator('[data-direction="exports"]').click();await page.locator('#all-flows').click({force:true});assert.ok(await page.locator('[data-partner="CHN"]').count());
  await menu();await page.locator('[data-product="gasoline"]').click();assert.equal((await page.locator('[data-stat="consumption"]').innerText()).replace(/\s/g,''),'8935');await page.locator('[data-partner="MEX"]').click();assert.ok((await page.locator('#popup-content').innerText()).toLowerCase().includes('автомобильный бензин'));await page.locator('#close-popup').click();
