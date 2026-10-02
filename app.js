@@ -11,6 +11,17 @@ let data,graph,countries,byCode,byId,features,usStates,svg,projection,path,zoom,
 const fmt=(v,d=1)=>v==null?'нет данных':d&&v>0&&v<.1?new Intl.NumberFormat('ru-RU',{maximumFractionDigits:Math.min(6,Math.ceil(-Math.log10(v))+1)}).format(v):(d?nf:whole).format(v);
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const amount=f=>`${fmt(f.value)} ${units[f.unit]}`;
+function placeLabel(xy,width,height,placed){
+ const left=W>650?330:8,top=W>650?235:180,bottom=H-(W>650?80:300);
+ const candidates=[];
+ for(let row=0;row<18;row++)for(const sign of row?[1,-1]:[1])for(const side of [1,-1]){
+  const x=Math.max(left,Math.min(W-width-12,xy[0]+(side===1?12:-width-12)));
+  const y=Math.max(top,Math.min(bottom-height,xy[1]-height/2+row*(height+7)*sign));
+  candidates.push({x,y,w:width,h:height,cost:Math.hypot(x+(side===1?0:width)-xy[0],y+height/2-xy[1])});
+ }
+ candidates.sort((a,b)=>a.cost-b.cost);
+ return candidates.find(a=>!placed.some(b=>a.x<b.x+b.w+5&&a.x+a.w>b.x-5&&a.y<b.y+b.h+5&&a.y+a.h>b.y-5))||candidates[0];
+}
 function save(){const p=new URLSearchParams({v:'2',country:state.country,product:state.product,mode:state.mode,direction:state.direction,sites:state.sites?'1':'0',all:state.all?'1':'0'});history.replaceState(null,'','#'+p);}
 function selectedFlows(){
  const related=graph.flows.filter(f=>f.product===state.product&&(f.origin===state.country||f.destination===state.country));
@@ -20,6 +31,10 @@ function selectedFlows(){
 }
 function choose(code){if(!graph.nodes[code]||graph.nodes[code].kind!=='country')return;state.country=code;state.sites=false;state.all=false;$('#detail-popup').hidden=true;$('#search-results').hidden=true;$('#country-search').value='';svg.call(zoom.transform,d3.zoomIdentity);render();}
 function showPopup(html){$('#popup-content').innerHTML=html;$('#detail-popup').hidden=false;}
+function showState(s){
+ const v=graph.states[s.properties.name];
+ showPopup(`<p class="eyebrow">ШТАТ / США · 2025</p><h2>${esc(s.properties.name)}</h2><p class="big-number">${fmt(v?.crude)}</p><p>тыс. барр./сутки · добыча сырой нефти с конденсатом${v?'':' · нет отдельного значения'}</p><p>Потребление штата пока не загружено. Бассейны могут пересекать границы нескольких штатов; их объёмы нельзя складывать с объёмами штатов.</p><a href="https://www.eia.gov/dnav/pet/pet_crd_crpdn_adc_mbbl_a.htm" target="_blank" rel="noopener">EIA · добыча по штатам ↗</a>`);
+}
 function showEdge(f){
  const src=graph.sources[f.source],a=graph.nodes[f.origin],b=graph.nodes[f.destination];
  const transport={pipeline:'По трубопроводам. Межстрановая связь; точная трасса здесь не восстановлена.',lng:'СПГ перевозят морскими газовозами, затем регазифицируют. Связь не привязана к конкретному терминалу или рейсу.',crude:'Перевозка танкерами и/или по трубопроводам. Этот набор торговли не разделяет объём по способам перевозки.',gasoline:'Готовое топливо после переработки: танкеры и/или другие виды транспорта. Вид транспорта не разделён в исходной таблице.',diesel:'Дистиллятное топливо после переработки, включая дизель и отопительное топливо. Вид транспорта не разделён в исходной таблице.'};
@@ -87,10 +102,7 @@ function mapOverlays(){
    overlay.append('circle').attr('class','map-dot').attr('cx',xy[0]).attr('cy',xy[1]).attr('r',4).attr('fill',colors[dir]);
    if(xy[0]<-20||xy[0]>W+20||xy[1]<-20||xy[1]>H+20)continue;
    const name=graph.nodes[code].name,lines=fs.map(x=>`${x.destination===state.country?'→':'←'} ${amount(x)} · ${x.year}`),width=Math.min(225,Math.max(name.length*6.2,...lines.map(l=>l.length*5.4))+18),height=21+lines.length*15;
-   let x=xy[0]+9,y=xy[1]-height/2;
-   x=Math.max(W>650?330:8,Math.min(W-width-12,x));y=Math.max(W>650?235:180,Math.min(H-(W>650?80:300)-height,y));
-   for(let tries=0;tries<45&&labels.some(l=>x<l.x+l.w+6&&x+width>l.x-6&&y<l.y+l.h+5&&y+height>l.y-5);tries++){y+=height+8;if(y+height>H-(W>650?80:300)){y=W>650?235:180;x-=width+12;if(x<(W>650?330:8))x= W-width-12;}}
-   labels.push({x,y,w:width,h:height});
+   const position=placeLabel(xy,width,height,labels),{x,y}=position;labels.push(position);
    overlay.append('line').attr('class','label-link').attr('x1',xy[0]).attr('y1',xy[1]).attr('x2',x+width/2).attr('y2',y+height/2);
    const g=overlay.append('g').attr('class','partner-label').attr('data-partner',code).attr('role','button').attr('tabindex',0).attr('aria-label',`${name}: ${lines.join('; ')}`).attr('transform',`translate(${x},${y})`).on('click',()=>showEdge(f)).on('keydown',e=>{if(e.key==='Enter')showEdge(f);});
    g.append('rect').attr('width',width).attr('height',height).attr('rx',6);g.append('text').attr('x',9).attr('y',15).text(name);
@@ -99,14 +111,31 @@ function mapOverlays(){
   const xy=screen(state.country);overlay.append('circle').attr('cx',xy[0]).attr('cy',xy[1]).attr('r',7).attr('fill',colors.selected).attr('stroke','#0c1820').attr('stroke-width',2);
  }
  layer.select('.state-layer').remove();
+ if(state.mode!=='trade'){
+  const rows=data.countries.filter(c=>c[state.mode]!=null).sort((a,b)=>Math.abs(b[state.mode])-Math.abs(a[state.mode])).slice(0,8);
+  const selected=byCode[state.country];if(selected&&selected[state.mode]!=null&&!rows.includes(selected))rows.push(selected);
+  const placed=[];
+  for(const c of rows){
+   const xy=screen(c.iso),v=c[state.mode],value=state.mode==='reserves'?`${fmt(v)} млрд барр. · 2024`:`${state.mode==='balance'?(v>=0?'+':'−'):''}${fmt(Math.abs(v)*1000,0)} тыс. барр./сутки`;
+   const width=Math.max(c.name.length*6,value.length*5.4)+18,height=40,position=placeLabel(xy,width,height,placed);placed.push(position);
+   overlay.append('line').attr('class','label-link').attr('x1',xy[0]).attr('y1',xy[1]).attr('x2',position.x).attr('y2',position.y+20);
+   const g=overlay.append('g').attr('class','partner-label metric-label').attr('data-metric',c.iso).attr('transform',`translate(${position.x},${position.y})`).attr('role','button').attr('tabindex',0).on('click',()=>choose(c.iso)).on('keydown',e=>{if(e.key==='Enter')choose(c.iso);});
+   g.append('rect').attr('width',width).attr('height',height).attr('rx',6);g.append('text').attr('x',9).attr('y',15).text(c.name);g.append('text').attr('class','amount').attr('x',9).attr('y',31).style('fill',state.mode==='balance'&&v<0?colors.exports:colors.imports).text(value);
+  }
+ }
  if(state.sites){
    if(state.country==='USA'){
-    const sl=layer.append('g').attr('class','state-layer');sl.selectAll('path').data(usStates).join('path').attr('class','state').attr('d',path).on('click',(e,s)=>{e.stopPropagation();const v=graph.states[s.properties.name];showPopup(`<p class="eyebrow">ШТАТ / США · 2025</p><h2>${esc(s.properties.name)}</h2><p class="big-number">${fmt(v?.crude)}</p><p>тыс. барр./сутки · добыча сырой нефти с конденсатом${v?'':' · нет отдельного значения'}</p><p>Потребление штата пока не загружено. Бассейны могут пересекать границы нескольких штатов; их объёмы нельзя складывать с объёмами штатов.</p><a href="https://www.eia.gov/dnav/pet/pet_crd_crpdn_adc_mbbl_a.htm" target="_blank" rel="noopener">EIA · добыча по штатам ↗</a>`);});
+    const sl=layer.append('g').attr('class','state-layer');sl.selectAll('path').data(usStates).join('path').attr('class','state').attr('data-state',s=>s.properties.name).attr('role','button').attr('tabindex',0).attr('aria-label',s=>s.properties.name).attr('d',path).style('fill',s=>graph.states[s.properties.name]?.crude!=null?d3.scaleSequentialSqrt(d3.interpolateRgb('#193340','#75b59e')).domain([0,5800])(graph.states[s.properties.name].crude):'#193340').on('click',(e,s)=>{e.stopPropagation();showState(s);}).on('keydown',(e,s)=>{if(e.key==='Enter')showState(s);});
    }
+   const siteLabels=[];
    for(const s of graph.sites.filter(s=>s.country===state.country)){
     const xy=transform.apply(projection(s.coordinates));const g=overlay.append('g').attr('class',`site ${s.kind}`).attr('data-site',s.id).attr('transform',`translate(${xy})`).attr('role','button').attr('tabindex',0).attr('aria-label',s.name);
     const click=()=>showPopup(`<p class="eyebrow">${s.kind==='basin'?'ДОБЫЧА СЫРОЙ НЕФТИ':s.kind==='terminal'?'ТЕРМИНАЛ СПГ':'ГАЗОПРОВОД'} · ${s.year}</p><h2>${esc(s.name)}</h2><p>${esc(s.detail)}</p><a href="${s.url}" target="_blank" rel="noopener">Источник ↗</a>`);
-    g.on('click',click).on('keydown',e=>{if(e.key==='Enter')click();});g.append('circle').attr('r',s.kind==='basin'?8:5);g.append('text').attr('x',12).attr('y',4).text(s.name);
+    g.on('click',click).on('keydown',e=>{if(e.key==='Enter')click();});g.append('circle').attr('r',s.kind==='basin'?8:5);
+    const width=s.name.length*5.8+16,height=26,position=placeLabel(xy,width,height,siteLabels),lx=position.x,ly=position.y;siteLabels.push(position);
+    g.append('line').attr('class','label-link').attr('x1',0).attr('y1',0).attr('x2',lx-xy[0]).attr('y2',ly+height/2-xy[1]);
+    g.append('rect').attr('x',lx-xy[0]).attr('y',ly-xy[1]).attr('width',width).attr('height',height).attr('rx',5).attr('fill','#10232cf2').attr('stroke','#537582').attr('stroke-width',.7);
+    g.append('text').attr('x',lx+8-xy[0]).attr('y',ly+17-xy[1]).text(s.name);
    }
    for(const infra of graph.infrastructure.filter(i=>i.country===state.country)){
      edges.append('path').attr('d',path({type:'LineString',coordinates:infra.coordinates})).attr('class','edge').attr('stroke',colors.imports).attr('stroke-width',3).attr('stroke-dasharray','6 4');
@@ -133,10 +162,10 @@ function focusSites(){
  const xy=projection(state.country==='USA'?[-97,37]:[3,51]);const k=state.country==='USA'?3.8:5.7;const cx=W>650?W*.61:W*.50,cy=H*(W>650?.49:.38);svg.call(zoom.transform,d3.zoomIdentity.translate(cx-k*xy[0],cy-k*xy[1]).scale(k));
 }
 async function main(){
- [data,graph,countries,usStates]=await Promise.all(['data/snapshot.json','data/connections.json','data/world.json','data/us-states.json'].map(async u=>{const r=await fetch(u);if(!r.ok)throw Error('Не удалось загрузить '+u);return r.json();}));
+ [data,graph,countries,usStates]=await Promise.all(['data/snapshot.json','data/connections.json?v=2-full-1','data/world.json','data/us-states.json'].map(async u=>{const r=await fetch(u);if(!r.ok)throw Error('Не удалось загрузить '+u);return r.json();}));
  byCode=Object.fromEntries(data.countries.map(c=>[c.iso,c]));byId=Object.fromEntries(data.countries.filter(c=>c.id).map(c=>[String(+c.id),c]));
  features=topojson.feature(countries,countries.objects.countries).features.filter(f=>String(f.id)!=='010');usStates=topojson.feature(usStates,usStates.objects.states).features;
- if(!byCode[state.country])state.country='FRA';
+ if(graph.nodes[state.country]?.kind!=='country')state.country='FRA';
  $('#about-content').innerHTML=`<p><strong>Внутренние производство и спрос:</strong> Energy Institute 2026, год 2025. Нефтяные жидкости: нефть, конденсат и NGL. Для небольших производителей — EIA 2025. Спрос на нефтяные жидкости не равен объёму переработки сырой нефти.</p><p><strong>Торговля США:</strong> национальные таблицы EIA 2025. Годовые тысячи баррелей делятся на 365 для среднего суточного объёма. Бензин — finished motor gasoline; дистилляты включают дизель и отопительное топливо.</p><p><strong>Импорт Франции:</strong> INSEE/SDES, предварительные данные 2025, млн тонн/год. Страна происхождения — страна добычи, поэтому серия может отличаться от EIA, учитывающей экспорт из США. Показаны семь поставщиков, 79,5% полного импорта. Непоказанный остаток не распределён.</p><p><strong>Газ:</strong> матрицы трубопроводной торговли и СПГ Energy Institute 2026 за 2025. Они содержат страны и сводные группы. Для Франции в трубопроводной матрице есть только ЕС; его объём не присвоен Франции. Вместо этого отдельно показан существующий газопровод Franpipe.</p><p><strong>Другие связи сырой нефти:</strong> матрица EI 2025 за 2024. Она не содержит полного разбиения всех стран. Бензин и дистилляты вне торговли с США пока не покрыты.</p><p><strong>Запасы:</strong> OPEC ASB 2025, состояние на конец 2024. Границы стран: Natural Earth; штаты США: Census 2017 / us-atlas.</p>${Object.values(graph.sources).map(s=>`<p><a href="${s.url}" target="_blank" rel="noopener">${esc(s.label)} ↗</a></p>`).join('')}`;
  initMap();
  $$('[data-product]').forEach(b=>b.onclick=()=>{state.product=b.dataset.product;state.mode='trade';state.all=false;state.sites=false;$('#detail-popup').hidden=true;svg.call(zoom.transform,d3.zoomIdentity);render();});

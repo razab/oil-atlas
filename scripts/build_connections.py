@@ -102,9 +102,10 @@ infra=[dict(id='franpipe',country='FRA',origin='NOR',destination='FRA',product='
 if args.canary:sites=[s for s in sites if s['id'] in ['permian','eagle-ford','sabine','corpus','dunkerque','montoir']]
 output=dict(version=2,canary=args.canary,flows=flows,nodes=nodes,sources=sources,totals=totals,gas=gas,sites=sites,infrastructure=infra)
 state_values={}
+state_names={x['properties']['name'] for x in json.loads((ROOT/'data/us-states.json').read_text())['objects']['states']['geometries']}
 for name,value in eia_rows('us-state-crude-2025.html'):
     if args.canary and name not in ['Texas','New Mexico']:continue
-    if name.startswith('PADD') or name.startswith('Federal') or name=='U.S.':continue
+    if name not in state_names:continue
     state_values[name]=dict(crude=value/365 if value is not None else None,year=2025)
 output['states']=state_values
 sources['eia-states']=dict(label='EIA · добыча по штатам · 2025',url='https://www.eia.gov/dnav/pet/pet_crd_crpdn_adc_mbbl_a.htm',sha256=hashlib.sha256((RAW/'us-state-crude-2025.html').read_bytes()).hexdigest(),boundary='Thousand barrels per year; crude including lease condensate; annual 2025')
