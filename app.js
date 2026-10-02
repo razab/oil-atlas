@@ -24,7 +24,7 @@ function selectedBounds(){
 }
 function positionPanel(){
  const card=$('#country-card'),r=selectedBounds(),gap=14,top=74,bottom=H-54;
- card.classList.remove('auto-compact');card.style.removeProperty('--panel-height');
+ card.classList.remove('auto-compact');card.style.visibility='visible';card.style.removeProperty('--panel-height');
  const width=Math.min(280,W-28),height=Math.min(card.scrollHeight,bottom-top);
  const area=(a,b)=>Math.max(0,Math.min(a[2],b[2])-Math.max(a[0],b[0]))*Math.max(0,Math.min(a[3],b[3])-Math.max(a[1],b[1]));
  const preferred=screen(state.country)[0]<W/2?'right':'left';
@@ -39,14 +39,23 @@ function positionPanel(){
   }
  }
  candidates.sort((a,b)=>a.overlap-b.overlap||b.height-a.height);
- const best=candidates[0];
- card.classList.toggle('auto-compact',best.overlap>0);
+ let best=candidates[0];
+ if(best.overlap>0){
+  const compact=[];
+  for(const side of [preferred,preferred==='left'?'right':'left']){
+   const x=side==='left'?gap:W-gap-width;
+   for(const y of [top,bottom-64])compact.push({side,x,y,height:64,overlap:area([x,y,x+width,y+64],r)});
+  }
+  compact.sort((a,b)=>a.overlap-b.overlap);best=compact[0];card.classList.add('auto-compact');
+  if(best.overlap>0)card.style.visibility='hidden';
+ }
+ $('#country-info').hidden=card.style.visibility!=='hidden';
  card.dataset.side=best.side;card.style.left=best.x+'px';card.style.right='auto';card.style.top=best.y+'px';card.style.bottom='auto';
  card.style.setProperty('--panel-height',best.height+'px');
 }
 function placeLabel(xy,width,height,placed){
  const left=8,top=64,bottom=H-45,card=$('#country-card').getBoundingClientRect();
- const blockers=[{x:card.x,y:card.y,w:card.width,h:card.height}];
+ const blockers=$('#country-card').style.visibility==='hidden'?[]:[{x:card.x,y:card.y,w:card.width,h:card.height}];
  const candidates=[];
  for(let row=0;row<18;row++)for(const sign of row?[1,-1]:[1])for(const side of [1,-1]){
   const x=Math.max(left,Math.min(W-width-12,xy[0]+(side===1?12:-width-12)));
@@ -205,6 +214,7 @@ async function main(){
  initMap();
  $('#search-toggle').onclick=()=>{const open=$('.search').hidden;$('.search').hidden=!open;$('#search-toggle').setAttribute('aria-expanded',open);$('#map-settings').hidden=true;$('#filters-toggle').setAttribute('aria-expanded','false');if(open)$('#country-search').focus();};
  $('#filters-toggle').onclick=()=>{const open=$('#map-settings').hidden;$('#map-settings').hidden=!open;$('#filters-toggle').setAttribute('aria-expanded',open);$('.search').hidden=true;$('#search-toggle').setAttribute('aria-expanded','false');};
+ $('#country-info').onclick=()=>showPopup($('#country-details').innerHTML);
  $$('[data-product]').forEach(b=>b.onclick=()=>{state.product=b.dataset.product;state.mode='trade';state.all=false;state.sites=false;$('#detail-popup').hidden=true;svg.call(zoom.transform,d3.zoomIdentity);render();});
  $$('[data-direction]').forEach(b=>b.onclick=()=>{state.direction=b.dataset.direction;render();});
  $('#all-flows').onclick=()=>{state.all=!state.all;render();};

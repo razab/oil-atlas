@@ -5,13 +5,14 @@ const assert=require('node:assert/strict'),fs=require('node:fs');
  const browser=await chromium.launch({headless:true,channel:'chrome'}),page=await browser.newPage({viewport:{width:1440,height:900}}),errors=[];page.on('pageerror',e=>errors.push(e.message));
  await page.goto(base+'/#v=2&country=USA&product=crude&mode=trade&direction=imports');await page.waitForFunction(()=>window.oilAtlas);
  async function clearCountry(){
-  const boxes=await page.evaluate(()=>{const c=document.querySelector('#country-card').getBoundingClientRect();return {card:[c.left,c.top,c.right,c.bottom],country:oilAtlas.getSelectedBounds(),side:document.querySelector('#country-card').dataset.side,view:oilAtlas.getView(),count:oilAtlas.graph.flows.length};});
-  const [a,b]=[boxes.card,boxes.country];const overlap=Math.max(0,Math.min(a[2],b[2])-Math.max(a[0],b[0]))*Math.max(0,Math.min(a[3],b[3])-Math.max(a[1],b[1]));assert.equal(overlap,0,JSON.stringify(boxes));assert.equal(boxes.count,702);return boxes;
+  const boxes=await page.evaluate(()=>{const c=document.querySelector('#country-card').getBoundingClientRect();return {card:[c.left,c.top,c.right,c.bottom],country:oilAtlas.getSelectedBounds(),visible:getComputedStyle(document.querySelector('#country-card')).visibility!=='hidden',side:document.querySelector('#country-card').dataset.side,view:oilAtlas.getView(),count:oilAtlas.graph.flows.length};});
+  const [a,b]=[boxes.card,boxes.country];const overlap=Math.max(0,Math.min(a[2],b[2])-Math.max(a[0],b[0]))*Math.max(0,Math.min(a[3],b[3])-Math.max(a[1],b[1]));if(boxes.visible)assert.equal(overlap,0,JSON.stringify(boxes));assert.equal(boxes.count,702);return boxes;
  }
  let info=await clearCountry();assert.equal(info.side,'right');assert.deepEqual(info.view.translate,[720,450]);
  assert.equal(await page.locator('#map-settings').isVisible(),false);assert.equal(await page.locator('.search').isVisible(),false);assert.equal(await page.locator('.map-caption').isVisible(),false);
  const original=info.view;await page.locator('#collapse-card').click();assert.deepEqual((await clearCountry()).view,original);await page.locator('#collapse-card').click();assert.deepEqual((await clearCountry()).view,original);
  await page.screenshot({path:out+'/usa.png'});
+ await page.locator('#sites-button').click();await clearCountry();for(let i=0;i<4;i++)await page.locator('#zoom-in').click();await clearCountry();if(await page.locator('#country-info').isVisible()){await page.locator('#country-info').click();assert.ok((await page.locator('#popup-content').innerText()).includes('США'));await page.locator('#close-popup').click();}await page.locator('#reset-map').click();await page.locator('#sites-button').click();
  await page.mouse.move(770,750);await page.mouse.down();await page.mouse.move(1290,750,{steps:8});await page.mouse.up();assert.equal((await clearCountry()).side,'left');
  await page.locator('#reset-map').click();assert.equal((await clearCountry()).side,'right');
  await page.locator('#search-toggle').click();await page.locator('#country-search').fill('FRA');await page.locator('[data-country="FRA"]').click();assert.equal((await clearCountry()).side,'left');await page.screenshot({path:out+'/france.png'});
