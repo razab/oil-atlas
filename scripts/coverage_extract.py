@@ -1,6 +1,6 @@
 """National additions. Keep commodity boundaries and estimation/derivation evidence."""
-import json, math, re
-from source_extract import RAW
+import csv,json, math, re
+from source_extract import RAW,clean
 
 COMMODITIES={'270900':'crude','271012':'refined','271019':'refined','271020':'refined'}
 def comtrade_rows(response,meta):
@@ -58,7 +58,41 @@ def extract(scope,registry,use,fact,check,excluded):
  fn='midor-sustainability-2025.txt';use(fn);text=(RAW/fn).read_text()
  if '2025' not in text or 'Refining Capacity: 160,000 barrels/day' not in text:raise ValueError('MIDOR capacity boundary changed')
  fact(fn,'printed-pages=15-16/Refining Capacity',160000,'bbl/day',2025,country='EGY',product='crude',measure='refining_capacity',subdivision='midor',basis='Design refining capacity, not annual crude throughput or oil production')
+ fn='jodi-EGY-products-2025.csv';use(fn);rows=list(csv.DictReader((RAW/fn).open()))
+ for product,code in [('gasoline','GASOLINE'),('diesel','GASDIES'),('refined','TOTPRODS')]:
+  if scope=='canary' and product!='gasoline':continue
+  for flow,measure in [('REFGROUT','production'),('TOTDEMO','consumption'),('TOTIMPSB','total_imports'),('TOTEXPSB','total_exports')]:
+   rs=[r for r in rows if r['ENERGY_PRODUCT']==code and r['FLOW_BREAKDOWN']==flow]
+   if len(rs)!=12 or {r['TIME_PERIOD'] for r in rs}!={f'2025-{i:02}' for i in range(1,13)}:raise ValueError('JODI exact monthly boundary changed')
+   inputs=[]
+   for r in sorted(rs,key=lambda r:r['TIME_PERIOD']):
+    if r['REF_AREA']!='EG' or r['UNIT_MEASURE']!='KTONS' or r['ASSESSMENT_CODE']!='3':raise ValueError('JODI unit/country/assessment changed')
+    value=None if r['OBS_VALUE'] in {'-','x'} else float(r['OBS_VALUE'])
+    month=int(r['TIME_PERIOD'][-2:])
+    if (month<=8)!=(value is not None):raise ValueError('JODI available period changed; review before summing')
+    f=fact(fn,f'full-csv-row={r["sourceRow"]}/{code}/{flow}/{r["TIME_PERIOD"]}',value,'thousand_tonnes/month',2025,country='EGY',product=product,measure='monthly_'+measure,month=month,assessmentCode=3,basis='JODI published KTONS; code 3 = data not assessed; '+code+' / '+flow)
+    if month<=8:inputs.append(f)
+   fact(fn,f'period=2025-01/2025-08/{code}/{flow}',sum(f['value'] for f in inputs),'thousand_tonnes/period',2025,country='EGY',product=product,measure=measure,period='2025-01/2025-08',months=8,assessmentCode=3,derivation=dict(operation='sum',inputs=[f['id'] for f in inputs]),basis='Only January–August 2025; September–December missing; no annual extrapolation. GASOLINE includes motor+aviation gasoline; GASDIES includes gas/diesel oil; TOTPRODS total petroleum products (demand includes direct use of crude/NGL/other). JODI assessment code 3: not assessed.')
  if scope=='full':
+  fn='germany-destatis-2025.html';use(fn);text=clean((RAW/fn).read_text())
+  if not all(s in text for s in ['9. März 2026','Warennummer 27090090','75,7 Millionen Tonnen']):raise ValueError('Destatis edition/classification changed')
+  total=fact(fn,'press-release=9-March-2026/total-2025',75.7,'Mt',2025,country='DEU',product='crude',measure='total_imports',rounded=True,basis='Destatis 9 March 2026 edition; CN 27090090; rounded total coherent with supplier figures. Later revised total not mixed into this cohort.')
+  patterns={'NOR':r'Norwegen\. 16,6 %.*?Das entspricht ([\d,]+) Millionen Tonnen','USA':r'Vereinigten Staaten mit einem Anteil von 16,4 %.*?\(([\d,]+) Millionen Tonnen\)','LBY':r'Libyen mit 13,8 % \(([\d,]+) Millionen Tonnen\)','IRQ':r'Irak mit einem Anteil von 4,2 %.*?\(([\d,]+) Millionen Tonnen\)','ARE':r'Vereinigten Arabischen Emirate mit 1,1 % \(([\d ]+) Tonnen\)','SAU':r'Saudi-Arabien mit 0,8 % \(([\d ]+) Tonnen\)'}
+  for origin,pattern in patterns.items():
+   hits=re.findall(pattern,text)
+   if len(hits)!=1:raise ValueError('Destatis supplier boundary changed: '+origin)
+   fact(fn,'press-release=9-March-2026/supplier='+origin,float(hits[0].replace(',','.').replace(' ','')),'tonne/year' if origin in {'ARE','SAU'} else 'Mt',2025,origin=origin,destination='DEU',product='crude',measure='trade',reporter='DEU',tradeDirection='imports',rounded=True,basis='Destatis CN 27090090; rounded supplier mass; six named suppliers only, not complete country list')
+  fn='egypt-eia-2024.txt';use(fn);text=(RAW/fn).read_text()
+  if 'August 13, 2024' not in text or 'Table 3. Refineries in Egypt' not in text:raise ValueError('EIA refinery edition changed')
+  table=text.split('Table 3. Refineries in Egypt')[1].split('Data source:')[0]
+  capacities=[]
+  for site,name,capacity in [('el-nasr','El-Nasr',131),('mostorod','Mostorod',161),('el-mex','El-Mex',100),('midor','MIDOR',100),('amreya','Amreya',80),('suez','Suez',60),('assiut','Assiut',90),('tanta','Tanta',40)]:
+   lines=[line for line in table.splitlines() if line.strip().startswith(name+' ')]
+   if len(lines)!=1 or int(lines[0].split()[-1])!=capacity:raise ValueError('EIA refinery row changed')
+   capacities.append(capacity)
+   fact(fn,'page=6/table=3/refinery='+name,capacity,'kbpd',2024,country='EGY',product='crude',measure='refining_capacity',subdivision=site,basis='Nameplate capacity in August 2024 report; approximate city location; not oil production. MIDOR superseded by 2025 company observation.')
+  fact(fn,'page=6/table=3/Total',763,'kbpd',2024,country='EGY',product='crude',measure='national_refining_capacity',basis='Eight refineries, 2024 report; national nameplate capacity, not a verified current total')
+  check('EIA Egypt rounded refinery rows vs national total',sum(capacities),763,4.5,'kbpd')
   fn='germany-bafa-2025.txt';use(fn);text=(RAW/fn).read_text();pages=text.split('\f')
   if 'Monat: Dezember 2025' not in pages[0] or '24.04.2026' not in text:raise ValueError('BAFA edition changed')
   def annual(page,label):

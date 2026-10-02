@@ -6,12 +6,12 @@ from pathlib import Path
 from source_extract import ROOT, RAW, sha
 FOCUS={'USA','FRA','RUS','CAN','MEX','CHN','SAU','JPN','LUX','EGY','MDA','DEU'}
 UNITS={'million_bbl/day':('bbl/day',1e6),'kbpd':('bbl/day',1000),'Mt':('tonne/year',1e6),'bcm':('m3/year',1e9),'million_barrels':('bbl',1e6)}
-UNITS.update({'kg':('tonne/year',.001),'tonne/year':('tonne/year',1),'percent':('percent',1),'bbl/day':('bbl/day',1),'tonne':('tonne',1)})
+UNITS.update({'thousand_tonnes/month':('tonne/month',1000),'thousand_tonnes/period':('tonne/period',1000),'kg':('tonne/year',.001),'tonne/year':('tonne/year',1),'percent':('percent',1),'bbl/day':('bbl/day',1),'tonne':('tonne',1)})
 SOURCE_KEYS={'EI-2026.xlsx':'ei-gas','EI-2025-trade.xlsx':'ei-oil','france-crude-imports-2025.html':'insee-france'}
 for product in ['crude','gasoline','diesel']:
  for direction in ['imports','exports']:SOURCE_KEYS[f'us-{product}-{direction}-2025.html']=f'eia-{product}-{direction}'
 for file,meta in json.loads((ROOT/'scripts/source-lock.json').read_text())['metadata'].items():
- if file.startswith('comtrade-') or meta.get('publisher') in {'ANRE Moldova','MIDOR','BAFA'}:SOURCE_KEYS[file]='national-'+Path(file).stem
+ if file.startswith('comtrade-') or meta.get('publisher') in {'ANRE Moldova','MIDOR','BAFA','Destatis','EIA Egypt','IEF JODI'}:SOURCE_KEYS[file]='national-'+Path(file).stem
 WARNINGS=[
  'Две серии EIA по добыче сырой нефти США за 2025 различаются примерно на 0,56%. Для карточки сырой нефти используется национальная годовая таблица; обе исходные серии сохранены. Причина расхождения требует отдельной сверки редакций.',
  'Проверена точность извлечения, единицы и согласованность с исходными итогами. Это не независимое подтверждение всей мировой статистики.',
@@ -23,6 +23,14 @@ WARNINGS=[
  'Запасы OPEC: 41 явно названная страна; 2,1% мирового итога приходится на группы без разбиения. Запасы сырой нефти / спрос на все нефтяные жидкости — условное отношение, не прогноз.',
  'Терминалы и районы добычи показаны приближённо. Потоки не распределены по терминалам; линии не восстанавливают реальные маршруты.'
 ]
+def limitations(records):
+ files={r['source'] for r in records};extra=[]
+ if 'jodi-EGY-products-2025.csv' in files:extra.append('JODI Египет: заполнены только январь–август 2025. Сентябрь–декабрь сохранены как пропуски; суммы за 8 месяцев не считаются годовыми и не сравниваются с годовыми стрелками. Код оценки 3 означает, что сопоставимость данных не оценена. Бензин включает автомобильный и авиационный; спрос на все нефтепродукты включает прямое использование нефти/NGL.')
+ if 'moldova-anre-2025.txt' in files:extra.append('Молдова ANRE 2025: массы поставщиков рассчитаны из годового импорта и долей, округлённых до 0,1%; это приблизительные объёмы. Для дизеля 0,1% импорта не распределено по странам. Внутреннее потребление взято из баланса складов, без сложения оптовых и розничных продаж.')
+ if 'germany-destatis-2025.html' in files:extra.append('Германия Destatis: только шесть названных поставщиков, 39,843 из 75,7 млн тонн (52,6%), редакция 9 марта 2026. Более поздний общий итог не смешивается с этими поставщиками. BAFA и таможенная статистика имеют разные границы и редакции; их итоги не заменяют друг друга. Полное потребление бензина в таблице BAFA скрыто по правилам конфиденциальности.')
+ if 'egypt-eia-2024.txt' in files:extra.append('Египет: восемь НПЗ и общий итог 763 тыс. барр./сутки относятся к отчёту EIA августа 2024. Мощность MIDOR обновлена по отчёту 2025 до 160 тыс.; эти редакции не складываются в текущий национальный итог. Точки НПЗ приблизительны; мощность не означает фактическую переработку.')
+ if any(fn.startswith('comtrade-') for fn in files):extra.append('Египет UN Comtrade 2025: масса сырой нефти оценена источником; доллары не преобразовывались в тонны или баррели. Расширенный сбор остановлен при HTTP 429. Полный список поставщиков нефтепродуктов Египта остаётся пробелом, импорт не считается нулём.')
+ return WARNINGS+extra
 
 def encoded(obj):return (json.dumps(obj,ensure_ascii=False,sort_keys=True,separators=(',',':'),allow_nan=False)+'\n').encode()
 def write(path,obj,pretty=False):
@@ -53,9 +61,10 @@ def views(records,template,scope):
    if v is None or v<=0 or r['origin']==r['destination']:continue
    if src=='EI-2025-trade.xlsx' and 'USA' in [r['origin'],r['destination']]:continue
    key=SOURCE_KEYS[src];unit={'bbl/day':'kbpd','tonne/year':'Mt','m3/year':'bcm'}[r['unit']];divisor={'kbpd':1000,'Mt':1e6,'bcm':1e9}[unit]
-   note='Страна добычи по INSEE/SDES. Данные предварительные; не страна последней отгрузки. Включены конденсаты и другое сырьё НПЗ.' if key=='insee-france' else 'Масса оценена UN Comtrade; не переводится в баррели.' if src.startswith('comtrade-') and r.get('estimated') else 'Приблизительная масса: годовой импорт × доля страны, округлённая ANRE до 0,1%. Для дизеля: только дизельное топливо, без отопительного.' if src=='moldova-anre-2025.txt' else None
+   note='Страна добычи по INSEE/SDES. Данные предварительные; не страна последней отгрузки. Включены конденсаты и другое сырьё НПЗ.' if key=='insee-france' else 'Масса оценена UN Comtrade; не переводится в баррели.' if src.startswith('comtrade-') and r.get('estimated') else 'Приблизительная масса: годовой импорт × доля страны, округлённая ANRE до 0,1%. Для дизеля: только дизельное топливо, без отопительного.' if src=='moldova-anre-2025.txt' else 'Destatis: масса округлена; CN 27090090, редакция 9 марта 2026.' if src=='germany-destatis-2025.html' else None
    graph['flows'].append(dict(id=f'{key}:{prod}:{r["origin"]}:{r["destination"]}',origin=r['origin'],destination=r['destination'],product=prod,value=v/divisor,unit=unit,year=r['year'],source=key,owner=r.get('reporter'),note=note,observation=r['id']))
    if r.get('estimated'):graph['flows'][-1]['estimated']=True
+   if r.get('rounded'):graph['flows'][-1]['rounded']=True
   elif measure.startswith('total_'):
    if v is not None:graph['totals'][f'{country}:{prod}:{measure[6:]}']=v/(1000 if r['unit']=='bbl/day' else 1e6)
   elif src=='us-basins-2025.html':
@@ -100,23 +109,30 @@ def national_views(records,graph):
  lock=json.loads((ROOT/'scripts/source-lock.json').read_text())['metadata']
  graph['tradeCoverage']={};graph['totalYears']={}
  graph['nodes']['MDA']['name']='Молдова'
- graph['sites']=[s for s in graph['sites'] if s['id']!='midor']
+ graph['sites']=[s for s in graph['sites'] if not(s['country']=='EGY' and s['kind']=='refinery')]
+ graph['refining']={}
  for r in records:
   src=r['source'];v=r['value'];prod=r['product'];country=r.get('country');measure=r['measure']
-  if not(src.startswith('comtrade-') or src in {'moldova-anre-2025.txt','midor-sustainability-2025.txt','germany-bafa-2025.txt'}):continue
+  if not(src.startswith('comtrade-') or src in {'moldova-anre-2025.txt','midor-sustainability-2025.txt','germany-bafa-2025.txt','germany-destatis-2025.html','egypt-eia-2024.txt','jodi-EGY-products-2025.csv'}):continue
   graph['sources'][SOURCE_KEYS[src]]=dict(label=lock[src]['label'],url=lock[src]['url'],year=r['year'],sha256=r['sourceSha256'])
   if measure.startswith('total_') and v is not None:
-   key=f'{country}:{prod}:{measure[6:]}';unit={'tonne/year':'Mt','bbl/day':'kbpd'}[r['unit']];divisor=1e6 if unit=='Mt' else 1000
+   key=f'{country}:{prod}:{measure[6:]}';unit={'tonne/year':'Mt','tonne/period':'MtPeriod','bbl/day':'kbpd'}[r['unit']];divisor=1e6 if unit in {'Mt','MtPeriod'} else 1000
    graph['totalUnits'][key]=unit;graph['totalYears'][key]=r['year']
    flows=[f for f in graph['flows'] if f['product']==prod and f['owner']==country and f['year']==r['year'] and f['unit']==unit and (f['destination']==country if measure=='total_imports' else f['origin']==country)]
    known=sum(f['value'] for f in flows)
-   graph['tradeCoverage'][key]=dict(total=v/divisor,known=known,unit=unit,year=r['year'],estimated=r.get('estimated',False) or any(f.get('estimated') for f in flows),source=SOURCE_KEYS[src],note='Нефтепродукты: сумма опубликованных HS 271012/271019/271020; не отдельные бензин/дизель.' if prod=='refined' else 'Отчёт ANRE: объёмы стран рассчитаны из округлённых долей; нераспределённый остаток показан отдельно.' if src=='moldova-anre-2025.txt' else 'BAFA: национальные итоги, поставщики по этому продукту ещё не распределены.' if src=='germany-bafa-2025.txt' else 'UN Comtrade, HS 270900: таможенная торговля сырой нефтью.')
+   graph['tradeCoverage'][key]=dict(total=v/divisor,known=known,unit=unit,year=r['year'],estimated=r.get('estimated',False) or any(f.get('estimated') for f in flows),rounded=r.get('rounded',False),period=r.get('period'),source=SOURCE_KEYS[src],note='JODI: только январь–август; сентябрь–декабрь отсутствуют. Поставщики за этот период не раскрыты; годовые стрелки 2025 не складываются с этим итогом. Сопоставимость данных JODI не оценена (код 3).' if src=='jodi-EGY-products-2025.csv' else 'Destatis: шесть названных поставщиков, округлённые значения одной редакции от 9 марта 2026; остаток не распределён.' if src=='germany-destatis-2025.html' else 'Отчёт ANRE: объёмы стран рассчитаны из округлённых долей; нераспределённый остаток показан отдельно.' if src=='moldova-anre-2025.txt' else 'BAFA: национальные итоги, поставщики по этому продукту ещё не распределены.' if src=='germany-bafa-2025.txt' else 'UN Comtrade, HS 270900: таможенная торговля сырой нефтью.')
   elif measure in {'production','consumption'}:
-   d=graph['domestic'].setdefault(country,{}).setdefault(prod,dict(unit='Mt',production=None,consumption=None,year=r['year'],productionLabel='Добыча сырой нефти' if prod=='crude' else 'Выпуск топлива',consumptionLabel='Потребление топлива',note='ANRE 2025: внутреннее потребление бензина / дизельного топлива; данные добычи/выпуска не опубликованы в этой таблице.' if country=='MDA' else 'BAFA 2025, предварительно: бензин / дизель без отопительного топлива. Потребление — внутренние поставки; полный итог бензина скрыт по правилам конфиденциальности BAFA.'))
+   d=graph['domestic'].setdefault(country,{}).setdefault(prod,dict(unit='MtPeriod' if r.get('period') else 'Mt',production=None,consumption=None,year=r['year'],productionLabel='Добыча сырой нефти' if prod=='crude' else 'Выпуск НПЗ' if src=='jodi-EGY-products-2025.csv' else 'Выпуск топлива',consumptionLabel='Переработка сырой нефти' if prod=='crude' else 'Потребление топлива',note='JODI: январь–август 2025 (8 месяцев), без пересчёта на год. Бензин включает автомобильный и авиационный; дизель — gas/diesel oil. Для всех нефтепродуктов спрос включает прямое использование нефти/NGL. Код 3: сопоставимость не оценена.' if src=='jodi-EGY-products-2025.csv' else 'BAFA: добыча сырой нефти за 2025 в тоннах; национальная нефтяная отчётность. Объём переработки не подставляется из общего спроса.' if prod=='crude' else 'ANRE 2025: внутреннее потребление бензина / дизельного топлива; данные добычи/выпуска не опубликованы в этой таблице.' if country=='MDA' else 'BAFA 2025, предварительно: бензин / дизель без отопительного топлива. Потребление — внутренние поставки; полный итог бензина скрыт по правилам конфиденциальности BAFA.'))
    d[measure]=None if v is None else v/1e6
-  elif measure=='refining_capacity':
+  elif measure=='refining_capacity' and src=='midor-sustainability-2025.txt':
    graph['sites'].append(dict(id='midor',name='НПЗ MIDOR · Александрия',country='EGY',kind='refinery',coordinates=[29.85,31.02],capacity=v/1000,year=r['year'],observation=r['id'],url=lock[src]['url'],detail='Проектная мощность 160 тыс. баррелей в сутки, отчёт MIDOR 2025. Это не добыча и не фактический объём переработки. Точка приблизительно обозначает район НПЗ у Александрии.'))
-   graph.setdefault('refining',{})['EGY']=dict(capacity=v/1000,year=r['year'],partial=True,label='НПЗ MIDOR',source=SOURCE_KEYS[src])
+   graph['refining'].setdefault('EGY',{})['midor']=dict(capacity=v/1000,year=r['year'],label='НПЗ MIDOR',source=SOURCE_KEYS[src])
+  elif measure=='national_refining_capacity':
+   graph['refining'].setdefault('EGY',{}).update(capacity=v/1000,year=r['year'],count=8,source=SOURCE_KEYS[src])
+  elif measure=='refining_capacity' and r['subdivision']!='midor':
+   locations={'el-nasr':([32.54,29.98],'El-Nasr · Суэц'),'suez':([32.55,29.96],'Suez · Суэц'),'mostorod':([31.29,30.14],'Mostorod · Каир'),'el-mex':([29.85,31.15],'El-Mex · Александрия'),'amreya':([29.83,31.0],'Amreya · Америя'),'assiut':([31.17,27.18],'Assiut · Асьют'),'tanta':([31,30.79],'Tanta · Танта')}
+   xy,label=locations[r['subdivision']]
+   graph['sites'].append(dict(id='egypt-'+r['subdivision'],country='EGY',kind='refinery',name=label,coordinates=xy,capacity=v/1000,year=r['year'],observation=r['id'],url=lock[src]['url'],detail='Проектная мощность из отчёта EIA августа 2024. Не фактический объём переработки; актуальность на 2025/2026 не подтверждена. Точка приблизительно обозначает город/район расположения, не точный адрес.'))
 
 def validate(bundle):
  if bundle.get('schemaVersion')!=1 or bundle.get('scope') not in {'canary','full'}:raise ValueError('Unknown bundle schema/scope')
@@ -128,7 +144,7 @@ def validate(bundle):
   if r['id'] in ids:raise ValueError('Duplicate observation')
   ids.add(r['id'])
   if r['source'] not in sources or r['sourceSha256']!=sources[r['source']]['sha256']:raise ValueError('Missing provenance')
-  if r['year']!= (2024 if r['source'] in {'EI-2025-trade.xlsx','opec-reserves-table-3.1-2024.txt'} else 2025):raise ValueError('Unexpected source year')
+  if r['year']!=lock['metadata'].get(r['source'],{}).get('year',2024 if r['source'] in {'EI-2025-trade.xlsx','opec-reserves-table-3.1-2024.txt'} else 2025):raise ValueError('Unexpected source year')
   unit,factor=conversion(r['rawUnit'],r['year'])
   v=r['rawValue'];expected=None if v is None else v*factor
   if v is not None and (not isinstance(v,(float,int)) or not math.isfinite(v) or v<0):raise ValueError('Negative/nonfinite source value')
@@ -140,6 +156,8 @@ def validate(bundle):
   d=r.get('derivation')
   if not d:continue
   inputs=[byid[i] for i in d['inputs']]
+  if d['operation'] not in {'sum','share'}:raise ValueError('Unknown derivation')
+  if r.get('period') and (r['months']!=8 or len(inputs)!=8 or {x.get('month') for x in inputs}!=set(range(1,9)) or r['rawUnit']!='thousand_tonnes/period' or any(x['rawUnit']!='thousand_tonnes/month' for x in inputs)):raise ValueError('Incomplete or falsely annual period')
   if any(x['year']!=r['year'] or x['product']!=r['product'] for x in inputs):raise ValueError('Derived product/year mismatch')
   values=[x['rawValue'] for x in inputs]
   expected=None if any(x is None for x in values) else sum(values) if d['operation']=='sum' else values[0]*values[1]/100 if d['operation']=='share' else None
@@ -161,7 +179,7 @@ def validate(bundle):
  v=bundle['validation'];actual=summary(bundle)
  if v.get('comparisons')!=comparisons(records):raise ValueError('Cross-source comparisons are stale')
  if v['summary']!=actual or v['status']!='passed_with_limitations':raise ValueError('Report is stale or falsely complete')
- if v['limitations']!=WARNINGS:raise ValueError('Coverage caveats missing')
+ if v['limitations']!=limitations(records):raise ValueError('Coverage caveats missing')
  return actual
 
 def comparisons(records):
@@ -220,7 +238,7 @@ def build(scope,resume=False):
   if file=='eia-crude-ngl-2025.json':source['url']='https://www.eia.gov/international/data/world/petroleum-and-other-liquids'
  records=normalize(evidence['facts'],evidence['sources']);result=views(records,template,scope)
  evidence_digest=hashlib.sha256(encoded(evidence)).hexdigest();evidence_name='source-'+evidence_digest+'.json';write(dest/evidence_name,evidence)
- bundle=dict(schemaVersion=1,scope=scope,retrieved='2026-10-02',pipelineSha256=codehash,evidenceSha256=evidence_digest,sources=evidence['sources'],observations=records,views=result,validation=dict(status='passed_with_limitations',limitations=WARNINGS,reconciliations=evidence['reconciliations'],excluded=evidence['excluded']))
+ bundle=dict(schemaVersion=1,scope=scope,retrieved='2026-10-02',pipelineSha256=codehash,evidenceSha256=evidence_digest,sources=evidence['sources'],observations=records,views=result,validation=dict(status='passed_with_limitations',limitations=limitations(records),reconciliations=evidence['reconciliations'],excluded=evidence['excluded']))
  bundle['validation']['comparisons']=comparisons(records);bundle['validation']['summary']=summary(bundle);validate(bundle)
  digest=hashlib.sha256(encoded(bundle)).hexdigest();filename=digest+'.json';write(dest/filename,bundle)
  if scope=='full':

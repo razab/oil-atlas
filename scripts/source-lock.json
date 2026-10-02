@@ -19,7 +19,11 @@
     "comtrade-EGY-270900-M-2025.json": "2204a372751bce6b049acb3326b6f9cdeb79a50309216228002e30b384679318",
     "moldova-anre-2025.txt": "a1e32b79b5d1fe8ffb705ee59860b43ed6d3984e9e67bc4dcd3cfa12e6328078",
     "midor-sustainability-2025.txt": "c1b03288a4463f68e38865f7d51ceaf2a86c501ccb93caf170edf0a54c61add9",
-    "germany-bafa-2025.txt": "fdfdb072d146983b47e0630037433ea7808103053e5253aee071543e8bd99565"
+    "germany-bafa-2025.txt": "fdfdb072d146983b47e0630037433ea7808103053e5253aee071543e8bd99565",
+    "comtrade-EGY-270900-X-2025.json": "c11d3410099d4bc3c56081820c911971bd1e35a001e396be622f58a7a5271ff8",
+    "germany-destatis-2025.html": "b3b179ad5e91ce8680673501d8db8bd895e3220f2c0c962ede4b304749b64d7b",
+    "egypt-eia-2024.txt": "fed8aac68192e8ceaeab7f61234cecc57038df8ca443fe40b4e1e0af134dfe8c",
+    "jodi-EGY-products-2025.csv": "eb9a2c484e9983fe2336cb8ad1031b7a975e998062e4ce99d6e23a61ba760d4c"
   },
   "metadata": {
     "EI-2026.xlsx": {
@@ -83,6 +87,43 @@
       "label": "Германия: нефтепереработка и топливо · BAFA 2025",
       "canary": false,
       "pdfSha256": "7751d8428c10b7a5eb377911998e22bb322b8a1a5c19b62f97cbd019a9c32c47"
+    },
+    "comtrade-EGY-270900-X-2025.json": {
+      "publisher": "UN Comtrade",
+      "year": 2025,
+      "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?period=2025&reporterCode=818&cmdCode=270900&flowCode=X&partnerCode=&partner2Code=0&customsCode=C00&motCode=0&maxRecords=500&includeDesc=true",
+      "label": "EGY: HS 270900, X · UN Comtrade 2025",
+      "reporter": "EGY",
+      "reporterCode": 818,
+      "commodity": "270900",
+      "flows": [
+        "X"
+      ],
+      "canary": false
+    },
+    "germany-destatis-2025.html": {
+      "publisher": "Destatis",
+      "year": 2025,
+      "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/03/PD26_N016_51.html",
+      "label": "Германия: 6 поставщиков нефти · Destatis, 9 марта 2026",
+      "canary": false
+    },
+    "egypt-eia-2024.txt": {
+      "publisher": "EIA Egypt",
+      "year": 2024,
+      "url": "https://www.eia.gov/international/content/analysis/countries_long/Egypt/pdf/Egypt.pdf",
+      "label": "Египет: восемь НПЗ · EIA, август 2024",
+      "canary": false,
+      "pdfSha256": "556c43ef7900031db7f29cebaf8276992775cdcdb281888288b9643fad30b2c0"
+    },
+    "jodi-EGY-products-2025.csv": {
+      "publisher": "IEF JODI",
+      "year": 2025,
+      "url": "https://www.jodidata.org/_resources/files/downloads/oil-data/annual-csv/secondary/2025.csv",
+      "label": "Египет: производство, спрос и торговля топливом · JODI, январь–август 2025",
+      "canary": true,
+      "fullCsvSha256": "2b1007ee1010a283e30052a0dee5e9ecf8eb458310791bdeb0a62af2563fe459",
+      "extraction": "Exact CSV rows for EG, KTONS, GASOLINE/GASDIES/TOTPRODS, REFGROUT/TOTDEMO/TOTIMPSB/TOTEXPSB; original full-file row numbers retained. All 12 months retained including missing September–December. Assessment code 3: not assessed."
     }
   }
 }

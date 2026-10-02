@@ -1,0 +1,14 @@
+{
+  "status": "stopped",
+  "reason": "HTTP 429 Too Many Requests",
+  "host": "comtradeapi.un.org",
+  "failedCountry": "DEU",
+  "failedCommodity": "270900",
+  "pending": [
+    "DEU crude",
+    "EGY HS271012",
+    "EGY HS271019",
+    "EGY HS271020"
+  ],
+  "policy": "No automatic retry, alternate endpoint, proxy, or restart resume. Review source limits before any future collection."
+}

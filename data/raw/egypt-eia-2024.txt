@@ -1,0 +1,637 @@
+Country Analysis Brief:
+Egypt
+
+Last Updated: August 13, 2024
+Next Update: August 2026
+
+
+
+
+                                             www.eia.gov
+                                U.S. Department of Energy
+                                   Washington, DC 20585
+The U.S. Energy Information Administration (EIA), the statistical and analytical agency within the
+U.S. Department of Energy (DOE), prepared this report. By law, our data, analyses, and forecasts are
+independent of approval by any other officer or employee of the U.S. Government. The views in this
+report do not represent those of DOE or any other federal agencies.
+
+
+
+
+U.S. Energy Information Administration | Country Analysis Brief: Egypt                                 i
+                                                                                                            August 13, 2024
+
+
+
+Overview
+ Table 1. Egypt's energy overview, 2022
+                                                      Crude oil
+                                                     and other
+                                                    petroleum            Natural                            Renewables
+                                                        liquids             gas    Coal   Nuclear   Hydro     and other     Total
+ Primary energy consumption (quad Btu)                      1.7              2.2    0.1       0.0                   0.1         4.0
+ Primary energy consumption (percentage)                   41%              55%     2%        0%                    2%      100%
+ Primary energy production (quad Btu)                       1.4              2.4    0.0       0.0                   0.1         3.9
+ Primary energy production (percentage)                    36%              62%     0%        0%                    2%      100%
+ Electricity generation (TWh)                              16.1           174.9     0.0       0.0    13.5          11.3     215.8
+ Electricity generation (percentage)                    7%          81%         0%        0%           6%           5%        100%
+ Data source: US EIA International Energy Statistics database
+ Note: EIA's International Energy Statistics database aggregates hydroelectricity and renewables as "renewables and other" for
+ primary energy production and consumption. Some numbers may not add up due to rounding.
+
+
+
+
+     •    Egypt is a significant and geographically important hydrocarbon producer. According to our
+          latest estimates, Egypt was the second-largest non-OPEC (Organization of Petroleum Exporting
+          Countries) producer in Africa of total liquid fuels in 2023, behind Angola. It was also the second-
+          largest natural gas producer in Africa in 2022, second only to Algeria. Egypt received a
+          substantial boost to its natural gas production in the mid-2010s when major offshore fields, such
+          as the Zohr field, were developed. Prospects for continued growth in natural gas production
+          have dimmed, however, because technical issues have prevented the Zohr field from reaching
+          peak production and recent exploration efforts have not led to any significant new discoveries. 1
+     •    Egypt operates the Suez Canal and the Suez-Mediterranean (SUMED) Pipeline; both of which are
+          crucial midstream infrastructure for international energy markets. The Suez Canal is a transit
+          route for oil and liquefied natural gas (LNG) shipments traveling northbound from the Persian
+          Gulf to Europe and to North America. Shipments traveling southbound from North Africa and
+          from countries along the Mediterranean Sea to Asia also move through the Suez Canal. Fees
+          collected from these two transit points are a significant source of revenue for the Egyptian
+          government. 2
+     •    Egypt has sought to position itself as the regional export hub for LNG. Egypt is the only country
+          in the Eastern Mediterranean region with operational LNG export capacity. In addition, it is also
+          the only country in the region that has the potential to import natural gas from other countries
+          in the region and export both domestically produced and imported natural gas as LNG to
+          international markets. However, a host of factors poses serious challenges to Egypt’s ambitions.
+          The Israel-Gaza conflict led to a month-long shutdown of the Tamar field in October 2023,
+          reducing Israeli natural gas imports to Egypt and raising the possibility of future disruptions
+          should the conflict spread or escalate. Houthi attacks on maritime vessels have also disrupted
+          maritime traffic, including LNG trade flows, which has resulted in lower revenue derived from
+          transit fees for the Egyptian government. Moreover, rising natural gas consumption in Egypt
+
+
+
+U.S. Energy Information Administration | Country Analysis Brief: Egypt                                                      1
+                                                                                           August 13, 2024
+
+
+          coupled with declining domestic natural gas production has put pressure on the country’s
+          domestic natural gas balance, requiring it to turn to imports to meet domestic demand. Without
+          an effective and durable solution to these challenges, Egypt’s vision of becoming a regional LNG
+          export hub is likely to remain only a prospective one for the foreseeable future. 3
+
+Figure 1. Map of Egypt
+
+
+
+
+          Source: U.S. Central Intelligence Agency, CIA World Factbook–Egypt
+
+
+Exploration
+     •    The Egyptian government has sought to attract upstream development to address the growing
+          gap between domestic supply and demand, particularly for natural gas, where consumption
+          surpassed domestic production in 2023, according to the Energy Institute’s 2024 Statistical
+          Review of World Energy. 4 In the first quarter of 2023 (1Q23), the Egyptian government launched
+          the country’s first international bid round for brownfield development, which aims at increasing
+          production at existing fields, for blocks located in the Gulf of Suez and the Eastern Desert. As of
+          March 2024, the Egyptian government is evaluating the bids for the eight blocks on offer. On
+          September 25, 2023, the Egyptian government also launched an additional bidding round,
+          putting up 23 blocks on offer; the blocks on offer are located both onshore and offshore in areas
+          such as the Western Desert, the Gulf of Suez, and the Red Sea regions. The Egyptian government
+          reportedly began evaluating bids in 1Q24 and is expected to announce successful bids later in
+          the year. 5
+
+
+
+U.S. Energy Information Administration | Country Analysis Brief: Egypt                                      2
+                                                                                                     August 13, 2024
+
+
+Petroleum and Other Liquids
+     •    Egypt has three main crude oil grades: Suez, Belayim, and Western Desert. The Suez and
+          Belayim crude oil grades come from offshore fields in the Gulf of Suez and are considered
+          medium, sour crude oil grades. The Suez and Belayim crude oil grades are refined and consumed
+          domestically. The Western Desert crude oil grade comes from newer onshore fields located in
+          the Western Desert and is considered as a light, sweet crude oil grade (Table 2). 6
+
+                              Table 2. Selected crude oil grades produced in Egypt
+                                                       API gravity number           Sulfur content
+                              Crude oil grade                    (degrees)           (percentage)
+                              Belayim                                    27.5               2.20%
+                              Suez                                       30.4               1.65%
+                              Western Desert                     41.1                        0.34%
+                              Data source: McKinsey & Company's Energy Insights, Egypt Oil & Gas
+     •    Egypt produced an average of about 694,000 barrels per day (b/d) of total liquid fuels from 2014
+          through 2023. Most of this production was crude oil and lease condensate, which was about
+          615,000 b/d of the total. Egypt’s liquid fuels production has benefited from higher natural gas
+          liquids and lease condensate production from the large offshore natural gas fields that came
+          online in the mid-2010s. However, the total volume of liquid fuels production has been declining
+          because of lower crude oil production stemming from a lack of significant crude oil discoveries
+          in recent years (Figure 2). 7
+
+
+
+
+     •    According to the Egyptian General Petroleum Corporation (EGPC), the country’s national oil
+          company, Egypt has eight refineries with a total nameplate capacity of approximately 763,000
+          b/d. Nearly all downstream refining companies that own or operate Egypt’s refineries are
+
+
+
+U.S. Energy Information Administration | Country Analysis Brief: Egypt                                             3
+                                                                                                           August 13, 2024
+
+
+          subsidiaries of the EGPC. Egypt’s refineries produce a variety of petroleum products, which are
+          then used for domestic consumption as well as for export (Table 3). 8
+
+           Table 3. Refineries in Egypt
+                                                                                                 Nameplate capacity
+           Refinery name                                           Operator    Location    (thousand barrels per day)
+           El-Nasr                               Nasr Petroleum Company            Suez                          131
+           Mostorod                            Cairo Oil Refining Company          Cairo                         161
+           El-Mex                          Alexandria Petroleum Company       Alexandria                         100
+           MIDOR                                   Middle East Oil Refinery   Alexandria                         100
+           Amreya                   Amreya Petroleum Refining Company           Ameriya                           80
+           Suez                              Suez Oil Processing Company           Suez                           60
+           Assiut                              Assiut Oil Refining Company        Assiut                          90
+           Tanta                               Cairo Oil Refining Company         Tanta                           40
+           Total                                                                                                 763
+           Data source: Fitch Solutions Country Risk & Industry Research, Egypt General Petroleum Corporation,
+           Egypt Oil & Gas, company websites
+
+     •    Egypt is seeking to modernize and upgrade some of its refineries. The Middle East Oil Refinery
+          (MIDOR) is undergoing an expansion project to increase its refining capacity by 60,000 b/d; the
+          expansion project will enable the refinery to produce more middle distillates. The Assiut refinery
+          also has an expansion and upgrade project that aims to construct a new naphtha complex and a
+          hydrocracking complex. These enhancements will increase the refinery’s nameplate capacity by
+          60,000 b/d and enable the refinery to produce high octane and other grades of gasoline and
+          diesel once in commercial operation. 9
+
+Natural Gas
+     •    Dry natural gas production in Egypt averaged about 2 trillion cubic feet (Tcf) from 2013 through
+          2022. Egypt’s natural gas production rose significantly as a result of large offshore natural gas
+          discoveries in the mid-2010s that were fast-tracked for development. Dry natural gas
+          consumption in Egypt also averaged about 2 Tcf and has gradually increased over the same time
+          period (Figure 3). In Egypt, natural gas is consumed in the power sector, the industrial sector,
+          and the residential sector—where it is used for heating and cooking. Natural gas consumption
+          has been increasing, in part, from a growing domestic population and the use of fossil fuel
+          subsidies. 10
+
+
+
+
+U.S. Energy Information Administration | Country Analysis Brief: Egypt                                                   4
+                                                                                                       August 13, 2024
+
+
+
+
+     •    The fast-track development of a number of offshore natural gas fields, particularly Egypt’s Zohr
+          field—which is considered one of the Eastern Mediterranean’s largest natural gas fields—
+          provided a significant boost to the country’s natural gas production in the latter half of the
+          2010s. However, natural gas production growth has stalled in the 2020s as a result of a lack of
+          new fields under development, production declines at maturing fields, and persistent technical
+          issues that have limited natural gas output at the Zohr field. The Egyptian government is seeking
+          to develop new natural gas projects to revitalize production growth. However, until new natural
+          gas projects are approved and brought online, the country’s growing natural gas consumption
+          will require natural gas imports to meet domestic demand, particularly during the summer when
+          high temperatures increase electricity demand (Table 4). 11
+
+      Table 4. Selected natural gas discoveries in Egypt
+      Project                                                                           Final investment   Estimated
+      name                      Location                       Ownership       Status      decision year   start year
+                          Offshore; Nile
+      Nooros                Delta Basin               Eni (75%), BP (25%)   Producing              2015         2015
+                          Offshore; Nile
+      Nooros East           Delta Basin               Eni (75%), BP (25%)   Producing              2016         2016
+                                               Eni (50%), Rosneft (30%),
+                          Offshore; Nile     BP (10%), Mubadala Energy
+      Zohr                  Delta Basin                            (10%)    Producing              2016         2017
+                          Offshore; Nile
+      Atoll                 Delta Basin                         BP (100%)   Producing              2016         2018
+                          Offshore; Nile
+      Baltim SW             Delta Basin               BP (50%), Eni (50%)   Producing              2018         2019
+                          Offshore; Nile             Eni (38%), BP (38%),
+      Bashrush              Delta Basin              TotalEnergies (25%)    Appraisal              2024         2026
+                          Offshore; Nile
+      Satis                 Delta Basin               BP (50%), Eni (50%)   Appraisal              2025         2027
+                        Offshore; North        Chevron (45%), Eni (45%),
+                         Sinai Offshore              Tharwa Petroleum
+      Nargis                      Basin                 Company (10%)       Appraisal              2025         2028
+
+
+
+U.S. Energy Information Administration | Country Analysis Brief: Egypt                                                  5
+                                                                                            August 13, 2024
+
+
+      Data source: Rystad Energy
+
+
+
+     •    According to the most recent data by the World Bank’s Global Flaring and Methane Reduction
+          Partnership (GFMR), Egypt flared about 66 billion cubic feet (Bcf) (or 1.87 billion cubic meters) of
+          natural gas in 2023, making Egypt the 14th-largest natural gas-flaring country in terms of annual
+          natural gas-flaring volume for that year. 12
+
+Coal
+     •    Egypt consumed an average of approximately 2.8 million short tons of coal per year from 2013
+          through 2022. Egypt does not produce any coal and, therefore, imports the coal it consumes.
+          Egypt’s coal consumption occurs mainly in the industrial sector, specifically in construction
+          (Figure 4). 13
+
+
+
+
+Electricity
+     •    Total electricity capacity in Egypt nearly doubled from 2013 through 2022, growing by about 27
+          gigawatts (GW) in the 10-year timeframe; much of this growth in total capacity is attributed to
+          fossil fuel-derived sources of electricity. Growth in electricity capacity derived from non-
+          hydroelectric renewable sources, such as solar and wind, was also substantial; non-hydroelectric
+          renewable electricity capacity reached 3.4 GW in 2022, nearly quintuple the capacity in 2013.
+          Egypt does not have any electricity capacity derived from nuclear sources (Figure 5 and Figure
+          6). 14
+
+
+
+
+U.S. Energy Information Administration | Country Analysis Brief: Egypt                                       6
+                                                                                            August 13, 2024
+
+
+
+
+     •    Fossil fuel-derived electricity capacity grew significantly in from 2013 through 2022, primarily
+          because of additions to the Beni Suef, Burullus, and New Capital power plants (collectively
+          referred to as the Egypt Megaproject) that were commissioned in 2017 and 2018. The three
+          power plants are natural gas-fired combined-cycle turbine plants that each have a capacity of
+          4.8 GW, altogether adding 14.4 GW of thermal electricity capacity to Egypt’s power grid. The
+          Egypt Megaproject was developed by a consortium—Siemens, Orascom Construction, and El
+          Sewedy Electric—and the project is wholly owned by the Egyptian Electricity Holding
+          Company. 15
+
+
+
+U.S. Energy Information Administration | Country Analysis Brief: Egypt                                       7
+                                                                                           August 13, 2024
+
+
+     •    The Egyptian government is seeking to develop renewable energy sources to diversify its power
+          generation mix. Through its 2035 Integrated Sustainable Energy Strategy, the Egyptian
+          government has set a target for 42% of its total capacity to be derived from renewable energy
+          sources by 2035, up from 20% in 2022. As a result, Egypt has been developing more solar and
+          wind power capacity to reach this target. In July 2023, ACWA Power signed a memorandum of
+          understanding (MOU) with the New and Renewable Energy Authority (NREA), the regulatory
+          body under the Egyptian Ministry of Electricity and Renewable Energy, to allocate land for a 10
+          GW wind power project near the city of Sohag; the project is expected to provide about 50
+          terawatthours (TWh) per year once it is completed. In December 2023, the China Electric Power
+          Equipment and Technology Company and the Egyptian government signed an MOU to conduct
+          preliminary studies to develop a 10 GW solar power project that could provide approximately
+          29.8 TWh per year. Although still in preliminary stages of development, both projects could
+          provide a substantial boost in renewable energy capacity, helping the government achieve its
+          2035 renewable energy target. 16
+     •    Egypt’s first nuclear power plant is under construction; the fourth and final reactor began
+          construction in January 2024. The proposed nuclear power plant, which is located on the
+          Mediterranean coast in El Dabaa, is planned to be four 1.2 MW reactors, providing 4.8 GW of
+          electricity capacity when complete. The Russian State Atomic Energy Corporation (ROSATOM) is
+          developing the power plant, and the Nuclear Power Plant Authority (NPPA) of Egypt will become
+          the owner and operator. The power plant’s first reactor is scheduled to be commissioned in
+          2026, and all four reactors should be operating at full capacity by 2030. 17
+
+Energy Trade
+     •    Egypt plays a significant role in global crude oil and natural gas trade because of the Suez Canal
+          and the Suez-Mediterranean (SUMED) Pipeline—two major routes and transit chokepoints for
+          crude oil and LNG shipments. If both the Suez Canal and the SUMED Pipeline were to close,
+          tankers would have to divert around the southern tip of Africa, adding approximately 15 days of
+          transit to the United States or Europe, which would lead to increased shipping costs. 18
+     •    Egypt has crude oil storage facilities in the Ayn Suknah and Sidi Kerir terminals, which are
+          located at opposite ends of the SUMED Pipeline. The Sidi Kerir terminal, which is located on the
+          Mediterranean, has 27 storage tanks with a total capacity of 20 million barrels. The Ayn Suknah
+          terminal, which is located on the Red Sea, has 15 floating storage tanks with a total capacity of
+          10 million barrels. 19
+     •    Egypt exported an average of about 239,000 b/d of crude oil and condensate from 2013 through
+          2022, according to estimates by Global Trade Tracker and EIA. Egypt imported an average of
+          about 111,000 b/d of crude oil and condensate during the same time period (Figure 7). 20
+
+
+
+
+U.S. Energy Information Administration | Country Analysis Brief: Egypt                                     8
+                                                                                       August 13, 2024
+
+
+
+
+     •    In 2023, Egypt exported about 166,000 b/d of crude oil and condensate, and about two-thirds of
+          total exports went to Europe. Greece and Italy were the top two importing countries by volume;
+          Greece and Italy imported about 51,000 b/d of Egypt’s crude oil and 31,000 b/d of Egypt’s
+          condensate. The remainder of Egypt’s crude oil and condensate exports went to the Asia Pacific
+          region, primarily India, which took about 48,000 b/d of imports and was the second-highest
+          importing country for that year (Figure 8). 21
+
+
+
+
+U.S. Energy Information Administration | Country Analysis Brief: Egypt                                 9
+                                                                                                                   August 13, 2024
+
+
+     •    Egypt has two major regional natural gas pipelines, the Arish-Ashkelon pipeline and the Arab
+          Gas Pipeline (AGP), that enable the country to transport natural gas to other countries in the
+          region. The AGP is a trans-regional natural gas pipeline through which Egypt can export natural
+          gas to Syria, Lebanon, and Jordan. However, with Egypt’s increasing natural gas consumption,
+          the pipeline remains underutilized because meeting domestic demand is prioritized over
+          commercial export. The Arish-Ashkelon pipeline, also known as the Eastern Mediterranean Gas
+          (EMG) pipeline, is a subsea branch of the AGP that was built in 2008 to deliver natural gas to
+          Israel from Egypt; however, as a result of Egypt’s domestic natural gas shortages and Israel’s
+          development of its large offshore natural gas fields, pipeline flows have reversed. Israel delivers
+          natural gas from its offshore fields to Egypt (Table X5). 22
+
+          Table 5. Major regional natural gas pipelines in Egypt
+                                                                Capacity
+                                                                  (billion
+                                                  Length       cubic feet
+          Pipeline name            Status         (miles)       per year)                   Operators                            Notes
+                                                                                   East Mediterranean
+                                                                                        Gas Company,
+                                                                                  Merhav, Snam S.P.A.,
+                                                                                  EMI-EGI LP, Egyptian   subsea pipeline that carries
+          Arish-Ashkelon                                                            General Petroleum      gas from Israel's offshore
+          Pipeline             Operating               56        147–247                  Corporation                 fields to Egypt
+                                                                                         EGAS, ENPPI,          onshore pipeline that
+          Arab Gas                                                                 PETROGET, GASCO,        carries gas from Egypt to
+          pipeline (AGP)       Operating               750               364                       SPC       Jordan, Syria, Lebanon
+          Data source: Global Energy Monitor, company websites
+
+
+
+     •    Egypt began exporting LNG in 2005 when two LNG export facilities, SEGAS LNG and Egyptian
+          LNG, were brought online. LNG exports increased thereafter but began declining in the 2010s
+          domestic natural gas production declined and domestic natural gas consumption increased.
+          Natural gas that would have otherwise been available for export was diverted to fulfill domestic
+          demand instead (Table 6). 23
+
+           Table 6. Egypt's liquefaction plants
+                                                                                                                  Nameplate
+                                                                                                                     capacity
+                                                                                                                      (billion
+                                                                                                                   cubic feet
+           Project Name                     Location          Status                   Ownership     Start date     per year)
+                                                                               Egyptian LNG (Shell
+                                                                                  35.5%, Petronas
+                                                                                35.5%, EGPC 12%,
+                                                                                       EGAS 12%,
+           Egyptian LNG T1        Idku (Alexandria)       Operating             TotalEnergies 5%)         2005            173
+                                                                            Egyptian LNG (Shell
+                                                                            38%, Petronas 38%,
+           Egyptian LNG T2        Idku (Alexandria)       Operating       EGPC 12%, EGAS 12%)             2005            173
+
+
+
+
+U.S. Energy Information Administration | Country Analysis Brief: Egypt                                                                   10
+                                                                                                                 August 13, 2024
+
+
+           Spanish
+           Egyptian Gas
+           Company                                                            SEGAS (ENI 50%,
+           (SEGAS) LNG                    Damietta        Operating      EGAS 40%, EGPC 10%)           2005             240
+           Total                                                                                                        586
+           Data source: International Group of Liquefied Natural Gas Importers, GIIGNL 2023 Annual Report
+           Note: LNG = liquefied natural gas
+
+
+
+
+     •    As of May 2024, Egypt had two regasification terminals located at the Port of Ayn Suknah and
+          one at the Port of Sumed, but none of the terminals have an operating floating storage
+          regasification unit (FSRU). Egypt chartered two different FSRUs, the Höegh Gallant and BW
+          Singapore, and both of these units were initially moored at the Ayn Suknah import terminals in
+          2015. The BW Singapore later relocated to the Port of Sumed in 2017. The Höegh Gallant and
+          BW Singapore FSRUs left the regasification terminals in 2018 and 2023, respectively, after their
+          charters had ended in 2018 and 2023. In May 2024, Egypt signed a charter to receive a new
+          FSRU, the Höegh Galleon, which arrived in June 2024 and is planned to be in operation at least
+          until February 2026. The Höegh Galleon will help Egypt import more natural gas to meet
+          increased domestic demand, which typically occurs during the hot summer months (Table 7). 24
+
+          Table 7. Egypt's floating storage and regasification units
+                                                                                                                 Nameplate
+                                                                                                                     capacity
+                                                                                                               (billion cubic
+          Project Name                        Location                       Status             Start date    feet per year)
+                                                            No longer in operation
+          Höegh Gallant FSRU               Ayn Suknah                     in Egypt                 2015                 202
+                                                                                            2015 in Ayn
+                                          Ayn Suknah,       No longer in operation       Suknah, 2017 in
+          BW Singapore FSRU                    Sumed                      in Egypt               Sumed                  274
+
+          Höegh Galleon FSRU            Ayn Suknah                  Operating                2024              274
+          Data source: International Group of Liquefied Natural Gas Importers, GIIGNL 2023 Annual Report, Energy
+          Intelligence, company websites
+          Note: FSRU = floating storage and regasification unit
+
+
+
+
+     •    Egypt exported an annual average of about 126 Bcf per year and imported an annual average of
+          about 122 Bcf per year from 2013 through 2022. The natural gas imports and exports over the
+          10-year period have fluctuated as a result of growing demand for natural gas to meet domestic
+          needs and the start of commercial operations of its large offshore natural gas fields, such as the
+          Zohr field (Figure 9). 25
+
+
+
+
+U.S. Energy Information Administration | Country Analysis Brief: Egypt                                                          11
+                                                                                         August 13, 2024
+
+
+
+
+     •    According to estimates in the Energy Institute’s 2024 Statistical Review of World Energy, Egypt
+          exported about 173 Bcf of LNG in 2023; most of the LNG went to destinations in Europe. Türkiye
+          and Spain were the top importing countries by volume, with 46 Bcf and 14 Bcf of LNG originating
+          from Egypt, respectively. The Asia Pacific region was also a significant importer of Egypt’s LNG
+          that year. South Korea and China were the top importing countries by volume in that region,
+          taking 13 Bcf and 14 Bcf, respectively, in 2023. The Central and South American regions
+          imported a relatively small volume of LNG from Egypt (5 Bcf), and the Middle East region did not
+          import any LNG from Egypt in 2023. Egypt imported only a marginal amount of LNG in 2023 (less
+          than one billion cubic foot from Indonesia) but has imported LNG in the past to meet domestic
+          demand (Figure 10). 26
+
+
+
+
+U.S. Energy Information Administration | Country Analysis Brief: Egypt                                  12
+                                                                                                August 13, 2024
+
+
+
+
+1
+  “Zohr, the giant oil field in Egypt’s offshore,” Eni company website, accessed June 13, 2024. Eduard Cousin, “Out
+of gas? Egypt’s ambitions to become a regional gas hub are dwindling,” Al-Jazeera Media Network, October 4,
+2023. “Egypt Upstream Output Set To Fall Further In 2024 As Zohr Slump Continues,” Middle East Economic Survey,
+Vol. 67, Issue 08, February 23, 2024.
+2
+  U.S. Energy Information Administration, “World Oil Transit Chokepoints,” Country Analysis Briefing, June 25, 2024
+Candace Dunn and Justine Barden, “Red Sea chokepoints are critical for international oil and natural gas flows,”
+Today in Energy, U.S. Energy Information Administration, December 4, 2023. Justine Barden, “The Bab el-Mandeb
+Strait is a strategic route for oil and natural gas shipments,” Today in Energy, U.S. Energy Information
+Administration, August 27, 2019.
+3
+  Julian Bowden, “East Med Gaza crisis tightens regional gas balances,” The Oxford Institute for Energy Studies,
+Oxford Energy Comment, November 2023. Julian Bowden, “East Mediterranean gas: a triangle of
+interdependencies,” The Oxford institute for Energy Studies, Energy Insight 151, May 2024. Jack Sharples, “LNG
+Shipping Chokepoints: The Impact of Red Sea and Panama Canal Disruption,” The Oxford Institute for Energy
+Studies, OIES Paper: NG 188, February 2024. Noah Berman, “Can Egypt’s Economic Overhaul Stave Off Crisis?”
+Council on Foreign Relations Brief, April 17, 2024. Eduard Cousin, “Out of gas? Egypt’s ambitions to become a
+regional gas hub are dwindling,” Al Jazeera, October 4, 2023. Sarah El Safty, ”Egypt’s natural gas production
+declines and power cuts bite,” Reuters, August 7, 2023. Tom Pepper, et al., ed. Paul Merolli, “East Med’s Gas
+Promise Stalls Amid Crisis,” Energy Intelligence, April 11, 2024. Yousra Samaha and Tom Pepper, ed. Deb Kelly,
+“East Med Energy in Focus Amid Hezbollah Warning,” Energy Intelligence, June 20, 2024. Rafiq Latta, ed. Noah
+Brenner, “Houthis Target Tankers With Latest Ship Attacks,” Energy Intelligence, June 17, 2024. Candace Dunn and
+Justine Barden, “Red Sea disruptions increase oil flows around Cape of Good Hope,” Today in Energy, U.S. Energy
+Information Administration, June 11, 2024. Josh Eiermann, “Red Sea attacks increase shipping times and freight
+rates,” Today in Energy, U.S. Energy Information Administration, February 1, 2024. Ron Bousso and Ari
+Rabinovitch, “Israel shuts down major offshore gas field amid violence,” Reuters, October 9, 2023. Ron Bousso and
+Sabrina Valle, “Chevron resumes natural gas supply from Israel’s Tamar offshore field,” Reuters, November 13,
+2023.
+
+
+
+U.S. Energy Information Administration | Country Analysis Brief: Egypt                                           13
+                                                                                                  August 13, 2024
+
+
+
+4
+  The Energy Institute, 2024 Statistical Review of World Energy, June 2024.
+5
+  “Global Exploration Licensing Report 2024”, Rystad Energy, March 15, 2024. “Risk and Reward: Overview of 2024
+global exploration licensing activity,” Rystad Energy, March 20, 2024.
+6
+  U.S. Energy Information Administration, “Crude oils have different quality characteristics,” Today in Energy, July
+16, 2012. Felix Fallon, “Light vs. Heavy Crude: A Continuously Narrowing Gap,” Egypt Oil & Gas, September 9, 2018.
+7
+  U.S. Energy Information Administration, International Energy Statistics database, accessed July 25, 2024. Rahmat
+Poudineh and Bassam Fattouh, “Diversification Strategy Under Deep Uncertainty for MENA Oil Exporting
+Countries,” Energy Insight 69, The Oxford Institute for Energy Studies, May 5, 2020. “Egypt Oil & Gas Report Q2
+2024,” Fitch Solutions Country Risk & Industry Research, December 2023.
+8
+  “Egypt Oil & Gas Report Q2 2024,” Fitch Solutions Country Risk & Industry Research, December 2023. “Egypt’s
+Refineries: A COMPLETE PICTURE,” Egypt Oil & Gas, September 6, 2017. “Refineries,” Egypt General Petroleum
+Corporation company website, accessed May 15, 2024.
+9
+  “Egypt Oil & Gas Report Q2 2024,” Fitch Solutions Country Risk & Industry Research, December 2023. “Egypt’s
+Refineries: A COMPLETE PICTURE,” Egypt Oil & Gas, September 6, 2017. “Middle East Refinery Expansion,” NS
+Energy Business, accessed March 13, 2024. Sarah Samir, “Egyptian PM Reviews Progress of MIDOR Refinery
+Expansion,” Egypt Oil & Gas, February 25, 2024. “Midor refinery’s expansion project enhances Egypt’s economy by
+$2.7B,” Egypt Today, March 7, 2024. “Assiut Oil Refinery Upgrade Project,” NS Energy Business, accessed May 15,
+2024. “Egypt’s Assiut Hydrocracker: Go Ahead At Last With Financial Closure,” Middle East Economic Survey, Vol.
+66 Issue 01, January 6, 2023.
+10
+   U.S. Energy Information Administration, International Energy Statistics database, accessed February 23, 2024.
+Mostefa Ouki, “Egypt – a return to a balanced market?” The Oxford Institute For Energy Studies, OIES Paper: NG
+131, June 2018. International Energy Agency, “Egypt: Natural gas,” Country Energy Profile, accessed May 28, 2024.
+Randa Alami, “Egypt’s Domestic Natural Gas Industry,” The Oxford Institute For Energy Studies, OIES Paper: NG 12,
+April 2006. For more on the use of fossil fuel subsidies in Egypt, see Brendan Meighan, “Egypt’s Natural Gas Crisis,”
+Sada, Carnegie Endowment for International Peace, January 21, 2016. Defne Gencer, et al., “Energy Subsidy
+Reform in Egypt,” case study excerpt from “Reality Check: Lessons from 25 Policies Advancing a Low-Carbon
+Future,” World Bank Group, October 16, 2023. Adel Hamaiza and Tom Moerenhout, “Five takeaways from a
+decade of energy subsidy reforms in MENA,” Chatham House, Expert Comment, February 16, 2022. The World
+Bank Group, “Energy Subsidy Reform Facility Country Brief: Egypt,” Energy Subsidy Reform Facility Country Brief
+publication by the Energy Sector Management Assistance Program, March 1, 2017. Ferdinand Eibl, “The political
+economy of energy subsidies in Egypt and Tunisia: the untold story,” The Oxford Institute For Energy Studies,
+Oxford Energy Comment, August 2017.
+11
+   “Zohr hiccups and Israeli import dip: What’s next for Egypt?” Rystad Energy, November 7, 2023. “How long until
+Egypt runs out of gas?” Rystad Energy, March 26, 2024. Sarah El Safty, ”Egypt’s natural gas production declines and
+power cuts bite,” Reuters, August 7, 2023. “Egypt Upstream Output Set To Fall Further In 2024 As Zohr Slump
+Continues,” Middle East Economic Survey, Vol. 67, Issue 08, February 23, 2024. “Eni expands Egypt’s Great Nooros
+area with Bashrush discovery,” Rystad Energy, July 2, 2020. Mostefa Ouki, “Egypt – a return to a balanced gas
+market?” The Oxford Institute for Energy Studies, OIES Paper: NG 131, June 2018.
+12
+   The World Bank Group, Global Flaring and Methane Reduction Partnership, accessed June 24, 2024. “Global Gas
+Flaring Tracker Report,” Global Flaring and Methane Reduction Partnership, The World Bank Group, June 20, 2024.
+13
+   U.S. Energy Information Administration, International Energy Statistics database, accessed February 23, 2024.
+Sarah Matthews and Amanda Flint, ed. Jonathan Loades-Carter, “Egypt 2019 thermal coal imports rise 31% on
+cement sector demand,” S&P Global, Commodity Insights, January 16, 2020. Beesan Kassab and Hadeer El-
+Mahdawy, “The case against coal in Egypt,” Mada, November 8, 2021.
+14
+   U.S. Energy Information Administration, International Energy Statistics database, accessed April 17, 2024.
+“Powering Egypt: gas to continue dominating power mix despite surging renewables,” Rystad Energy, March 19,
+2024.
+15
+   Aaron Lawson, et al., “Egypt Megaproject: An Expedited Power Transformation,” Power Magazine, accessed
+April 24, 2024. “Beni Suef Power Plant,” press release from the President’s Office of the Arab Republic of Egypt,
+accessed April 24, 2024. “Power Plant Profile: Beni Suef Power Plant, Egypt,” Power Technology, January 31, 2024.
+“Beni Suef Combined-Cycle Power Plant,” Power Technology, June 8, 2016. “Power Plant Profile: New Capital City
+Power Plant, Egypt,” Power Technology, January 31, 2024. “Burullus Power Plant,” Orascom Construction company
+website, accessed April 24, 2024.
+
+U.S. Energy Information Administration | Country Analysis Brief: Egypt                                             14
+                                                                                                  August 13, 2024
+
+
+
+16
+   International Trade Administration, “Egypt: Electricity and Renewable Energy,” Egypt Country Commercial Guide,
+August 8, 2022. Egyptian Ministry of Electricity and Renewable Energy, New and Renewable Energy Authority,
+“Renewable Energy Targets,” accessed April 19, 2024. “Renewable Energy Outlook: Egypt,” International
+Renewable Energy Agency, 2018. Edgar Meza, “Chinese company to develop 10 GW of solar in Egypt,” PV
+Magazine, December 28, 2023. “ACWA Power granted land for 10 GW wind project in Egypt,” ACWA Power
+company press release, July 17, 2023.
+17
+   “Egypt begins construction for first nuclear power plant ‘El Dabaa,’” Africanews, January 23, 2024. “El Dabaa
+Nuclear Power Plant,” Power Technology, July 14, 2023. World Nuclear Association, “Nuclear Power in Egypt,”
+World Nuclear Association Country Profiles, March 2024.
+18
+   “World Oil Transit Chokepoints,” U.S. Energy Information Administration, June 25, 2024. Candace Dunn and
+Justine Barden, “Red Sea chokepoints are critical for international oil and natural gas flows,” Today in Energy, U.S.
+Energy Information Administration, December 4, 2023. Justine Barden, “The Bab el-Mandeb Strait is a strategic
+route for oil and natural gas shipments,” Today in Energy, U.S. Energy Information Administration, August 27,
+2019. Josh Eiermann, “Red Sea attacks increase shipping times and freight rates,” Today in Energy, U.S. Energy
+Information Administration, February 1, 2024. Jack Sharples, “LNG Shipping Chokepoints: The Impact of Red Sea
+and Panama Canal Disruption,” The Oxford Institute for Energy Studies, OIES Paper: NG 188, February 2024.
+19
+   “Egypt Oil & Gas Report, Q2 2024,” Fitch Solutions Country Risk & Industry Research, December 2023.
+20
+   U.S. Energy Information Administration, International Energy Statistics database, accessed February 23, 2024.
+Global Trade Tracker trade database, accessed June 21, 2024.
+21
+   Global Trade Tracker trade database, accessed June 21, 2024.
+22
+   “Arab Gas Pipeline,” Global Energy Monitor, accessed May 8, 2024. “Arish-Ashkelon Pipeline,” Global Energy
+Monitor, accessed May 8, 2024. Simon Henderson, “Israeli Gas Export Route to Egypt Finalized,” The Washington
+Institute of Near East Policy, November 13, 2019.
+23
+   International Group of Liquefied Natural Gas Importers (GIIGNL), 2023 GIIGNL Annual Report, July 20, 2023. “Our
+Business,” Egyptian LNG company website, accessed May 3, 2024. “Egyptian LNG Project, Idku,” NS Energy,
+accessed May 3, 2024. “LNG terminal profile: Damietta LNG Liquefaction Terminal, Egypt,” Offshore Technology,
+July 30, 2023. “Damietta Segas LNG Terminal,” Global Energy Monitor, accessed May 3, 2024.
+24
+   International Group of Liquefied Natural Gas Importers (GIIGNL), 2023 GIIGNL Annual Report, July 20, 2023.
+“FSRU Hoegh Gallant arrives in Egypt,” Offshore Energy, April 2, 2015. “Hoegh Gallant LNG carrier leaves Egypt,
+sets U.S. destination,” Reuters, October 18, 2018. “LNG FSRU BW Singapore in full operation in Ain Sokhna, Egypt,”
+BW Group company press release, January 25, 2016. “Italy’s Snam buys FSRU from BW LNG for about $400
+million,” LNG Prime, July 6, 2022. Tom Pepper, ed. Michael Sultan, “Egypt Finally Secures LNG Import Terminal,”
+Energy Intelligence, May 2, 2024. Tom Pepper, et al., ed. Deb Kelly, “Egypt’s Options Narrow on LNG Imports,”
+Energy Intelligence, April 12, 2024. “Tenth FSRU joins Höegh LNG fleet,” Offshore Energy, August 27, 2019. “Egypt
+Gas Deficit Deepens With First LNG Imports In Six Years,” Middle East Economic Survey, Vol. 67, Issue 16, April 19,
+2024. Daniel Stemler, ed. Andrew Kelly, “Egypt Seeks June LNG Cargo as FSRU Poised to Arrive,” Energy
+Intelligence, May 30, 2024. Marwa Rashad and Ron Bousso, “Egypt seeks deferred payment in summer LNG
+tender, sources say,” Reuters, June 19, 2024.
+25
+   U.S. Energy Information Administration, International Energy Statistics database, accessed February 23, 2024.
+26
+   The Energy Institute, 2024 Statistical Review of World Energy, June 2024.
+
+
+
+
+U.S. Energy Information Administration | Country Analysis Brief: Egypt                                            15
+

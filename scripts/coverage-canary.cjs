@@ -17,15 +17,18 @@ const dir=process.env.REPORT_DIR||'../reports/coverage-probe';fs.mkdirSync(dir,{
  await page.locator('#close-popup').click();await page.screenshot({path:`${dir}/egypt-${scope}.png`});
  await page.locator('#sites-button').click();await page.locator('[data-site="midor"]').click();
  const refinery=await page.locator('#detail-popup').textContent();assert.ok(refinery.includes('160'));assert.ok(refinery.includes('проектная мощность'));
+ await open('EGY','gasoline');
+ const partial=await page.evaluate(()=>({d:graph.domestic.EGY.gasoline,t:graph.tradeCoverage['EGY:gasoline:imports'],text:document.querySelector('#country-details').textContent}));
+ assert.equal(partial.d.unit,'MtPeriod');assert.equal(partial.t.period,'2025-01/2025-08');assert.equal(partial.t.total,1.932);assert.ok(partial.text.includes('8 месяцев'));assert.ok(partial.text.includes('янв–авг'));
  await open('MDA','gasoline');
  const moldova=await page.evaluate(()=>({flows:selectedFlows('imports').filter(f=>f.owner==='MDA'),d:graph.domestic.MDA.gasoline,coverage:document.querySelector('#coverage-note').textContent}));
  assert.equal(moldova.flows.length,2);assert.deepEqual(moldova.flows.map(f=>f.origin).sort(),['BGR','ROU']);
  assert.ok(Math.abs(moldova.d.consumption-.21020296)<1e-10);assert.equal(moldova.d.production,null);assert.equal(moldova.d.unit,'Mt');
  await page.screenshot({path:`${dir}/moldova-${scope}.png`});
  if(scope==='full'){
-  await open('DEU','crude');assert.ok(await page.evaluate(()=>selectedFlows('imports').filter(f=>f.owner==='DEU').length>10));
+  await open('DEU','crude');assert.ok(await page.evaluate(()=>selectedFlows('imports').filter(f=>f.owner==='DEU').length===6));
   await open('DEU','gasoline');assert.ok(await page.evaluate(()=>graph.totals['DEU:gasoline:imports']>2&&graph.domestic.DEU.gasoline.consumption===null));
-  await open('EGY','refined');assert.ok(await page.evaluate(()=>selectedFlows('imports').filter(f=>f.owner==='EGY').length>5));
+  await open('EGY','refined');assert.ok(await page.evaluate(()=>graph.tradeCoverage['EGY:refined:imports'].total===11.895));
   const stats=await page.locator('#country-details').textContent();assert.ok(!stats.includes('Спрос на нефтяные жидкости'));
   await page.screenshot({path:`${dir}/egypt-refined.png`});
   await open('MDA','diesel');assert.ok(await page.evaluate(()=>selectedFlows('imports').filter(f=>f.owner==='MDA').length===11));
