@@ -23,9 +23,9 @@ jobs:
         run: |
           mkdir -p public/data public/vendor
           cp index.html app.js style.css public/
-          cp data/snapshot.json data/world.json data/trade.json public/data/
+          cp data/snapshot.json data/world.json data/trade.json data/connections.json data/us-states.json public/data/
           cp vendor/* public/vendor/
-          cp data/LICENSE-world-atlas.txt public/data/
+          cp data/LICENSE-world-atlas.txt data/LICENSE-us-atlas.txt public/data/
           touch public/.nojekyll
       - uses: actions/upload-pages-artifact@v3
         with:

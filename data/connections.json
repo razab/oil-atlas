@@ -1,0 +1,3296 @@
+{
+  "version": 2,
+  "canary": true,
+  "flows": [
+    {
+      "id": "eia-crude-imports:crude:DZA:USA",
+      "origin": "DZA",
+      "destination": "USA",
+      "product": "crude",
+      "value": 8.553424657534247,
+      "unit": "kbpd",
+      "year": 2025,
+      "source": "eia-crude-imports",
+      "owner": "USA",
+      "note": null
+    },
+    {
+      "id": "eia-crude-imports:crude:NGA:USA",
+      "origin": "NGA",
+      "destination": "USA",
+      "product": "crude",
+      "value": 137.22465753424657,
+      "unit": "kbpd",
+      "year": 2025,
+      "source": "eia-crude-imports",
+      "owner": "USA",
+      "note": null
+    },
+    {
+      "id": "eia-crude-imports:crude:VEN:USA",
+      "origin": "VEN",
+      "destination": "USA",
+      "product": "crude",
+      "value": 139.81643835616438,
+      "unit": "kbpd",
+      "year": 2025,
+      "source": "eia-crude-imports",
+      "owner": "USA",
+      "note": null
+    },
+    {
+      "id": "eia-crude-imports:crude:CAN:USA",
+      "origin": "CAN",
+      "destination": "USA",
+      "product": "crude",
+      "value": 3910.2164383561644,
+      "unit": "kbpd",
+      "year": 2025,
+      "source": "eia-crude-imports",
+      "owner": "USA",
+      "note": null
+    },
+    {
+      "id": "eia-crude-imports:crude:KAZ:USA",
+      "origin": "KAZ",
+      "destination": "USA",
+      "product": "crude",
+      "value": 30.46849315068493,
+      "unit": "kbpd",
+      "year": 2025,
+      "source": "eia-crude-imports",
+      "owner": "USA",
+      "note": null
+    },
+    {
+      "id": "eia-crude-imports:crude:MEX:USA",
+      "origin": "MEX",
+      "destination": "USA",
+      "product": "crude",
+      "value": 383.3643835616438,
+      "unit": "kbpd",
+      "year": 2025,
+      "source": "eia-crude-imports",
+      "owner": "USA",
+      "note": null
+    },
+    {
+      "id": "eia-crude-imports:crude:NOR:USA",
+      "origin": "NOR",
+      "destination": "USA",
+      "product": "crude",
+      "value": 10.635616438356164,
+      "unit": "kbpd",
+      "year": 2025,
+      "source": "eia-crude-imports",
+      "owner": "USA",
+      "note": null
+    },
+    {
+      "id": "eia-crude-imports:crude:TTO:USA",
+      "origin": "TTO",
+      "destination": "USA",
+      "product": "crude",
+      "value": 36.18630136986302,
+      "unit": "kbpd",
+      "year": 2025,
+      "source": "eia-crude-imports",
+      "owner": "USA",
+      "note": null
+    },
+    {
+      "id": "eia-crude-exports:crude:USA:CAN",
+      "origin": "USA",
+      "destination": "CAN",
+      "product": "crude",
+      "value": 378.1315068493151,
+      "unit": "kbpd",
+      "year": 2025,
+      "source": "eia-crude-exports",
+      "owner": "USA",
+      "note": null
+    },
+    {
+      "id": "eia-crude-exports:crude:USA:CHN",
+      "origin": "USA",
+      "destination": "CHN",
+      "product": "crude",
+      "value": 22.797260273972604,
+      "unit": "kbpd",
+      "year": 2025,
+      "source": "eia-crude-exports",
+      "owner": "USA",
+      "note": null
+    },
+    {
+      "id": "eia-crude-exports:crude:USA:FRA",
+      "origin": "USA",
+      "destination": "FRA",
+      "product": "crude",
+      "value": 118.45205479452055,
+      "unit": "kbpd",
+      "year": 2025,
+      "source": "eia-crude-exports",
+      "owner": "USA",
+      "note": null
+    },
+    {
+      "id": "eia-crude-exports:crude:USA:NGA",
+      "origin": "USA",
+      "destination": "NGA",
+      "product": "crude",
+      "value": 113.26575342465753,
+      "unit": "kbpd",
+      "year": 2025,
+      "source": "eia-crude-exports",
+      "owner": "USA",
+      "note": null
+    },
+    {
+      "id": "eia-crude-exports:crude:USA:NOR",
+      "origin": "USA",
+      "destination": "NOR",
+      "product": "crude",
+      "value": 21.24931506849315,
+      "unit": "kbpd",
+      "year": 2025,
+      "source": "eia-crude-exports",
+      "owner": "USA",
+      "note": null
+    },
+    {
+      "id": "eia-gasoline-imports:gasoline:NGA:USA",
+      "origin": "NGA",
+      "destination": "USA",
+      "product": "gasoline",
+      "value": 1.0164383561643835,
+      "unit": "kbpd",
+      "year": 2025,
+      "source": "eia-gasoline-imports",
+      "owner": "USA",
+      "note": null
+    },
+    {
+      "id": "eia-gasoline-imports:gasoline:CAN:USA",
+      "origin": "CAN",
+      "destination": "USA",
+      "product": "gasoline",
+      "value": 22.69041095890411,
+      "unit": "kbpd",
+      "year": 2025,
+      "source": "eia-gasoline-imports",
+      "owner": "USA",
+      "note": null
+    },
+    {
+      "id": "eia-gasoline-imports:gasoline:FRA:USA",
+      "origin": "FRA",
+      "destination": "USA",
+      "product": "gasoline",
+      "value": 0.8767123287671232,
+      "unit": "kbpd",
+      "year": 2025,
+      "source": "eia-gasoline-imports",
+      "owner": "USA",
+      "note": null
+    },
+    {
+      "id": "eia-gasoline-imports:gasoline:NOR:USA",
+      "origin": "NOR",
+      "destination": "USA",
+      "product": "gasoline",
+      "value": 2.1123287671232878,
+      "unit": "kbpd",
+      "year": 2025,
+      "source": "eia-gasoline-imports",
+      "owner": "USA",
+      "note": null
+    },
+    {
+      "id": "eia-gasoline-exports:gasoline:USA:DZA",
+      "origin": "USA",
+      "destination": "DZA",
+      "product": "gasoline",
+      "value": 0.0027397260273972603,
+      "unit": "kbpd",
+      "year": 2025,
+      "source": "eia-gasoline-exports",
+      "owner": "USA",
+      "note": null
+    },
+    {
+      "id": "eia-gasoline-exports:gasoline:USA:CAN",
+      "origin": "USA",
+      "destination": "CAN",
+      "product": "gasoline",
+      "value": 8.038356164383561,
+      "unit": "kbpd",
+      "year": 2025,
+      "source": "eia-gasoline-exports",
+      "owner": "USA",
+      "note": null
+    },
+    {
+      "id": "eia-gasoline-exports:gasoline:USA:CHN",
+      "origin": "USA",
+      "destination": "CHN",
+      "product": "gasoline",
+      "value": 0.00821917808219178,
+      "unit": "kbpd",
+      "year": 2025,
+      "source": "eia-gasoline-exports",
+      "owner": "USA",
+      "note": null
+    },
+    {
+      "id": "eia-gasoline-exports:gasoline:USA:MEX",
+      "origin": "USA",
+      "destination": "MEX",
+      "product": "gasoline",
+      "value": 434.55068493150685,
+      "unit": "kbpd",
+      "year": 2025,
+      "source": "eia-gasoline-exports",
+      "owner": "USA",
+      "note": null
+    },
+    {
+      "id": "eia-gasoline-exports:gasoline:USA:NGA",
+      "origin": "USA",
+      "destination": "NGA",
+      "product": "gasoline",
+      "value": 3.136986301369863,
+      "unit": "kbpd",
+      "year": 2025,
+      "source": "eia-gasoline-exports",
+      "owner": "USA",
+      "note": null
+    },
+    {
+      "id": "eia-gasoline-exports:gasoline:USA:TTO",
+      "origin": "USA",
+      "destination": "TTO",
+      "product": "gasoline",
+      "value": 11.016438356164384,
+      "unit": "kbpd",
+      "year": 2025,
+      "source": "eia-gasoline-exports",
+      "owner": "USA",
+      "note": null
+    },
+    {
+      "id": "eia-gasoline-exports:gasoline:USA:VEN",
+      "origin": "USA",
+      "destination": "VEN",
+      "product": "gasoline",
+      "value": 1.6465753424657534,
+      "unit": "kbpd",
+      "year": 2025,
+      "source": "eia-gasoline-exports",
+      "owner": "USA",
+      "note": null
+    },
+    {
+      "id": "eia-diesel-imports:diesel:NGA:USA",
+      "origin": "NGA",
+      "destination": "USA",
+      "product": "diesel",
+      "value": 1.2356164383561643,
+      "unit": "kbpd",
+      "year": 2025,
+      "source": "eia-diesel-imports",
+      "owner": "USA",
+      "note": null
+    },
+    {
+      "id": "eia-diesel-imports:diesel:CAN:USA",
+      "origin": "CAN",
+      "destination": "USA",
+      "product": "diesel",
+      "value": 133.2,
+      "unit": "kbpd",
+      "year": 2025,
+      "source": "eia-diesel-imports",
+      "owner": "USA",
+      "note": null
+    },
+    {
+      "id": "eia-diesel-imports:diesel:MEX:USA",
+      "origin": "MEX",
+      "destination": "USA",
+      "product": "diesel",
+      "value": 5.241095890410959,
+      "unit": "kbpd",
+      "year": 2025,
+      "source": "eia-diesel-imports",
+      "owner": "USA",
+      "note": null
+    },
+    {
+      "id": "eia-diesel-exports:diesel:USA:DZA",
+      "origin": "USA",
+      "destination": "DZA",
+      "product": "diesel",
+      "value": 0.410958904109589,
+      "unit": "kbpd",
+      "year": 2025,
+      "source": "eia-diesel-exports",
+      "owner": "USA",
+      "note": null
+    },
+    {
+      "id": "eia-diesel-exports:diesel:USA:CAN",
+      "origin": "USA",
+      "destination": "CAN",
+      "product": "diesel",
+      "value": 9.726027397260275,
+      "unit": "kbpd",
+      "year": 2025,
+      "source": "eia-diesel-exports",
+      "owner": "USA",
+      "note": null
+    },
+    {
+      "id": "eia-diesel-exports:diesel:USA:CHN",
+      "origin": "USA",
+      "destination": "CHN",
+      "product": "diesel",
+      "value": 0.024657534246575342,
+      "unit": "kbpd",
+      "year": 2025,
+      "source": "eia-diesel-exports",
+      "owner": "USA",
+      "note": null
+    },
+    {
+      "id": "eia-diesel-exports:diesel:USA:FRA",
+      "origin": "USA",
+      "destination": "FRA",
+      "product": "diesel",
+      "value": 26.46027397260274,
+      "unit": "kbpd",
+      "year": 2025,
+      "source": "eia-diesel-exports",
+      "owner": "USA",
+      "note": null
+    },
+    {
+      "id": "eia-diesel-exports:diesel:USA:MEX",
+      "origin": "USA",
+      "destination": "MEX",
+      "product": "diesel",
+      "value": 216.1041095890411,
+      "unit": "kbpd",
+      "year": 2025,
+      "source": "eia-diesel-exports",
+      "owner": "USA",
+      "note": null
+    },
+    {
+      "id": "eia-diesel-exports:diesel:USA:NGA",
+      "origin": "USA",
+      "destination": "NGA",
+      "product": "diesel",
+      "value": 0.8493150684931506,
+      "unit": "kbpd",
+      "year": 2025,
+      "source": "eia-diesel-exports",
+      "owner": "USA",
+      "note": null
+    },
+    {
+      "id": "eia-diesel-exports:diesel:USA:NOR",
+      "origin": "USA",
+      "destination": "NOR",
+      "product": "diesel",
+      "value": 3.293150684931507,
+      "unit": "kbpd",
+      "year": 2025,
+      "source": "eia-diesel-exports",
+      "owner": "USA",
+      "note": null
+    },
+    {
+      "id": "eia-diesel-exports:diesel:USA:TTO",
+      "origin": "USA",
+      "destination": "TTO",
+      "product": "diesel",
+      "value": 21.40821917808219,
+      "unit": "kbpd",
+      "year": 2025,
+      "source": "eia-diesel-exports",
+      "owner": "USA",
+      "note": null
+    },
+    {
+      "id": "eia-diesel-exports:diesel:USA:VEN",
+      "origin": "USA",
+      "destination": "VEN",
+      "product": "diesel",
+      "value": 0.7698630136986301,
+      "unit": "kbpd",
+      "year": 2025,
+      "source": "eia-diesel-exports",
+      "owner": "USA",
+      "note": null
+    },
+    {
+      "id": "insee-france:crude:DZA:FRA",
+      "origin": "DZA",
+      "destination": "FRA",
+      "product": "crude",
+      "value": 4.3,
+      "unit": "Mt",
+      "year": 2025,
+      "source": "insee-france",
+      "owner": "FRA",
+      "note": "Страна добычи по INSEE/SDES. Данные предварительные; не страна последней отгрузки. Включены конденсаты и другое сырьё НПЗ."
+    },
+    {
+      "id": "insee-france:crude:NGA:FRA",
+      "origin": "NGA",
+      "destination": "FRA",
+      "product": "crude",
+      "value": 5.5,
+      "unit": "Mt",
+      "year": 2025,
+      "source": "insee-france",
+      "owner": "FRA",
+      "note": "Страна добычи по INSEE/SDES. Данные предварительные; не страна последней отгрузки. Включены конденсаты и другое сырьё НПЗ."
+    },
+    {
+      "id": "insee-france:crude:USA:FRA",
+      "origin": "USA",
+      "destination": "FRA",
+      "product": "crude",
+      "value": 10.1,
+      "unit": "Mt",
+      "year": 2025,
+      "source": "insee-france",
+      "owner": "FRA",
+      "note": "Страна добычи по INSEE/SDES. Данные предварительные; не страна последней отгрузки. Включены конденсаты и другое сырьё НПЗ."
+    },
+    {
+      "id": "insee-france:crude:KAZ:FRA",
+      "origin": "KAZ",
+      "destination": "FRA",
+      "product": "crude",
+      "value": 6.8,
+      "unit": "Mt",
+      "year": 2025,
+      "source": "insee-france",
+      "owner": "FRA",
+      "note": "Страна добычи по INSEE/SDES. Данные предварительные; не страна последней отгрузки. Включены конденсаты и другое сырьё НПЗ."
+    },
+    {
+      "id": "insee-france:crude:NOR:FRA",
+      "origin": "NOR",
+      "destination": "FRA",
+      "product": "crude",
+      "value": 4.4,
+      "unit": "Mt",
+      "year": 2025,
+      "source": "insee-france",
+      "owner": "FRA",
+      "note": "Страна добычи по INSEE/SDES. Данные предварительные; не страна последней отгрузки. Включены конденсаты и другое сырьё НПЗ."
+    },
+    {
+      "id": "ei-gas:lng:USA:CAN",
+      "origin": "USA",
+      "destination": "CAN",
+      "product": "lng",
+      "value": 0.004366004309122582,
+      "unit": "bcm",
+      "year": 2025,
+      "source": "ei-gas",
+      "owner": null,
+      "note": null
+    },
+    {
+      "id": "ei-gas:lng:USA:MEX",
+      "origin": "USA",
+      "destination": "MEX",
+      "product": "lng",
+      "value": 0.2905937469304963,
+      "unit": "bcm",
+      "year": 2025,
+      "source": "ei-gas",
+      "owner": null,
+      "note": null
+    },
+    {
+      "id": "ei-gas:lng:TTO:USA",
+      "origin": "TTO",
+      "destination": "USA",
+      "product": "lng",
+      "value": 0.19974043706449088,
+      "unit": "bcm",
+      "year": 2025,
+      "source": "ei-gas",
+      "owner": null,
+      "note": null
+    },
+    {
+      "id": "ei-gas:lng:USA:FRA",
+      "origin": "USA",
+      "destination": "FRA",
+      "product": "lng",
+      "value": 14.278012644141281,
+      "unit": "bcm",
+      "year": 2025,
+      "source": "ei-gas",
+      "owner": null,
+      "note": null
+    },
+    {
+      "id": "ei-gas:lng:TTO:FRA",
+      "origin": "TTO",
+      "destination": "FRA",
+      "product": "lng",
+      "value": 0.05944539414223821,
+      "unit": "bcm",
+      "year": 2025,
+      "source": "ei-gas",
+      "owner": null,
+      "note": null
+    },
+    {
+      "id": "ei-gas:lng:NOR:FRA",
+      "origin": "NOR",
+      "destination": "FRA",
+      "product": "lng",
+      "value": 0.8373228306072482,
+      "unit": "bcm",
+      "year": 2025,
+      "source": "ei-gas",
+      "owner": null,
+      "note": null
+    },
+    {
+      "id": "ei-gas:lng:RUS:FRA",
+      "origin": "RUS",
+      "destination": "FRA",
+      "product": "lng",
+      "value": 8.563071155706238,
+      "unit": "bcm",
+      "year": 2025,
+      "source": "ei-gas",
+      "owner": null,
+      "note": null
+    },
+    {
+      "id": "ei-gas:lng:DZA:FRA",
+      "origin": "DZA",
+      "destination": "FRA",
+      "product": "lng",
+      "value": 3.363608042575,
+      "unit": "bcm",
+      "year": 2025,
+      "source": "ei-gas",
+      "owner": null,
+      "note": null
+    },
+    {
+      "id": "ei-gas:lng:NGA:FRA",
+      "origin": "NGA",
+      "destination": "FRA",
+      "product": "lng",
+      "value": 1.7538462088048776,
+      "unit": "bcm",
+      "year": 2025,
+      "source": "ei-gas",
+      "owner": null,
+      "note": null
+    },
+    {
+      "id": "ei-gas:lng:USA:CHN",
+      "origin": "USA",
+      "destination": "CHN",
+      "product": "lng",
+      "value": 0.3602332765010416,
+      "unit": "bcm",
+      "year": 2025,
+      "source": "ei-gas",
+      "owner": null,
+      "note": null
+    },
+    {
+      "id": "ei-gas:pipeline:USA:CAN",
+      "origin": "USA",
+      "destination": "CAN",
+      "product": "pipeline",
+      "value": 28.170707799031874,
+      "unit": "bcm",
+      "year": 2025,
+      "source": "ei-gas",
+      "owner": null,
+      "note": null
+    },
+    {
+      "id": "ei-gas:pipeline:USA:MEX",
+      "origin": "USA",
+      "destination": "MEX",
+      "product": "pipeline",
+      "value": 66.03478128656063,
+      "unit": "bcm",
+      "year": 2025,
+      "source": "ei-gas",
+      "owner": null,
+      "note": null
+    },
+    {
+      "id": "ei-gas:pipeline:CAN:USA",
+      "origin": "CAN",
+      "destination": "USA",
+      "product": "pipeline",
+      "value": 87.242408154748,
+      "unit": "bcm",
+      "year": 2025,
+      "source": "ei-gas",
+      "owner": null,
+      "note": null
+    },
+    {
+      "id": "ei-gas:pipeline:MEX:USA",
+      "origin": "MEX",
+      "destination": "USA",
+      "product": "pipeline",
+      "value": 0.006404917509375001,
+      "unit": "bcm",
+      "year": 2025,
+      "source": "ei-gas",
+      "owner": null,
+      "note": null
+    }
+  ],
+  "nodes": {
+    "ABW": {
+      "code": "ABW",
+      "name": "Аруба",
+      "coordinates": [
+        -69.96666666,
+        12.5
+      ],
+      "kind": "country"
+    },
+    "AFG": {
+      "code": "AFG",
+      "name": "Афганистан",
+      "coordinates": [
+        65,
+        33
+      ],
+      "kind": "country"
+    },
+    "AGO": {
+      "code": "AGO",
+      "name": "Ангола",
+      "coordinates": [
+        18.5,
+        -12.5
+      ],
+      "kind": "country"
+    },
+    "AIA": {
+      "code": "AIA",
+      "name": "Ангилья",
+      "coordinates": [
+        -63.16666666,
+        18.25
+      ],
+      "kind": "country"
+    },
+    "ALA": {
+      "code": "ALA",
+      "name": "Аландские острова",
+      "coordinates": [
+        19.9,
+        60.116667
+      ],
+      "kind": "country"
+    },
+    "ALB": {
+      "code": "ALB",
+      "name": "Албания",
+      "coordinates": [
+        20,
+        41
+      ],
+      "kind": "country"
+    },
+    "AND": {
+      "code": "AND",
+      "name": "Андорра",
+      "coordinates": [
+        1.5,
+        42.5
+      ],
+      "kind": "country"
+    },
+    "ARE": {
+      "code": "ARE",
+      "name": "Объединённые Арабские Эмираты",
+      "coordinates": [
+        54,
+        24
+      ],
+      "kind": "country"
+    },
+    "ARG": {
+      "code": "ARG",
+      "name": "Аргентина",
+      "coordinates": [
+        -64,
+        -34
+      ],
+      "kind": "country"
+    },
+    "ARM": {
+      "code": "ARM",
+      "name": "Армения",
+      "coordinates": [
+        45,
+        40
+      ],
+      "kind": "country"
+    },
+    "ASM": {
+      "code": "ASM",
+      "name": "Американское Самоа",
+      "coordinates": [
+        -170,
+        -14.33333333
+      ],
+      "kind": "country"
+    },
+    "ATA": {
+      "code": "ATA",
+      "name": "Антарктида",
+      "coordinates": [
+        0,
+        -90
+      ],
+      "kind": "country"
+    },
+    "ATF": {
+      "code": "ATF",
+      "name": "Французские Южные и Антарктические территории",
+      "coordinates": [
+        69.167,
+        -49.25
+      ],
+      "kind": "country"
+    },
+    "ATG": {
+      "code": "ATG",
+      "name": "Антигуа и Барбуда",
+      "coordinates": [
+        -61.8,
+        17.05
+      ],
+      "kind": "country"
+    },
+    "AUS": {
+      "code": "AUS",
+      "name": "Австралия",
+      "coordinates": [
+        133,
+        -27
+      ],
+      "kind": "country"
+    },
+    "AUT": {
+      "code": "AUT",
+      "name": "Австрия",
+      "coordinates": [
+        13.33333333,
+        47.33333333
+      ],
+      "kind": "country"
+    },
+    "AZE": {
+      "code": "AZE",
+      "name": "Азербайджан",
+      "coordinates": [
+        47.5,
+        40.5
+      ],
+      "kind": "country"
+    },
+    "BDI": {
+      "code": "BDI",
+      "name": "Бурунди",
+      "coordinates": [
+        30,
+        -3.5
+      ],
+      "kind": "country"
+    },
+    "BEL": {
+      "code": "BEL",
+      "name": "Бельгия",
+      "coordinates": [
+        4,
+        50.83333333
+      ],
+      "kind": "country"
+    },
+    "BEN": {
+      "code": "BEN",
+      "name": "Бенин",
+      "coordinates": [
+        2.25,
+        9.5
+      ],
+      "kind": "country"
+    },
+    "BFA": {
+      "code": "BFA",
+      "name": "Буркина-Фасо",
+      "coordinates": [
+        -2,
+        13
+      ],
+      "kind": "country"
+    },
+    "BGD": {
+      "code": "BGD",
+      "name": "Бангладеш",
+      "coordinates": [
+        90,
+        24
+      ],
+      "kind": "country"
+    },
+    "BGR": {
+      "code": "BGR",
+      "name": "Болгария",
+      "coordinates": [
+        25,
+        43
+      ],
+      "kind": "country"
+    },
+    "BHR": {
+      "code": "BHR",
+      "name": "Бахрейн",
+      "coordinates": [
+        50.55,
+        26
+      ],
+      "kind": "country"
+    },
+    "BHS": {
+      "code": "BHS",
+      "name": "Багамские Острова",
+      "coordinates": [
+        -76,
+        24.25
+      ],
+      "kind": "country"
+    },
+    "BIH": {
+      "code": "BIH",
+      "name": "Босния и Герцеговина",
+      "coordinates": [
+        18,
+        44
+      ],
+      "kind": "country"
+    },
+    "BLM": {
+      "code": "BLM",
+      "name": "Сен-Бартелеми",
+      "coordinates": [
+        -63.41666666,
+        18.5
+      ],
+      "kind": "country"
+    },
+    "SHN": {
+      "code": "SHN",
+      "name": "Острова Святой Елены, Вознесения и Тристан-да-Кунья",
+      "coordinates": [
+        -5.72,
+        -15.95
+      ],
+      "kind": "country"
+    },
+    "BLR": {
+      "code": "BLR",
+      "name": "Беларусь",
+      "coordinates": [
+        28,
+        53
+      ],
+      "kind": "country"
+    },
+    "BLZ": {
+      "code": "BLZ",
+      "name": "Белиз",
+      "coordinates": [
+        -88.75,
+        17.25
+      ],
+      "kind": "country"
+    },
+    "BMU": {
+      "code": "BMU",
+      "name": "Бермудские Острова",
+      "coordinates": [
+        -64.75,
+        32.33333333
+      ],
+      "kind": "country"
+    },
+    "BOL": {
+      "code": "BOL",
+      "name": "Боливия",
+      "coordinates": [
+        -65,
+        -17
+      ],
+      "kind": "country"
+    },
+    "BES": {
+      "code": "BES",
+      "name": "Карибские Нидерланды",
+      "coordinates": [
+        -68.25,
+        12.18
+      ],
+      "kind": "country"
+    },
+    "BRA": {
+      "code": "BRA",
+      "name": "Бразилия",
+      "coordinates": [
+        -55,
+        -10
+      ],
+      "kind": "country"
+    },
+    "BRB": {
+      "code": "BRB",
+      "name": "Барбадос",
+      "coordinates": [
+        -59.53333333,
+        13.16666666
+      ],
+      "kind": "country"
+    },
+    "BRN": {
+      "code": "BRN",
+      "name": "Бруней",
+      "coordinates": [
+        114.66666666,
+        4.5
+      ],
+      "kind": "country"
+    },
+    "BTN": {
+      "code": "BTN",
+      "name": "Бутан",
+      "coordinates": [
+        90.5,
+        27.5
+      ],
+      "kind": "country"
+    },
+    "BVT": {
+      "code": "BVT",
+      "name": "Остров Буве",
+      "coordinates": [
+        3.4,
+        -54.43333333
+      ],
+      "kind": "country"
+    },
+    "BWA": {
+      "code": "BWA",
+      "name": "Ботсвана",
+      "coordinates": [
+        24,
+        -22
+      ],
+      "kind": "country"
+    },
+    "CAF": {
+      "code": "CAF",
+      "name": "Центральноафриканская Республика",
+      "coordinates": [
+        21,
+        7
+      ],
+      "kind": "country"
+    },
+    "CAN": {
+      "code": "CAN",
+      "name": "Канада",
+      "coordinates": [
+        -95,
+        60
+      ],
+      "kind": "country"
+    },
+    "CCK": {
+      "code": "CCK",
+      "name": "Кокосовые острова",
+      "coordinates": [
+        96.83333333,
+        -12.5
+      ],
+      "kind": "country"
+    },
+    "CHE": {
+      "code": "CHE",
+      "name": "Швейцария",
+      "coordinates": [
+        8,
+        47
+      ],
+      "kind": "country"
+    },
+    "CHL": {
+      "code": "CHL",
+      "name": "Чили",
+      "coordinates": [
+        -71,
+        -30
+      ],
+      "kind": "country"
+    },
+    "CHN": {
+      "code": "CHN",
+      "name": "Китай",
+      "coordinates": [
+        105,
+        35
+      ],
+      "kind": "country"
+    },
+    "CIV": {
+      "code": "CIV",
+      "name": "Кот-д’Ивуар",
+      "coordinates": [
+        -5,
+        8
+      ],
+      "kind": "country"
+    },
+    "CMR": {
+      "code": "CMR",
+      "name": "Камерун",
+      "coordinates": [
+        12,
+        6
+      ],
+      "kind": "country"
+    },
+    "COD": {
+      "code": "COD",
+      "name": "Демократическая Республика Конго",
+      "coordinates": [
+        25,
+        0
+      ],
+      "kind": "country"
+    },
+    "COG": {
+      "code": "COG",
+      "name": "Республика Конго",
+      "coordinates": [
+        15,
+        -1
+      ],
+      "kind": "country"
+    },
+    "COK": {
+      "code": "COK",
+      "name": "Острова Кука",
+      "coordinates": [
+        -159.76666666,
+        -21.23333333
+      ],
+      "kind": "country"
+    },
+    "COL": {
+      "code": "COL",
+      "name": "Колумбия",
+      "coordinates": [
+        -72,
+        4
+      ],
+      "kind": "country"
+    },
+    "COM": {
+      "code": "COM",
+      "name": "Коморы",
+      "coordinates": [
+        44.25,
+        -12.16666666
+      ],
+      "kind": "country"
+    },
+    "CPV": {
+      "code": "CPV",
+      "name": "Кабо-Верде",
+      "coordinates": [
+        -24,
+        16
+      ],
+      "kind": "country"
+    },
+    "CRI": {
+      "code": "CRI",
+      "name": "Коста-Рика",
+      "coordinates": [
+        -84,
+        10
+      ],
+      "kind": "country"
+    },
+    "CUB": {
+      "code": "CUB",
+      "name": "Куба",
+      "coordinates": [
+        -80,
+        21.5
+      ],
+      "kind": "country"
+    },
+    "CUW": {
+      "code": "CUW",
+      "name": "Кюрасао",
+      "coordinates": [
+        -68.933333,
+        12.116667
+      ],
+      "kind": "country"
+    },
+    "CXR": {
+      "code": "CXR",
+      "name": "Остров Рождества",
+      "coordinates": [
+        105.66666666,
+        -10.5
+      ],
+      "kind": "country"
+    },
+    "CYM": {
+      "code": "CYM",
+      "name": "Каймановы острова",
+      "coordinates": [
+        -80.5,
+        19.5
+      ],
+      "kind": "country"
+    },
+    "CYP": {
+      "code": "CYP",
+      "name": "Кипр",
+      "coordinates": [
+        33,
+        35
+      ],
+      "kind": "country"
+    },
+    "CZE": {
+      "code": "CZE",
+      "name": "Чехия",
+      "coordinates": [
+        15.5,
+        49.75
+      ],
+      "kind": "country"
+    },
+    "DEU": {
+      "code": "DEU",
+      "name": "Германия",
+      "coordinates": [
+        9,
+        51
+      ],
+      "kind": "country"
+    },
+    "DJI": {
+      "code": "DJI",
+      "name": "Джибути",
+      "coordinates": [
+        43,
+        11.5
+      ],
+      "kind": "country"
+    },
+    "DMA": {
+      "code": "DMA",
+      "name": "Доминика",
+      "coordinates": [
+        -61.33333333,
+        15.41666666
+      ],
+      "kind": "country"
+    },
+    "DNK": {
+      "code": "DNK",
+      "name": "Дания",
+      "coordinates": [
+        10,
+        56
+      ],
+      "kind": "country"
+    },
+    "DOM": {
+      "code": "DOM",
+      "name": "Доминиканская Республика",
+      "coordinates": [
+        -70.66666666,
+        19
+      ],
+      "kind": "country"
+    },
+    "DZA": {
+      "code": "DZA",
+      "name": "Алжир",
+      "coordinates": [
+        3,
+        28
+      ],
+      "kind": "country"
+    },
+    "ECU": {
+      "code": "ECU",
+      "name": "Эквадор",
+      "coordinates": [
+        -77.5,
+        -2
+      ],
+      "kind": "country"
+    },
+    "EGY": {
+      "code": "EGY",
+      "name": "Египет",
+      "coordinates": [
+        30,
+        27
+      ],
+      "kind": "country"
+    },
+    "ERI": {
+      "code": "ERI",
+      "name": "Эритрея",
+      "coordinates": [
+        39,
+        15
+      ],
+      "kind": "country"
+    },
+    "ESH": {
+      "code": "ESH",
+      "name": "Западная Сахара",
+      "coordinates": [
+        -13,
+        24.5
+      ],
+      "kind": "country"
+    },
+    "ESP": {
+      "code": "ESP",
+      "name": "Испания",
+      "coordinates": [
+        -4,
+        40
+      ],
+      "kind": "country"
+    },
+    "EST": {
+      "code": "EST",
+      "name": "Эстония",
+      "coordinates": [
+        26,
+        59
+      ],
+      "kind": "country"
+    },
+    "ETH": {
+      "code": "ETH",
+      "name": "Эфиопия",
+      "coordinates": [
+        38,
+        8
+      ],
+      "kind": "country"
+    },
+    "FIN": {
+      "code": "FIN",
+      "name": "Финляндия",
+      "coordinates": [
+        26,
+        64
+      ],
+      "kind": "country"
+    },
+    "FJI": {
+      "code": "FJI",
+      "name": "Фиджи",
+      "coordinates": [
+        175,
+        -18
+      ],
+      "kind": "country"
+    },
+    "FLK": {
+      "code": "FLK",
+      "name": "Фолклендские острова",
+      "coordinates": [
+        -59,
+        -51.75
+      ],
+      "kind": "country"
+    },
+    "FRA": {
+      "code": "FRA",
+      "name": "Франция",
+      "coordinates": [
+        2,
+        46
+      ],
+      "kind": "country"
+    },
+    "FRO": {
+      "code": "FRO",
+      "name": "Фарерские острова",
+      "coordinates": [
+        -7,
+        62
+      ],
+      "kind": "country"
+    },
+    "FSM": {
+      "code": "FSM",
+      "name": "Федеративные Штаты Микронезии",
+      "coordinates": [
+        158.25,
+        6.91666666
+      ],
+      "kind": "country"
+    },
+    "GAB": {
+      "code": "GAB",
+      "name": "Габон",
+      "coordinates": [
+        11.75,
+        -1
+      ],
+      "kind": "country"
+    },
+    "GBR": {
+      "code": "GBR",
+      "name": "Великобритания",
+      "coordinates": [
+        -2,
+        54
+      ],
+      "kind": "country"
+    },
+    "GEO": {
+      "code": "GEO",
+      "name": "Грузия",
+      "coordinates": [
+        43.5,
+        42
+      ],
+      "kind": "country"
+    },
+    "GGY": {
+      "code": "GGY",
+      "name": "Гернси",
+      "coordinates": [
+        -2.58333333,
+        49.46666666
+      ],
+      "kind": "country"
+    },
+    "GHA": {
+      "code": "GHA",
+      "name": "Гана",
+      "coordinates": [
+        -2,
+        8
+      ],
+      "kind": "country"
+    },
+    "GIB": {
+      "code": "GIB",
+      "name": "Гибралтар",
+      "coordinates": [
+        -5.35,
+        36.13333333
+      ],
+      "kind": "country"
+    },
+    "GIN": {
+      "code": "GIN",
+      "name": "Гвинея",
+      "coordinates": [
+        -10,
+        11
+      ],
+      "kind": "country"
+    },
+    "GLP": {
+      "code": "GLP",
+      "name": "Гваделупа",
+      "coordinates": [
+        -61.583333,
+        16.25
+      ],
+      "kind": "country"
+    },
+    "GMB": {
+      "code": "GMB",
+      "name": "Гамбия",
+      "coordinates": [
+        -16.56666666,
+        13.46666666
+      ],
+      "kind": "country"
+    },
+    "GNB": {
+      "code": "GNB",
+      "name": "Гвинея-Бисау",
+      "coordinates": [
+        -15,
+        12
+      ],
+      "kind": "country"
+    },
+    "GNQ": {
+      "code": "GNQ",
+      "name": "Экваториальная Гвинея",
+      "coordinates": [
+        10,
+        2
+      ],
+      "kind": "country"
+    },
+    "GRC": {
+      "code": "GRC",
+      "name": "Греция",
+      "coordinates": [
+        22,
+        39
+      ],
+      "kind": "country"
+    },
+    "GRD": {
+      "code": "GRD",
+      "name": "Гренада",
+      "coordinates": [
+        -61.66666666,
+        12.11666666
+      ],
+      "kind": "country"
+    },
+    "GRL": {
+      "code": "GRL",
+      "name": "Гренландия",
+      "coordinates": [
+        -40,
+        72
+      ],
+      "kind": "country"
+    },
+    "GTM": {
+      "code": "GTM",
+      "name": "Гватемала",
+      "coordinates": [
+        -90.25,
+        15.5
+      ],
+      "kind": "country"
+    },
+    "GUF": {
+      "code": "GUF",
+      "name": "Французская Гвиана",
+      "coordinates": [
+        -53,
+        4
+      ],
+      "kind": "country"
+    },
+    "GUM": {
+      "code": "GUM",
+      "name": "Гуам",
+      "coordinates": [
+        144.78333333,
+        13.46666666
+      ],
+      "kind": "country"
+    },
+    "GUY": {
+      "code": "GUY",
+      "name": "Гайана",
+      "coordinates": [
+        -59,
+        5
+      ],
+      "kind": "country"
+    },
+    "HKG": {
+      "code": "HKG",
+      "name": "Гонконг",
+      "coordinates": [
+        114.188,
+        22.267
+      ],
+      "kind": "country"
+    },
+    "HMD": {
+      "code": "HMD",
+      "name": "Остров Херд и острова Макдональд",
+      "coordinates": [
+        72.51666666,
+        -53.1
+      ],
+      "kind": "country"
+    },
+    "HND": {
+      "code": "HND",
+      "name": "Гондурас",
+      "coordinates": [
+        -86.5,
+        15
+      ],
+      "kind": "country"
+    },
+    "HRV": {
+      "code": "HRV",
+      "name": "Хорватия",
+      "coordinates": [
+        15.5,
+        45.16666666
+      ],
+      "kind": "country"
+    },
+    "HTI": {
+      "code": "HTI",
+      "name": "Гаити",
+      "coordinates": [
+        -72.41666666,
+        19
+      ],
+      "kind": "country"
+    },
+    "HUN": {
+      "code": "HUN",
+      "name": "Венгрия",
+      "coordinates": [
+        20,
+        47
+      ],
+      "kind": "country"
+    },
+    "IDN": {
+      "code": "IDN",
+      "name": "Индонезия",
+      "coordinates": [
+        120,
+        -5
+      ],
+      "kind": "country"
+    },
+    "IMN": {
+      "code": "IMN",
+      "name": "Остров Мэн",
+      "coordinates": [
+        -4.5,
+        54.25
+      ],
+      "kind": "country"
+    },
+    "IND": {
+      "code": "IND",
+      "name": "Индия",
+      "coordinates": [
+        77,
+        20
+      ],
+      "kind": "country"
+    },
+    "IOT": {
+      "code": "IOT",
+      "name": "Британская территория в Индийском океане",
+      "coordinates": [
+        71.5,
+        -6
+      ],
+      "kind": "country"
+    },
+    "IRL": {
+      "code": "IRL",
+      "name": "Ирландия",
+      "coordinates": [
+        -8,
+        53
+      ],
+      "kind": "country"
+    },
+    "IRN": {
+      "code": "IRN",
+      "name": "Иран",
+      "coordinates": [
+        53,
+        32
+      ],
+      "kind": "country"
+    },
+    "IRQ": {
+      "code": "IRQ",
+      "name": "Ирак",
+      "coordinates": [
+        44,
+        33
+      ],
+      "kind": "country"
+    },
+    "ISL": {
+      "code": "ISL",
+      "name": "Исландия",
+      "coordinates": [
+        -18,
+        65
+      ],
+      "kind": "country"
+    },
+    "ISR": {
+      "code": "ISR",
+      "name": "Израиль",
+      "coordinates": [
+        35.13,
+        31.47
+      ],
+      "kind": "country"
+    },
+    "ITA": {
+      "code": "ITA",
+      "name": "Италия",
+      "coordinates": [
+        12.83333333,
+        42.83333333
+      ],
+      "kind": "country"
+    },
+    "JAM": {
+      "code": "JAM",
+      "name": "Ямайка",
+      "coordinates": [
+        -77.5,
+        18.25
+      ],
+      "kind": "country"
+    },
+    "JEY": {
+      "code": "JEY",
+      "name": "Джерси",
+      "coordinates": [
+        -2.16666666,
+        49.25
+      ],
+      "kind": "country"
+    },
+    "JOR": {
+      "code": "JOR",
+      "name": "Иордания",
+      "coordinates": [
+        36,
+        31
+      ],
+      "kind": "country"
+    },
+    "JPN": {
+      "code": "JPN",
+      "name": "Япония",
+      "coordinates": [
+        138,
+        36
+      ],
+      "kind": "country"
+    },
+    "KAZ": {
+      "code": "KAZ",
+      "name": "Казахстан",
+      "coordinates": [
+        68,
+        48
+      ],
+      "kind": "country"
+    },
+    "KEN": {
+      "code": "KEN",
+      "name": "Кения",
+      "coordinates": [
+        38,
+        1
+      ],
+      "kind": "country"
+    },
+    "KGZ": {
+      "code": "KGZ",
+      "name": "Киргизия",
+      "coordinates": [
+        75,
+        41
+      ],
+      "kind": "country"
+    },
+    "KHM": {
+      "code": "KHM",
+      "name": "Камбоджа",
+      "coordinates": [
+        105,
+        13
+      ],
+      "kind": "country"
+    },
+    "KIR": {
+      "code": "KIR",
+      "name": "Кирибати",
+      "coordinates": [
+        173,
+        1.41666666
+      ],
+      "kind": "country"
+    },
+    "KNA": {
+      "code": "KNA",
+      "name": "Сент-Китс и Невис",
+      "coordinates": [
+        -62.75,
+        17.33333333
+      ],
+      "kind": "country"
+    },
+    "KOR": {
+      "code": "KOR",
+      "name": "Южная Корея",
+      "coordinates": [
+        127.5,
+        37
+      ],
+      "kind": "country"
+    },
+    "UNK": {
+      "code": "UNK",
+      "name": "Республика Косово",
+      "coordinates": [
+        21.166667,
+        42.666667
+      ],
+      "kind": "country"
+    },
+    "KWT": {
+      "code": "KWT",
+      "name": "Кувейт",
+      "coordinates": [
+        45.75,
+        29.5
+      ],
+      "kind": "country"
+    },
+    "LAO": {
+      "code": "LAO",
+      "name": "Лаос",
+      "coordinates": [
+        105,
+        18
+      ],
+      "kind": "country"
+    },
+    "LBN": {
+      "code": "LBN",
+      "name": "Ливан",
+      "coordinates": [
+        35.83333333,
+        33.83333333
+      ],
+      "kind": "country"
+    },
+    "LBR": {
+      "code": "LBR",
+      "name": "Либерия",
+      "coordinates": [
+        -9.5,
+        6.5
+      ],
+      "kind": "country"
+    },
+    "LBY": {
+      "code": "LBY",
+      "name": "Ливия",
+      "coordinates": [
+        17,
+        25
+      ],
+      "kind": "country"
+    },
+    "LCA": {
+      "code": "LCA",
+      "name": "Сент-Люсия",
+      "coordinates": [
+        -60.96666666,
+        13.88333333
+      ],
+      "kind": "country"
+    },
+    "LIE": {
+      "code": "LIE",
+      "name": "Лихтенштейн",
+      "coordinates": [
+        9.53333333,
+        47.26666666
+      ],
+      "kind": "country"
+    },
+    "LKA": {
+      "code": "LKA",
+      "name": "Шри-Ланка",
+      "coordinates": [
+        81,
+        7
+      ],
+      "kind": "country"
+    },
+    "LSO": {
+      "code": "LSO",
+      "name": "Лесото",
+      "coordinates": [
+        28.5,
+        -29.5
+      ],
+      "kind": "country"
+    },
+    "LTU": {
+      "code": "LTU",
+      "name": "Литва",
+      "coordinates": [
+        24,
+        56
+      ],
+      "kind": "country"
+    },
+    "LUX": {
+      "code": "LUX",
+      "name": "Люксембург",
+      "coordinates": [
+        6.16666666,
+        49.75
+      ],
+      "kind": "country"
+    },
+    "LVA": {
+      "code": "LVA",
+      "name": "Латвия",
+      "coordinates": [
+        25,
+        57
+      ],
+      "kind": "country"
+    },
+    "MAC": {
+      "code": "MAC",
+      "name": "Макао",
+      "coordinates": [
+        113.55,
+        22.16666666
+      ],
+      "kind": "country"
+    },
+    "MAF": {
+      "code": "MAF",
+      "name": "Сен-Мартен",
+      "coordinates": [
+        -63.95,
+        18.08333333
+      ],
+      "kind": "country"
+    },
+    "MAR": {
+      "code": "MAR",
+      "name": "Марокко",
+      "coordinates": [
+        -5,
+        32
+      ],
+      "kind": "country"
+    },
+    "MCO": {
+      "code": "MCO",
+      "name": "Монако",
+      "coordinates": [
+        7.4,
+        43.73333333
+      ],
+      "kind": "country"
+    },
+    "MDA": {
+      "code": "MDA",
+      "name": "Молдавия",
+      "coordinates": [
+        29,
+        47
+      ],
+      "kind": "country"
+    },
+    "MDG": {
+      "code": "MDG",
+      "name": "Мадагаскар",
+      "coordinates": [
+        47,
+        -20
+      ],
+      "kind": "country"
+    },
+    "MDV": {
+      "code": "MDV",
+      "name": "Мальдивы",
+      "coordinates": [
+        73,
+        3.25
+      ],
+      "kind": "country"
+    },
+    "MEX": {
+      "code": "MEX",
+      "name": "Мексика",
+      "coordinates": [
+        -102,
+        23
+      ],
+      "kind": "country"
+    },
+    "MHL": {
+      "code": "MHL",
+      "name": "Маршалловы Острова",
+      "coordinates": [
+        168,
+        9
+      ],
+      "kind": "country"
+    },
+    "MKD": {
+      "code": "MKD",
+      "name": "Северная Македония",
+      "coordinates": [
+        22,
+        41.83333333
+      ],
+      "kind": "country"
+    },
+    "MLI": {
+      "code": "MLI",
+      "name": "Мали",
+      "coordinates": [
+        -4,
+        17
+      ],
+      "kind": "country"
+    },
+    "MLT": {
+      "code": "MLT",
+      "name": "Мальта",
+      "coordinates": [
+        14.58333333,
+        35.83333333
+      ],
+      "kind": "country"
+    },
+    "MMR": {
+      "code": "MMR",
+      "name": "Мьянма",
+      "coordinates": [
+        98,
+        22
+      ],
+      "kind": "country"
+    },
+    "MNE": {
+      "code": "MNE",
+      "name": "Черногория",
+      "coordinates": [
+        19.3,
+        42.5
+      ],
+      "kind": "country"
+    },
+    "MNG": {
+      "code": "MNG",
+      "name": "Монголия",
+      "coordinates": [
+        105,
+        46
+      ],
+      "kind": "country"
+    },
+    "MNP": {
+      "code": "MNP",
+      "name": "Северные Марианские острова",
+      "coordinates": [
+        145.75,
+        15.2
+      ],
+      "kind": "country"
+    },
+    "MOZ": {
+      "code": "MOZ",
+      "name": "Мозамбик",
+      "coordinates": [
+        35,
+        -18.25
+      ],
+      "kind": "country"
+    },
+    "MRT": {
+      "code": "MRT",
+      "name": "Мавритания",
+      "coordinates": [
+        -12,
+        20
+      ],
+      "kind": "country"
+    },
+    "MSR": {
+      "code": "MSR",
+      "name": "Монтсеррат",
+      "coordinates": [
+        -62.2,
+        16.75
+      ],
+      "kind": "country"
+    },
+    "MTQ": {
+      "code": "MTQ",
+      "name": "Мартиника",
+      "coordinates": [
+        -61,
+        14.666667
+      ],
+      "kind": "country"
+    },
+    "MUS": {
+      "code": "MUS",
+      "name": "Маврикий",
+      "coordinates": [
+        57.55,
+        -20.28333333
+      ],
+      "kind": "country"
+    },
+    "MWI": {
+      "code": "MWI",
+      "name": "Малави",
+      "coordinates": [
+        34,
+        -13.5
+      ],
+      "kind": "country"
+    },
+    "MYS": {
+      "code": "MYS",
+      "name": "Малайзия",
+      "coordinates": [
+        112.5,
+        2.5
+      ],
+      "kind": "country"
+    },
+    "MYT": {
+      "code": "MYT",
+      "name": "Майотта",
+      "coordinates": [
+        45.16666666,
+        -12.83333333
+      ],
+      "kind": "country"
+    },
+    "NAM": {
+      "code": "NAM",
+      "name": "Намибия",
+      "coordinates": [
+        17,
+        -22
+      ],
+      "kind": "country"
+    },
+    "NCL": {
+      "code": "NCL",
+      "name": "Новая Каледония",
+      "coordinates": [
+        165.5,
+        -21.5
+      ],
+      "kind": "country"
+    },
+    "NER": {
+      "code": "NER",
+      "name": "Нигер",
+      "coordinates": [
+        8,
+        16
+      ],
+      "kind": "country"
+    },
+    "NFK": {
+      "code": "NFK",
+      "name": "Норфолк",
+      "coordinates": [
+        167.95,
+        -29.03333333
+      ],
+      "kind": "country"
+    },
+    "NGA": {
+      "code": "NGA",
+      "name": "Нигерия",
+      "coordinates": [
+        8,
+        10
+      ],
+      "kind": "country"
+    },
+    "NIC": {
+      "code": "NIC",
+      "name": "Никарагуа",
+      "coordinates": [
+        -85,
+        13
+      ],
+      "kind": "country"
+    },
+    "NIU": {
+      "code": "NIU",
+      "name": "Ниуэ",
+      "coordinates": [
+        -169.86666666,
+        -19.03333333
+      ],
+      "kind": "country"
+    },
+    "NLD": {
+      "code": "NLD",
+      "name": "Нидерланды",
+      "coordinates": [
+        5.75,
+        52.5
+      ],
+      "kind": "country"
+    },
+    "NOR": {
+      "code": "NOR",
+      "name": "Норвегия",
+      "coordinates": [
+        10,
+        62
+      ],
+      "kind": "country"
+    },
+    "NPL": {
+      "code": "NPL",
+      "name": "Непал",
+      "coordinates": [
+        84,
+        28
+      ],
+      "kind": "country"
+    },
+    "NRU": {
+      "code": "NRU",
+      "name": "Науру",
+      "coordinates": [
+        166.91666666,
+        -0.53333333
+      ],
+      "kind": "country"
+    },
+    "NZL": {
+      "code": "NZL",
+      "name": "Новая Зеландия",
+      "coordinates": [
+        174,
+        -41
+      ],
+      "kind": "country"
+    },
+    "OMN": {
+      "code": "OMN",
+      "name": "Оман",
+      "coordinates": [
+        57,
+        21
+      ],
+      "kind": "country"
+    },
+    "PAK": {
+      "code": "PAK",
+      "name": "Пакистан",
+      "coordinates": [
+        70,
+        30
+      ],
+      "kind": "country"
+    },
+    "PAN": {
+      "code": "PAN",
+      "name": "Панама",
+      "coordinates": [
+        -80,
+        9
+      ],
+      "kind": "country"
+    },
+    "PCN": {
+      "code": "PCN",
+      "name": "Острова Питкэрн",
+      "coordinates": [
+        -130.1,
+        -25.06666666
+      ],
+      "kind": "country"
+    },
+    "PER": {
+      "code": "PER",
+      "name": "Перу",
+      "coordinates": [
+        -76,
+        -10
+      ],
+      "kind": "country"
+    },
+    "PHL": {
+      "code": "PHL",
+      "name": "Филиппины",
+      "coordinates": [
+        122,
+        13
+      ],
+      "kind": "country"
+    },
+    "PLW": {
+      "code": "PLW",
+      "name": "Палау",
+      "coordinates": [
+        134.5,
+        7.5
+      ],
+      "kind": "country"
+    },
+    "PNG": {
+      "code": "PNG",
+      "name": "Папуа — Новая Гвинея",
+      "coordinates": [
+        147,
+        -6
+      ],
+      "kind": "country"
+    },
+    "POL": {
+      "code": "POL",
+      "name": "Польша",
+      "coordinates": [
+        20,
+        52
+      ],
+      "kind": "country"
+    },
+    "PRI": {
+      "code": "PRI",
+      "name": "Пуэрто-Рико",
+      "coordinates": [
+        -66.5,
+        18.25
+      ],
+      "kind": "country"
+    },
+    "PRK": {
+      "code": "PRK",
+      "name": "Северная Корея",
+      "coordinates": [
+        127,
+        40
+      ],
+      "kind": "country"
+    },
+    "PRT": {
+      "code": "PRT",
+      "name": "Португалия",
+      "coordinates": [
+        -8,
+        39.5
+      ],
+      "kind": "country"
+    },
+    "PRY": {
+      "code": "PRY",
+      "name": "Парагвай",
+      "coordinates": [
+        -58,
+        -23
+      ],
+      "kind": "country"
+    },
+    "PSE": {
+      "code": "PSE",
+      "name": "Палестина",
+      "coordinates": [
+        35.2,
+        31.9
+      ],
+      "kind": "country"
+    },
+    "PYF": {
+      "code": "PYF",
+      "name": "Французская Полинезия",
+      "coordinates": [
+        -140,
+        -15
+      ],
+      "kind": "country"
+    },
+    "QAT": {
+      "code": "QAT",
+      "name": "Катар",
+      "coordinates": [
+        51.25,
+        25.5
+      ],
+      "kind": "country"
+    },
+    "REU": {
+      "code": "REU",
+      "name": "Реюньон",
+      "coordinates": [
+        55.5,
+        -21.15
+      ],
+      "kind": "country"
+    },
+    "ROU": {
+      "code": "ROU",
+      "name": "Румыния",
+      "coordinates": [
+        25,
+        46
+      ],
+      "kind": "country"
+    },
+    "RUS": {
+      "code": "RUS",
+      "name": "Россия",
+      "coordinates": [
+        100,
+        60
+      ],
+      "kind": "country"
+    },
+    "RWA": {
+      "code": "RWA",
+      "name": "Руанда",
+      "coordinates": [
+        30,
+        -2
+      ],
+      "kind": "country"
+    },
+    "SAU": {
+      "code": "SAU",
+      "name": "Саудовская Аравия",
+      "coordinates": [
+        45,
+        25
+      ],
+      "kind": "country"
+    },
+    "SDN": {
+      "code": "SDN",
+      "name": "Судан",
+      "coordinates": [
+        30,
+        15
+      ],
+      "kind": "country"
+    },
+    "SEN": {
+      "code": "SEN",
+      "name": "Сенегал",
+      "coordinates": [
+        -14,
+        14
+      ],
+      "kind": "country"
+    },
+    "SGP": {
+      "code": "SGP",
+      "name": "Сингапур",
+      "coordinates": [
+        103.8,
+        1.36666666
+      ],
+      "kind": "country"
+    },
+    "SGS": {
+      "code": "SGS",
+      "name": "Южная Георгия и Южные Сандвичевы острова",
+      "coordinates": [
+        -37,
+        -54.5
+      ],
+      "kind": "country"
+    },
+    "SJM": {
+      "code": "SJM",
+      "name": "Шпицберген и Ян-Майен",
+      "coordinates": [
+        20,
+        78
+      ],
+      "kind": "country"
+    },
+    "SLB": {
+      "code": "SLB",
+      "name": "Соломоновы Острова",
+      "coordinates": [
+        159,
+        -8
+      ],
+      "kind": "country"
+    },
+    "SLE": {
+      "code": "SLE",
+      "name": "Сьерра-Леоне",
+      "coordinates": [
+        -11.5,
+        8.5
+      ],
+      "kind": "country"
+    },
+    "SLV": {
+      "code": "SLV",
+      "name": "Сальвадор",
+      "coordinates": [
+        -88.91666666,
+        13.83333333
+      ],
+      "kind": "country"
+    },
+    "SMR": {
+      "code": "SMR",
+      "name": "Сан-Марино",
+      "coordinates": [
+        12.41666666,
+        43.76666666
+      ],
+      "kind": "country"
+    },
+    "SOM": {
+      "code": "SOM",
+      "name": "Сомали",
+      "coordinates": [
+        49,
+        10
+      ],
+      "kind": "country"
+    },
+    "SPM": {
+      "code": "SPM",
+      "name": "Сен-Пьер и Микелон",
+      "coordinates": [
+        -56.33333333,
+        46.83333333
+      ],
+      "kind": "country"
+    },
+    "SRB": {
+      "code": "SRB",
+      "name": "Сербия",
+      "coordinates": [
+        21,
+        44
+      ],
+      "kind": "country"
+    },
+    "SSD": {
+      "code": "SSD",
+      "name": "Южный Судан",
+      "coordinates": [
+        30,
+        7
+      ],
+      "kind": "country"
+    },
+    "STP": {
+      "code": "STP",
+      "name": "Сан-Томе и Принсипи",
+      "coordinates": [
+        7,
+        1
+      ],
+      "kind": "country"
+    },
+    "SUR": {
+      "code": "SUR",
+      "name": "Суринам",
+      "coordinates": [
+        -56,
+        4
+      ],
+      "kind": "country"
+    },
+    "SVK": {
+      "code": "SVK",
+      "name": "Словакия",
+      "coordinates": [
+        19.5,
+        48.66666666
+      ],
+      "kind": "country"
+    },
+    "SVN": {
+      "code": "SVN",
+      "name": "Словения",
+      "coordinates": [
+        14.81666666,
+        46.11666666
+      ],
+      "kind": "country"
+    },
+    "SWE": {
+      "code": "SWE",
+      "name": "Швеция",
+      "coordinates": [
+        15,
+        62
+      ],
+      "kind": "country"
+    },
+    "SWZ": {
+      "code": "SWZ",
+      "name": "Свазиленд",
+      "coordinates": [
+        31.5,
+        -26.5
+      ],
+      "kind": "country"
+    },
+    "SXM": {
+      "code": "SXM",
+      "name": "Синт-Мартен",
+      "coordinates": [
+        -63.05,
+        18.033333
+      ],
+      "kind": "country"
+    },
+    "SYC": {
+      "code": "SYC",
+      "name": "Сейшельские Острова",
+      "coordinates": [
+        55.66666666,
+        -4.58333333
+      ],
+      "kind": "country"
+    },
+    "SYR": {
+      "code": "SYR",
+      "name": "Сирия",
+      "coordinates": [
+        38,
+        35
+      ],
+      "kind": "country"
+    },
+    "TCA": {
+      "code": "TCA",
+      "name": "Теркс и Кайкос",
+      "coordinates": [
+        -71.58333333,
+        21.75
+      ],
+      "kind": "country"
+    },
+    "TCD": {
+      "code": "TCD",
+      "name": "Чад",
+      "coordinates": [
+        19,
+        15
+      ],
+      "kind": "country"
+    },
+    "TGO": {
+      "code": "TGO",
+      "name": "Того",
+      "coordinates": [
+        1.16666666,
+        8
+      ],
+      "kind": "country"
+    },
+    "THA": {
+      "code": "THA",
+      "name": "Таиланд",
+      "coordinates": [
+        100,
+        15
+      ],
+      "kind": "country"
+    },
+    "TJK": {
+      "code": "TJK",
+      "name": "Таджикистан",
+      "coordinates": [
+        71,
+        39
+      ],
+      "kind": "country"
+    },
+    "TKL": {
+      "code": "TKL",
+      "name": "Токелау",
+      "coordinates": [
+        -172,
+        -9
+      ],
+      "kind": "country"
+    },
+    "TKM": {
+      "code": "TKM",
+      "name": "Туркмения",
+      "coordinates": [
+        60,
+        40
+      ],
+      "kind": "country"
+    },
+    "TLS": {
+      "code": "TLS",
+      "name": "Восточный Тимор",
+      "coordinates": [
+        125.91666666,
+        -8.83333333
+      ],
+      "kind": "country"
+    },
+    "TON": {
+      "code": "TON",
+      "name": "Тонга",
+      "coordinates": [
+        -175,
+        -20
+      ],
+      "kind": "country"
+    },
+    "TTO": {
+      "code": "TTO",
+      "name": "Тринидад и Тобаго",
+      "coordinates": [
+        -61,
+        11
+      ],
+      "kind": "country"
+    },
+    "TUN": {
+      "code": "TUN",
+      "name": "Тунис",
+      "coordinates": [
+        9,
+        34
+      ],
+      "kind": "country"
+    },
+    "TUR": {
+      "code": "TUR",
+      "name": "Турция",
+      "coordinates": [
+        35,
+        39
+      ],
+      "kind": "country"
+    },
+    "TUV": {
+      "code": "TUV",
+      "name": "Тувалу",
+      "coordinates": [
+        178,
+        -8
+      ],
+      "kind": "country"
+    },
+    "TWN": {
+      "code": "TWN",
+      "name": "Тайвань",
+      "coordinates": [
+        121,
+        23.5
+      ],
+      "kind": "country"
+    },
+    "TZA": {
+      "code": "TZA",
+      "name": "Танзания",
+      "coordinates": [
+        35,
+        -6
+      ],
+      "kind": "country"
+    },
+    "UGA": {
+      "code": "UGA",
+      "name": "Уганда",
+      "coordinates": [
+        32,
+        1
+      ],
+      "kind": "country"
+    },
+    "UKR": {
+      "code": "UKR",
+      "name": "Украина",
+      "coordinates": [
+        32,
+        49
+      ],
+      "kind": "country"
+    },
+    "UMI": {
+      "code": "UMI",
+      "name": "Внешние малые острова США",
+      "coordinates": [
+        166.633333,
+        19.3
+      ],
+      "kind": "country"
+    },
+    "URY": {
+      "code": "URY",
+      "name": "Уругвай",
+      "coordinates": [
+        -56,
+        -33
+      ],
+      "kind": "country"
+    },
+    "USA": {
+      "code": "USA",
+      "name": "США",
+      "coordinates": [
+        -97,
+        38
+      ],
+      "kind": "country"
+    },
+    "UZB": {
+      "code": "UZB",
+      "name": "Узбекистан",
+      "coordinates": [
+        64,
+        41
+      ],
+      "kind": "country"
+    },
+    "VAT": {
+      "code": "VAT",
+      "name": "Ватикан",
+      "coordinates": [
+        12.45,
+        41.9
+      ],
+      "kind": "country"
+    },
+    "VCT": {
+      "code": "VCT",
+      "name": "Сент-Винсент и Гренадины",
+      "coordinates": [
+        -61.2,
+        13.25
+      ],
+      "kind": "country"
+    },
+    "VEN": {
+      "code": "VEN",
+      "name": "Венесуэла",
+      "coordinates": [
+        -66,
+        8
+      ],
+      "kind": "country"
+    },
+    "VGB": {
+      "code": "VGB",
+      "name": "Британские Виргинские острова",
+      "coordinates": [
+        -64.62305,
+        18.431383
+      ],
+      "kind": "country"
+    },
+    "VIR": {
+      "code": "VIR",
+      "name": "Виргинские Острова",
+      "coordinates": [
+        -64.933333,
+        18.35
+      ],
+      "kind": "country"
+    },
+    "VNM": {
+      "code": "VNM",
+      "name": "Вьетнам",
+      "coordinates": [
+        107.83333333,
+        16.16666666
+      ],
+      "kind": "country"
+    },
+    "VUT": {
+      "code": "VUT",
+      "name": "Вануату",
+      "coordinates": [
+        167,
+        -16
+      ],
+      "kind": "country"
+    },
+    "WLF": {
+      "code": "WLF",
+      "name": "Уоллис и Футуна",
+      "coordinates": [
+        -176.2,
+        -13.3
+      ],
+      "kind": "country"
+    },
+    "WSM": {
+      "code": "WSM",
+      "name": "Самоа",
+      "coordinates": [
+        -172.33333333,
+        -13.58333333
+      ],
+      "kind": "country"
+    },
+    "YEM": {
+      "code": "YEM",
+      "name": "Йемен",
+      "coordinates": [
+        48,
+        15
+      ],
+      "kind": "country"
+    },
+    "ZAF": {
+      "code": "ZAF",
+      "name": "Южно-Африканская Республика",
+      "coordinates": [
+        24,
+        -29
+      ],
+      "kind": "country"
+    },
+    "ZMB": {
+      "code": "ZMB",
+      "name": "Замбия",
+      "coordinates": [
+        30,
+        -15
+      ],
+      "kind": "country"
+    },
+    "ZWE": {
+      "code": "ZWE",
+      "name": "Зимбабве",
+      "coordinates": [
+        30,
+        -20
+      ],
+      "kind": "country"
+    },
+    "region:Europe": {
+      "code": "region:Europe",
+      "name": "Европа · регион",
+      "coordinates": [
+        16,
+        53
+      ],
+      "kind": "region"
+    },
+    "region:EU": {
+      "code": "region:EU",
+      "name": "ЕС · регион",
+      "coordinates": [
+        15,
+        51
+      ],
+      "kind": "region"
+    },
+    "region:Non-EU Europe": {
+      "code": "region:Non-EU Europe",
+      "name": "Европа вне ЕС · регион",
+      "coordinates": [
+        23,
+        61
+      ],
+      "kind": "region"
+    },
+    "region:Other Europe": {
+      "code": "region:Other Europe",
+      "name": "Другие страны Европы · регион",
+      "coordinates": [
+        22,
+        55
+      ],
+      "kind": "region"
+    },
+    "region:Other EU": {
+      "code": "region:Other EU",
+      "name": "Другие страны ЕС · регион",
+      "coordinates": [
+        17,
+        50
+      ],
+      "kind": "region"
+    },
+    "region:Rest of Europe": {
+      "code": "region:Rest of Europe",
+      "name": "Остальная Европа · регион",
+      "coordinates": [
+        24,
+        61
+      ],
+      "kind": "region"
+    },
+    "region:Other Americas*": {
+      "code": "region:Other Americas*",
+      "name": "Другие страны Америки · регион",
+      "coordinates": [
+        -75,
+        0
+      ],
+      "kind": "region"
+    },
+    "region:Other Europe*": {
+      "code": "region:Other Europe*",
+      "name": "Другие страны Европы · регион",
+      "coordinates": [
+        22,
+        55
+      ],
+      "kind": "region"
+    },
+    "region:Other Asia Pacific*": {
+      "code": "region:Other Asia Pacific*",
+      "name": "Другие страны АТР · регион",
+      "coordinates": [
+        130,
+        8
+      ],
+      "kind": "region"
+    },
+    "region:Other S. & Cent. America": {
+      "code": "region:Other S. & Cent. America",
+      "name": "Другие страны Южной и Центральной Америки · регион",
+      "coordinates": [
+        -65,
+        -12
+      ],
+      "kind": "region"
+    },
+    "region:S. & Cent. America": {
+      "code": "region:S. & Cent. America",
+      "name": "Южная и Центральная Америка · регион",
+      "coordinates": [
+        -65,
+        -12
+      ],
+      "kind": "region"
+    },
+    "region:Other CIS": {
+      "code": "region:Other CIS",
+      "name": "Другие страны СНГ · регион",
+      "coordinates": [
+        60,
+        43
+      ],
+      "kind": "region"
+    },
+    "region:Middle East": {
+      "code": "region:Middle East",
+      "name": "Ближний Восток · регион",
+      "coordinates": [
+        45,
+        27
+      ],
+      "kind": "region"
+    },
+    "region:Other Middle East": {
+      "code": "region:Other Middle East",
+      "name": "Другой Ближний Восток · регион",
+      "coordinates": [
+        48,
+        26
+      ],
+      "kind": "region"
+    },
+    "region:Africa": {
+      "code": "region:Africa",
+      "name": "Африка · регион",
+      "coordinates": [
+        15,
+        0
+      ],
+      "kind": "region"
+    },
+    "region:Other Africa": {
+      "code": "region:Other Africa",
+      "name": "Другие страны Африки · регион",
+      "coordinates": [
+        16,
+        2
+      ],
+      "kind": "region"
+    },
+    "region:Other Middle East & Africa": {
+      "code": "region:Other Middle East & Africa",
+      "name": "Другие страны Ближнего Востока и Африки · регион",
+      "coordinates": [
+        32,
+        15
+      ],
+      "kind": "region"
+    },
+    "region:Australasia": {
+      "code": "region:Australasia",
+      "name": "Австралия и Океания · регион",
+      "coordinates": [
+        140,
+        -25
+      ],
+      "kind": "region"
+    },
+    "region:Other Asia Pacific": {
+      "code": "region:Other Asia Pacific",
+      "name": "Другие страны АТР · регион",
+      "coordinates": [
+        130,
+        8
+      ],
+      "kind": "region"
+    },
+    "region:North Africa": {
+      "code": "region:North Africa",
+      "name": "Северная Африка · регион",
+      "coordinates": [
+        10,
+        28
+      ],
+      "kind": "region"
+    },
+    "region:West Africa": {
+      "code": "region:West Africa",
+      "name": "Западная Африка · регион",
+      "coordinates": [
+        -8,
+        9
+      ],
+      "kind": "region"
+    },
+    "region:East & S. Africa": {
+      "code": "region:East & S. Africa",
+      "name": "Восточная и Южная Африка · регион",
+      "coordinates": [
+        32,
+        -15
+      ],
+      "kind": "region"
+    }
+  },
+  "sources": {
+    "eia-crude-imports": {
+      "label": "EIA · imports · 2025",
+      "url": "https://www.eia.gov/dnav/pet/pet_move_impcus_a2_nus_EPC0_im0_mbbl_a.htm",
+      "sha256": "a9f9c16d09ec15601cb700c5fc8d1e2787b70854f9d35635df0860757f71a65c",
+      "boundary": "Thousand barrels per year; annual 2025; blank ≠ zero"
+    },
+    "eia-crude-exports": {
+      "label": "EIA · exports · 2025",
+      "url": "https://www.eia.gov/dnav/pet/pet_move_expc_a_EPC0_EEX_mbbl_a.htm",
+      "sha256": "d3a366566944a4bb739d9d891c4f4bcf1ba8adfb35d1a4fda82c86a697e84b6e",
+      "boundary": "Thousand barrels per year; annual 2025; blank ≠ zero"
+    },
+    "eia-gasoline-imports": {
+      "label": "EIA · imports · 2025",
+      "url": "https://www.eia.gov/dnav/pet/pet_move_impcus_a2_nus_EPM0F_im0_mbbl_a.htm",
+      "sha256": "078ba56d0175cfd24d597f64a3f877e3e5e13e0459e18751d458052f3afe0ea7",
+      "boundary": "Thousand barrels per year; annual 2025; blank ≠ zero"
+    },
+    "eia-gasoline-exports": {
+      "label": "EIA · exports · 2025",
+      "url": "https://www.eia.gov/dnav/pet/pet_move_expc_a_EPM0F_EEX_mbbl_a.htm",
+      "sha256": "14b5c447a36b14c01559cfe00ff16015ca481827bb60182d1447596803b00145",
+      "boundary": "Thousand barrels per year; annual 2025; blank ≠ zero"
+    },
+    "eia-diesel-imports": {
+      "label": "EIA · imports · 2025",
+      "url": "https://www.eia.gov/dnav/pet/pet_move_impcus_a2_nus_EPD0_im0_mbbl_a.htm",
+      "sha256": "561188496125bb4960fa49c1c21469b49e35f00c3cc638eb9bef76b6da0acb44",
+      "boundary": "Thousand barrels per year; annual 2025; blank ≠ zero"
+    },
+    "eia-diesel-exports": {
+      "label": "EIA · exports · 2025",
+      "url": "https://www.eia.gov/dnav/pet/pet_move_expc_a_EPD0_EEX_mbbl_a.htm",
+      "sha256": "890ae9871d74146dc17e48e9b514e888b42cb5aae0b48f77d8046c1f78981a21",
+      "boundary": "Thousand barrels per year; annual 2025; blank ≠ zero"
+    },
+    "insee-france": {
+      "label": "INSEE / SDES · 2025 provisoire",
+      "url": "https://www.insee.fr/fr/statistiques/2119697",
+      "sha256": "01b0dce9d7470d4d04823a82e2c4ac8f678e1d256302bcc6deba801622b09365",
+      "boundary": "Million tonnes; country of extraction; includes condensates and refinery feedstocks; provisional 2025"
+    },
+    "ei-gas": {
+      "label": "Energy Institute 2026 · газ · 2025",
+      "url": "https://www.energyinst.org/statistical-review/resources-and-data-downloads",
+      "boundary": "Billion cubic metres; rows are destinations, columns origins; re-exports included for LNG",
+      "sha256": "846e72c22d0a6cc14358d0faa0caafa99d6080c65218b19954dd62b11b72c448"
+    },
+    "eia-states": {
+      "label": "EIA · добыча по штатам · 2025",
+      "url": "https://www.eia.gov/dnav/pet/pet_crd_crpdn_adc_mbbl_a.htm",
+      "sha256": "3223e29093e8cd98844ee90df354d11bc6660d8f579656416646d7b81142cd51",
+      "boundary": "Thousand barrels per year; crude including lease condensate; annual 2025"
+    }
+  },
+  "totals": {
+    "USA:crude:imports": 6168.1671232876715,
+    "USA:crude:exports": 3961.2794520547945,
+    "USA:gasoline:imports": 123.91506849315068,
+    "USA:gasoline:exports": 777.9123287671233,
+    "USA:diesel:imports": 158.8739726027397,
+    "USA:diesel:exports": 1249.7753424657535,
+    "FRA:crude:imports": 45.9
+  },
+  "gas": {
+    "CAN": {
+      "production": 206.2271775,
+      "consumption": 132.32445209927334
+    },
+    "MEX": {
+      "production": 34.79098187086133,
+      "consumption": 99.66833757990575
+    },
+    "USA": {
+      "production": 1073.7426853648499,
+      "consumption": 913.4434865597304
+    },
+    "FRA": {
+      "consumption": 30.597707244375
+    }
+  },
+  "sites": [
+    {
+      "id": "permian",
+      "country": "USA",
+      "name": "Permian",
+      "coordinates": [
+        -102.4,
+        31.8
+      ],
+      "kind": "basin",
+      "detail": "6.6 млн барр./сутки сырой нефти · 2025. Западный Техас и юго-восток Нью-Мексико · 48% добычи США. Точка обозначает район, не границу месторождения.",
+      "url": "https://www.eia.gov/todayinenergy/detail.php?id=67404",
+      "year": 2025
+    },
+    {
+      "id": "eagle-ford",
+      "country": "USA",
+      "name": "Eagle Ford",
+      "coordinates": [
+        -98.5,
+        28.7
+      ],
+      "kind": "basin",
+      "detail": "1.2 млн барр./сутки сырой нефти · 2025. Южный Техас · 9% добычи США. Точка обозначает район, не границу месторождения.",
+      "url": "https://www.eia.gov/todayinenergy/detail.php?id=67404",
+      "year": 2025
+    },
+    {
+      "id": "sabine",
+      "country": "USA",
+      "name": "Sabine Pass · Луизиана",
+      "coordinates": [
+        -93.87,
+        29.74
+      ],
+      "kind": "terminal",
+      "detail": "Экспортный терминал СПГ, работавший в 2025 году. Положение приблизительное. Межстрановые потоки не распределены по терминалам: эта карта не отслеживает отдельные грузы.",
+      "url": "https://www.eia.gov/dnav/ng/ng_move_poe2_a_epg0_eng_mmcf_a.htm",
+      "year": 2025
+    },
+    {
+      "id": "corpus",
+      "country": "USA",
+      "name": "Corpus Christi · Техас",
+      "coordinates": [
+        -97.28,
+        27.88
+      ],
+      "kind": "terminal",
+      "detail": "Экспортный терминал СПГ, работавший в 2025 году. Положение приблизительное. Межстрановые потоки не распределены по терминалам: эта карта не отслеживает отдельные грузы.",
+      "url": "https://www.eia.gov/dnav/ng/ng_move_poe2_a_epg0_eng_mmcf_a.htm",
+      "year": 2025
+    },
+    {
+      "id": "dunkerque",
+      "country": "FRA",
+      "name": "Dunkerque · приём газа",
+      "coordinates": [
+        2.2,
+        51.03
+      ],
+      "kind": "pipeline-terminal",
+      "detail": "Franpipe: газопровод от платформы Draupner E в Северном море к Дюнкерку, 840 км. Это инфраструктурная связь, без оценки фактического потока за 2025 год.",
+      "url": "https://gassco.eu/rorledningsnettverk/franpipe/",
+      "year": 2025
+    }
+  ],
+  "infrastructure": [
+    {
+      "id": "franpipe",
+      "country": "FRA",
+      "origin": "NOR",
+      "destination": "FRA",
+      "product": "pipeline",
+      "coordinates": [
+        [
+          2.47,
+          58.19
+        ],
+        [
+          2.2,
+          51.03
+        ]
+      ],
+      "name": "Franpipe",
+      "url": "https://gassco.eu/rorledningsnettverk/franpipe/"
+    }
+  ],
+  "states": {
+    "New Mexico": {
+      "crude": 2205.3424657534247,
+      "year": 2025
+    },
+    "Texas": {
+      "crude": 5760.583561643835,
+      "year": 2025
+    }
+  }
+}
