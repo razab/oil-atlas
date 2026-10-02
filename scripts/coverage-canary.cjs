@@ -15,7 +15,7 @@ const dir=process.env.REPORT_DIR||'../reports/coverage-probe';fs.mkdirSync(dir,{
  await page.evaluate(()=>showEdge(selectedFlows('imports').find(f=>f.owner==='EGY')));
  assert.ok((await page.locator('#detail-popup').textContent()).includes('≈'));
  await page.locator('#close-popup').click();await page.screenshot({path:`${dir}/egypt-${scope}.png`});
- await page.locator('#sites-button').click();await page.locator('[data-site="midor"]').click();
+ await page.locator('#sites-button').click();await page.locator('[data-site="midor"] rect').click();
  const refinery=await page.locator('#detail-popup').textContent();assert.ok(refinery.includes('160'));assert.ok(refinery.includes('проектная мощность'));
  await open('EGY','gasoline');
  const partial=await page.evaluate(()=>({d:graph.domestic.EGY.gasoline,t:graph.tradeCoverage['EGY:gasoline:imports'],text:document.querySelector('#country-details').textContent}));
@@ -29,7 +29,7 @@ const dir=process.env.REPORT_DIR||'../reports/coverage-probe';fs.mkdirSync(dir,{
   await open('DEU','crude');assert.ok(await page.evaluate(()=>selectedFlows('imports').filter(f=>f.owner==='DEU').length===6));
   await open('DEU','gasoline');assert.ok(await page.evaluate(()=>graph.totals['DEU:gasoline:imports']>2&&graph.domestic.DEU.gasoline.consumption===null));
   await open('EGY','refined');assert.ok(await page.evaluate(()=>graph.tradeCoverage['EGY:refined:imports'].total===11.895));
-  const stats=await page.locator('#country-details').textContent();assert.ok(!stats.includes('Спрос на нефтяные жидкости'));
+  const stats=await page.locator('#country-details').textContent();assert.ok(!stats.includes('Спрос на нефтяные жидкости'));assert.equal(await page.locator('#current-fuel').textContent(),'Нефтепродукты');assert.equal(await page.locator('[data-stat="production"]').textContent(),'16,3');
   await page.screenshot({path:`${dir}/egypt-refined.png`});
   await open('MDA','diesel');assert.ok(await page.evaluate(()=>selectedFlows('imports').filter(f=>f.owner==='MDA').length===11));
  }

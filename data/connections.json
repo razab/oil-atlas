@@ -9179,6 +9179,370 @@
       "owner": "FRA",
       "note": "Страна добычи по INSEE/SDES. Данные предварительные; не страна последней отгрузки. Включены конденсаты и другое сырьё НПЗ.",
       "observation": "france-crude-imports-2025.html#produit-tableau-figure1/row=8/column=2025 (p)"
+    },
+    {
+      "id": "national-comtrade-EGY-270900-M-2025:crude:KWT:EGY",
+      "origin": "KWT",
+      "destination": "EGY",
+      "product": "crude",
+      "value": 0.024282371826,
+      "unit": "Mt",
+      "year": 2025,
+      "source": "national-comtrade-EGY-270900-M-2025",
+      "owner": "EGY",
+      "note": "Масса оценена UN Comtrade; не переводится в баррели.",
+      "observation": "comtrade-EGY-270900-M-2025.json#data[1]/HS=270900/flow=M/partner=414",
+      "estimated": true
+    },
+    {
+      "id": "national-comtrade-EGY-270900-M-2025:crude:SAU:EGY",
+      "origin": "SAU",
+      "destination": "EGY",
+      "product": "crude",
+      "value": 2.420445078195,
+      "unit": "Mt",
+      "year": 2025,
+      "source": "national-comtrade-EGY-270900-M-2025",
+      "owner": "EGY",
+      "note": "Масса оценена UN Comtrade; не переводится в баррели.",
+      "observation": "comtrade-EGY-270900-M-2025.json#data[2]/HS=270900/flow=M/partner=682",
+      "estimated": true
+    },
+    {
+      "id": "national-comtrade-EGY-270900-M-2025:crude:USA:EGY",
+      "origin": "USA",
+      "destination": "EGY",
+      "product": "crude",
+      "value": 0.281077514471,
+      "unit": "Mt",
+      "year": 2025,
+      "source": "national-comtrade-EGY-270900-M-2025",
+      "owner": "EGY",
+      "note": "Масса оценена UN Comtrade; не переводится в баррели.",
+      "observation": "comtrade-EGY-270900-M-2025.json#data[3]/HS=270900/flow=M/partner=842",
+      "estimated": true
+    },
+    {
+      "id": "national-comtrade-EGY-270900-X-2025:crude:EGY:GRC",
+      "origin": "EGY",
+      "destination": "GRC",
+      "product": "crude",
+      "value": 0.566343333324,
+      "unit": "Mt",
+      "year": 2025,
+      "source": "national-comtrade-EGY-270900-X-2025",
+      "owner": "EGY",
+      "note": "Масса оценена UN Comtrade; не переводится в баррели.",
+      "observation": "comtrade-EGY-270900-X-2025.json#data[1]/HS=270900/flow=X/partner=300",
+      "estimated": true
+    },
+    {
+      "id": "national-comtrade-EGY-270900-X-2025:crude:EGY:IND",
+      "origin": "EGY",
+      "destination": "IND",
+      "product": "crude",
+      "value": 0.140259745966,
+      "unit": "Mt",
+      "year": 2025,
+      "source": "national-comtrade-EGY-270900-X-2025",
+      "owner": "EGY",
+      "note": "Масса оценена UN Comtrade; не переводится в баррели.",
+      "observation": "comtrade-EGY-270900-X-2025.json#data[4]/HS=270900/flow=X/partner=699",
+      "estimated": true
+    },
+    {
+      "id": "national-comtrade-EGY-270900-X-2025:crude:EGY:ITA",
+      "origin": "EGY",
+      "destination": "ITA",
+      "product": "crude",
+      "value": 1.248281207852,
+      "unit": "Mt",
+      "year": 2025,
+      "source": "national-comtrade-EGY-270900-X-2025",
+      "owner": "EGY",
+      "note": "Масса оценена UN Comtrade; не переводится в баррели.",
+      "observation": "comtrade-EGY-270900-X-2025.json#data[2]/HS=270900/flow=X/partner=380",
+      "estimated": true
+    },
+    {
+      "id": "national-comtrade-EGY-270900-X-2025:crude:EGY:OMN",
+      "origin": "EGY",
+      "destination": "OMN",
+      "product": "crude",
+      "value": 0.06106249662200001,
+      "unit": "Mt",
+      "year": 2025,
+      "source": "national-comtrade-EGY-270900-X-2025",
+      "owner": "EGY",
+      "note": "Масса оценена UN Comtrade; не переводится в баррели.",
+      "observation": "comtrade-EGY-270900-X-2025.json#data[3]/HS=270900/flow=X/partner=512",
+      "estimated": true
+    },
+    {
+      "id": "national-germany-destatis-2025:crude:ARE:DEU",
+      "origin": "ARE",
+      "destination": "DEU",
+      "product": "crude",
+      "value": 0.801,
+      "unit": "Mt",
+      "year": 2025,
+      "source": "national-germany-destatis-2025",
+      "owner": "DEU",
+      "note": "Destatis: масса округлена; CN 27090090, редакция 9 марта 2026.",
+      "observation": "germany-destatis-2025.html#press-release=9-March-2026/supplier=ARE",
+      "rounded": true
+    },
+    {
+      "id": "national-germany-destatis-2025:crude:IRQ:DEU",
+      "origin": "IRQ",
+      "destination": "DEU",
+      "product": "crude",
+      "value": 3.1,
+      "unit": "Mt",
+      "year": 2025,
+      "source": "national-germany-destatis-2025",
+      "owner": "DEU",
+      "note": "Destatis: масса округлена; CN 27090090, редакция 9 марта 2026.",
+      "observation": "germany-destatis-2025.html#press-release=9-March-2026/supplier=IRQ",
+      "rounded": true
+    },
+    {
+      "id": "national-germany-destatis-2025:crude:LBY:DEU",
+      "origin": "LBY",
+      "destination": "DEU",
+      "product": "crude",
+      "value": 10.4,
+      "unit": "Mt",
+      "year": 2025,
+      "source": "national-germany-destatis-2025",
+      "owner": "DEU",
+      "note": "Destatis: масса округлена; CN 27090090, редакция 9 марта 2026.",
+      "observation": "germany-destatis-2025.html#press-release=9-March-2026/supplier=LBY",
+      "rounded": true
+    },
+    {
+      "id": "national-germany-destatis-2025:crude:NOR:DEU",
+      "origin": "NOR",
+      "destination": "DEU",
+      "product": "crude",
+      "value": 12.5,
+      "unit": "Mt",
+      "year": 2025,
+      "source": "national-germany-destatis-2025",
+      "owner": "DEU",
+      "note": "Destatis: масса округлена; CN 27090090, редакция 9 марта 2026.",
+      "observation": "germany-destatis-2025.html#press-release=9-March-2026/supplier=NOR",
+      "rounded": true
+    },
+    {
+      "id": "national-germany-destatis-2025:crude:SAU:DEU",
+      "origin": "SAU",
+      "destination": "DEU",
+      "product": "crude",
+      "value": 0.642,
+      "unit": "Mt",
+      "year": 2025,
+      "source": "national-germany-destatis-2025",
+      "owner": "DEU",
+      "note": "Destatis: масса округлена; CN 27090090, редакция 9 марта 2026.",
+      "observation": "germany-destatis-2025.html#press-release=9-March-2026/supplier=SAU",
+      "rounded": true
+    },
+    {
+      "id": "national-germany-destatis-2025:crude:USA:DEU",
+      "origin": "USA",
+      "destination": "DEU",
+      "product": "crude",
+      "value": 12.4,
+      "unit": "Mt",
+      "year": 2025,
+      "source": "national-germany-destatis-2025",
+      "owner": "DEU",
+      "note": "Destatis: масса округлена; CN 27090090, редакция 9 марта 2026.",
+      "observation": "germany-destatis-2025.html#press-release=9-March-2026/supplier=USA",
+      "rounded": true
+    },
+    {
+      "id": "national-moldova-anre-2025:diesel:ARE:MDA",
+      "origin": "ARE",
+      "destination": "MDA",
+      "product": "diesel",
+      "value": 0.026552162160000004,
+      "unit": "Mt",
+      "year": 2025,
+      "source": "national-moldova-anre-2025",
+      "owner": "MDA",
+      "note": "Приблизительная масса: годовой импорт × доля страны, округлённая ANRE до 0,1%. Для дизеля: только дизельное топливо, без отопительного.",
+      "observation": "moldova-anre-2025.txt#derived/diesel/ARE->MDA",
+      "estimated": true
+    },
+    {
+      "id": "national-moldova-anre-2025:diesel:AZE:MDA",
+      "origin": "AZE",
+      "destination": "MDA",
+      "product": "diesel",
+      "value": 0.005900480480000001,
+      "unit": "Mt",
+      "year": 2025,
+      "source": "national-moldova-anre-2025",
+      "owner": "MDA",
+      "note": "Приблизительная масса: годовой импорт × доля страны, округлённая ANRE до 0,1%. Для дизеля: только дизельное топливо, без отопительного.",
+      "observation": "moldova-anre-2025.txt#derived/diesel/AZE->MDA",
+      "estimated": true
+    },
+    {
+      "id": "national-moldova-anre-2025:diesel:BGR:MDA",
+      "origin": "BGR",
+      "destination": "MDA",
+      "product": "diesel",
+      "value": 0.03392776276,
+      "unit": "Mt",
+      "year": 2025,
+      "source": "national-moldova-anre-2025",
+      "owner": "MDA",
+      "note": "Приблизительная масса: годовой импорт × доля страны, округлённая ANRE до 0,1%. Для дизеля: только дизельное топливо, без отопительного.",
+      "observation": "moldova-anre-2025.txt#derived/diesel/BGR->MDA",
+      "estimated": true
+    },
+    {
+      "id": "national-moldova-anre-2025:diesel:EGY:MDA",
+      "origin": "EGY",
+      "destination": "MDA",
+      "product": "diesel",
+      "value": 0.0014751201200000003,
+      "unit": "Mt",
+      "year": 2025,
+      "source": "national-moldova-anre-2025",
+      "owner": "MDA",
+      "note": "Приблизительная масса: годовой импорт × доля страны, округлённая ANRE до 0,1%. Для дизеля: только дизельное топливо, без отопительного.",
+      "observation": "moldova-anre-2025.txt#derived/diesel/EGY->MDA",
+      "estimated": true
+    },
+    {
+      "id": "national-moldova-anre-2025:diesel:GRC:MDA",
+      "origin": "GRC",
+      "destination": "MDA",
+      "product": "diesel",
+      "value": 0.0007375600600000001,
+      "unit": "Mt",
+      "year": 2025,
+      "source": "national-moldova-anre-2025",
+      "owner": "MDA",
+      "note": "Приблизительная масса: годовой импорт × доля страны, округлённая ANRE до 0,1%. Для дизеля: только дизельное топливо, без отопительного.",
+      "observation": "moldova-anre-2025.txt#derived/diesel/GRC->MDA",
+      "estimated": true
+    },
+    {
+      "id": "national-moldova-anre-2025:diesel:IND:MDA",
+      "origin": "IND",
+      "destination": "MDA",
+      "product": "diesel",
+      "value": 0.010325840840000001,
+      "unit": "Mt",
+      "year": 2025,
+      "source": "national-moldova-anre-2025",
+      "owner": "MDA",
+      "note": "Приблизительная масса: годовой импорт × доля страны, округлённая ANRE до 0,1%. Для дизеля: только дизельное топливо, без отопительного.",
+      "observation": "moldova-anre-2025.txt#derived/diesel/IND->MDA",
+      "estimated": true
+    },
+    {
+      "id": "national-moldova-anre-2025:diesel:ISR:MDA",
+      "origin": "ISR",
+      "destination": "MDA",
+      "product": "diesel",
+      "value": 0.0022126801800000004,
+      "unit": "Mt",
+      "year": 2025,
+      "source": "national-moldova-anre-2025",
+      "owner": "MDA",
+      "note": "Приблизительная масса: годовой импорт × доля страны, округлённая ANRE до 0,1%. Для дизеля: только дизельное топливо, без отопительного.",
+      "observation": "moldova-anre-2025.txt#derived/diesel/ISR->MDA",
+      "estimated": true
+    },
+    {
+      "id": "national-moldova-anre-2025:diesel:KWT:MDA",
+      "origin": "KWT",
+      "destination": "MDA",
+      "product": "diesel",
+      "value": 0.0036878003000000003,
+      "unit": "Mt",
+      "year": 2025,
+      "source": "national-moldova-anre-2025",
+      "owner": "MDA",
+      "note": "Приблизительная масса: годовой импорт × доля страны, округлённая ANRE до 0,1%. Для дизеля: только дизельное топливо, без отопительного.",
+      "observation": "moldova-anre-2025.txt#derived/diesel/KWT->MDA",
+      "estimated": true
+    },
+    {
+      "id": "national-moldova-anre-2025:diesel:ROU:MDA",
+      "origin": "ROU",
+      "destination": "MDA",
+      "product": "diesel",
+      "value": 0.5634958858400001,
+      "unit": "Mt",
+      "year": 2025,
+      "source": "national-moldova-anre-2025",
+      "owner": "MDA",
+      "note": "Приблизительная масса: годовой импорт × доля страны, округлённая ANRE до 0,1%. Для дизеля: только дизельное топливо, без отопительного.",
+      "observation": "moldova-anre-2025.txt#derived/diesel/ROU->MDA",
+      "estimated": true
+    },
+    {
+      "id": "national-moldova-anre-2025:diesel:SAU:MDA",
+      "origin": "SAU",
+      "destination": "MDA",
+      "product": "diesel",
+      "value": 0.011800960960000002,
+      "unit": "Mt",
+      "year": 2025,
+      "source": "national-moldova-anre-2025",
+      "owner": "MDA",
+      "note": "Приблизительная масса: годовой импорт × доля страны, округлённая ANRE до 0,1%. Для дизеля: только дизельное топливо, без отопительного.",
+      "observation": "moldova-anre-2025.txt#derived/diesel/SAU->MDA",
+      "estimated": true
+    },
+    {
+      "id": "national-moldova-anre-2025:diesel:TUR:MDA",
+      "origin": "TUR",
+      "destination": "MDA",
+      "product": "diesel",
+      "value": 0.07670624624000001,
+      "unit": "Mt",
+      "year": 2025,
+      "source": "national-moldova-anre-2025",
+      "owner": "MDA",
+      "note": "Приблизительная масса: годовой импорт × доля страны, округлённая ANRE до 0,1%. Для дизеля: только дизельное топливо, без отопительного.",
+      "observation": "moldova-anre-2025.txt#derived/diesel/TUR->MDA",
+      "estimated": true
+    },
+    {
+      "id": "national-moldova-anre-2025:gasoline:BGR:MDA",
+      "origin": "BGR",
+      "destination": "MDA",
+      "product": "gasoline",
+      "value": 0.004874150339999999,
+      "unit": "Mt",
+      "year": 2025,
+      "source": "national-moldova-anre-2025",
+      "owner": "MDA",
+      "note": "Приблизительная масса: годовой импорт × доля страны, округлённая ANRE до 0,1%. Для дизеля: только дизельное топливо, без отопительного.",
+      "observation": "moldova-anre-2025.txt#derived/gasoline/BGR->MDA",
+      "estimated": true
+    },
+    {
+      "id": "national-moldova-anre-2025:gasoline:ROU:MDA",
+      "origin": "ROU",
+      "destination": "MDA",
+      "product": "gasoline",
+      "value": 0.20704542966,
+      "unit": "Mt",
+      "year": 2025,
+      "source": "national-moldova-anre-2025",
+      "owner": "MDA",
+      "note": "Приблизительная масса: годовой импорт × доля страны, округлённая ANRE до 0,1%. Для дизеля: только дизельное топливо, без отопительного.",
+      "observation": "moldova-anre-2025.txt#derived/gasoline/ROU->MDA",
+      "estimated": true
     }
   ],
   "nodes": {
@@ -10453,7 +10817,7 @@
     },
     "MDA": {
       "code": "MDA",
-      "name": "Молдавия",
+      "name": "Молдова",
       "coordinates": [
         29,
         47
@@ -11697,10 +12061,73 @@
       "url": "https://www.eia.gov/dnav/pet/pet_sum_snd_d_nus_mbbl_a_cur.htm",
       "sha256": "84401eaee7c200e2c594d198d026d6311446fed99f0d800290ecb09100b79629",
       "boundary": "Current annual table verified as 2025; MBBL/365 = thousand barrels daily; refinery input ≠ final crude demand"
+    },
+    "national-comtrade-EGY-270900-M-2025": {
+      "label": "Египет: импорт сырой нефти · UN Comtrade 2025",
+      "url": "https://comtradeplus.un.org/",
+      "year": 2025,
+      "sha256": "2204a372751bce6b049acb3326b6f9cdeb79a50309216228002e30b384679318"
+    },
+    "national-comtrade-EGY-270900-X-2025": {
+      "label": "EGY: HS 270900, X · UN Comtrade 2025",
+      "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?period=2025&reporterCode=818&cmdCode=270900&flowCode=X&partnerCode=&partner2Code=0&customsCode=C00&motCode=0&maxRecords=500&includeDesc=true",
+      "year": 2025,
+      "sha256": "c11d3410099d4bc3c56081820c911971bd1e35a001e396be622f58a7a5271ff8"
+    },
+    "national-egypt-eia-2024": {
+      "label": "Египет: восемь НПЗ · EIA, август 2024",
+      "url": "https://www.eia.gov/international/content/analysis/countries_long/Egypt/pdf/Egypt.pdf",
+      "year": 2024,
+      "sha256": "fed8aac68192e8ceaeab7f61234cecc57038df8ca443fe40b4e1e0af134dfe8c"
+    },
+    "national-germany-bafa-2025": {
+      "label": "Германия: нефтепереработка и топливо · BAFA 2025",
+      "url": "https://www.bafa.de/SharedDocs/Downloads/DE/Energie/Mineraloel/moel_amtliche_daten_2025_12.xlsx?__blob=publicationFile&v=1",
+      "year": 2025,
+      "sha256": "fdfdb072d146983b47e0630037433ea7808103053e5253aee071543e8bd99565"
+    },
+    "national-germany-destatis-2025": {
+      "label": "Германия: 6 поставщиков нефти · Destatis, 9 марта 2026",
+      "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/03/PD26_N016_51.html",
+      "year": 2025,
+      "sha256": "b3b179ad5e91ce8680673501d8db8bd895e3220f2c0c962ede4b304749b64d7b"
+    },
+    "national-jodi-EGY-products-2025": {
+      "label": "Египет: производство, спрос и торговля топливом · JODI, январь–август 2025",
+      "url": "https://www.jodidata.org/_resources/files/downloads/oil-data/annual-csv/secondary/2025.csv",
+      "year": 2025,
+      "sha256": "eb9a2c484e9983fe2336cb8ad1031b7a975e998062e4ce99d6e23a61ba760d4c"
+    },
+    "national-midor-sustainability-2025": {
+      "label": "НПЗ MIDOR · отчёт 2025",
+      "url": "https://www.midor.com.eg/publishing/MIDOR%20Sustainability%20Report%202025.pdf",
+      "year": 2025,
+      "sha256": "c1b03288a4463f68e38865f7d51ceaf2a86c501ccb93caf170edf0a54c61add9"
+    },
+    "national-moldova-anre-2025": {
+      "label": "Молдова: бензин и дизель · ANRE 2025",
+      "url": "https://anre.md/storage/upload/administration/reports/1618/Raport%20monitorizarea%20pietii%20produselor%20petroliere%20anul%202025%20site.pdf",
+      "year": 2025,
+      "sha256": "a1e32b79b5d1fe8ffb705ee59860b43ed6d3984e9e67bc4dcd3cfa12e6328078"
     }
   },
   "totals": {
+    "EGY:crude:imports": 2.725804964492,
+    "EGY:crude:exports": 2.015946783764,
     "FRA:crude:imports": 45.9,
+    "DEU:diesel:imports": 12.455002,
+    "DEU:gasoline:imports": 2.270156,
+    "DEU:diesel:exports": 9.738627,
+    "DEU:gasoline:exports": 4.404105,
+    "DEU:crude:imports": 75.7,
+    "EGY:diesel:exports": 0.375,
+    "EGY:diesel:imports": 5.247,
+    "EGY:gasoline:exports": 0.0,
+    "EGY:gasoline:imports": 1.932,
+    "EGY:refined:exports": 1.305,
+    "EGY:refined:imports": 11.895,
+    "MDA:gasoline:imports": 0.21191958,
+    "MDA:diesel:imports": 0.7375600600000001,
     "USA:crude:exports": 3961.2794520547945,
     "USA:crude:imports": 6168.1671232876715,
     "USA:diesel:exports": 1249.7753424657535,
@@ -12221,6 +12648,126 @@
       "detail": "Приёмный терминал СПГ Elengy: выгрузка газовозов и регазификация. Положение приблизительное. Это часть терминалов Франции, не полный список; национальные потоки не распределены по терминалам.",
       "url": "https://www.elengy.com/en/our-locations",
       "year": 2025
+    },
+    {
+      "id": "egypt-amreya",
+      "country": "EGY",
+      "kind": "refinery",
+      "name": "Amreya · Америя",
+      "coordinates": [
+        29.83,
+        31.0
+      ],
+      "capacity": 80.0,
+      "year": 2024,
+      "observation": "egypt-eia-2024.txt#page=6/table=3/refinery=Amreya",
+      "url": "https://www.eia.gov/international/content/analysis/countries_long/Egypt/pdf/Egypt.pdf",
+      "detail": "Проектная мощность из отчёта EIA августа 2024. Не фактический объём переработки; актуальность на 2025/2026 не подтверждена. Точка приблизительно обозначает город/район расположения, не точный адрес."
+    },
+    {
+      "id": "egypt-assiut",
+      "country": "EGY",
+      "kind": "refinery",
+      "name": "Assiut · Асьют",
+      "coordinates": [
+        31.17,
+        27.18
+      ],
+      "capacity": 90.0,
+      "year": 2024,
+      "observation": "egypt-eia-2024.txt#page=6/table=3/refinery=Assiut",
+      "url": "https://www.eia.gov/international/content/analysis/countries_long/Egypt/pdf/Egypt.pdf",
+      "detail": "Проектная мощность из отчёта EIA августа 2024. Не фактический объём переработки; актуальность на 2025/2026 не подтверждена. Точка приблизительно обозначает город/район расположения, не точный адрес."
+    },
+    {
+      "id": "egypt-el-mex",
+      "country": "EGY",
+      "kind": "refinery",
+      "name": "El-Mex · Александрия",
+      "coordinates": [
+        29.85,
+        31.15
+      ],
+      "capacity": 100.0,
+      "year": 2024,
+      "observation": "egypt-eia-2024.txt#page=6/table=3/refinery=El-Mex",
+      "url": "https://www.eia.gov/international/content/analysis/countries_long/Egypt/pdf/Egypt.pdf",
+      "detail": "Проектная мощность из отчёта EIA августа 2024. Не фактический объём переработки; актуальность на 2025/2026 не подтверждена. Точка приблизительно обозначает город/район расположения, не точный адрес."
+    },
+    {
+      "id": "egypt-el-nasr",
+      "country": "EGY",
+      "kind": "refinery",
+      "name": "El-Nasr · Суэц",
+      "coordinates": [
+        32.54,
+        29.98
+      ],
+      "capacity": 131.0,
+      "year": 2024,
+      "observation": "egypt-eia-2024.txt#page=6/table=3/refinery=El-Nasr",
+      "url": "https://www.eia.gov/international/content/analysis/countries_long/Egypt/pdf/Egypt.pdf",
+      "detail": "Проектная мощность из отчёта EIA августа 2024. Не фактический объём переработки; актуальность на 2025/2026 не подтверждена. Точка приблизительно обозначает город/район расположения, не точный адрес."
+    },
+    {
+      "id": "egypt-mostorod",
+      "country": "EGY",
+      "kind": "refinery",
+      "name": "Mostorod · Каир",
+      "coordinates": [
+        31.29,
+        30.14
+      ],
+      "capacity": 161.0,
+      "year": 2024,
+      "observation": "egypt-eia-2024.txt#page=6/table=3/refinery=Mostorod",
+      "url": "https://www.eia.gov/international/content/analysis/countries_long/Egypt/pdf/Egypt.pdf",
+      "detail": "Проектная мощность из отчёта EIA августа 2024. Не фактический объём переработки; актуальность на 2025/2026 не подтверждена. Точка приблизительно обозначает город/район расположения, не точный адрес."
+    },
+    {
+      "id": "egypt-suez",
+      "country": "EGY",
+      "kind": "refinery",
+      "name": "Suez · Суэц",
+      "coordinates": [
+        32.55,
+        29.96
+      ],
+      "capacity": 60.0,
+      "year": 2024,
+      "observation": "egypt-eia-2024.txt#page=6/table=3/refinery=Suez",
+      "url": "https://www.eia.gov/international/content/analysis/countries_long/Egypt/pdf/Egypt.pdf",
+      "detail": "Проектная мощность из отчёта EIA августа 2024. Не фактический объём переработки; актуальность на 2025/2026 не подтверждена. Точка приблизительно обозначает город/район расположения, не точный адрес."
+    },
+    {
+      "id": "egypt-tanta",
+      "country": "EGY",
+      "kind": "refinery",
+      "name": "Tanta · Танта",
+      "coordinates": [
+        31,
+        30.79
+      ],
+      "capacity": 40.0,
+      "year": 2024,
+      "observation": "egypt-eia-2024.txt#page=6/table=3/refinery=Tanta",
+      "url": "https://www.eia.gov/international/content/analysis/countries_long/Egypt/pdf/Egypt.pdf",
+      "detail": "Проектная мощность из отчёта EIA августа 2024. Не фактический объём переработки; актуальность на 2025/2026 не подтверждена. Точка приблизительно обозначает город/район расположения, не точный адрес."
+    },
+    {
+      "id": "midor",
+      "name": "НПЗ MIDOR · Александрия",
+      "country": "EGY",
+      "kind": "refinery",
+      "coordinates": [
+        29.85,
+        31.02
+      ],
+      "capacity": 160.0,
+      "year": 2025,
+      "observation": "midor-sustainability-2025.txt#printed-pages=15-16/Refining Capacity",
+      "url": "https://www.midor.com.eg/publishing/MIDOR%20Sustainability%20Report%202025.pdf",
+      "detail": "Проектная мощность 160 тыс. баррелей в сутки, отчёт MIDOR 2025. Это не добыча и не фактический объём переработки. Точка приблизительно обозначает район НПЗ у Александрии."
     }
   ],
   "infrastructure": [
@@ -12397,10 +12944,103 @@
         "consumptionLabel": "Бензин для внутреннего рынка",
         "note": "EIA 2025: finished motor gasoline. Выпуск НПЗ и блендеров; product supplied — оценка внутреннего спроса."
       }
+    },
+    "DEU": {
+      "crude": {
+        "unit": "Mt",
+        "production": 1.563854,
+        "consumption": null,
+        "year": 2025,
+        "productionLabel": "Добыча сырой нефти",
+        "consumptionLabel": "Переработка сырой нефти",
+        "note": "BAFA: добыча сырой нефти за 2025 в тоннах; национальная нефтяная отчётность. Объём переработки не подставляется из общего спроса."
+      },
+      "diesel": {
+        "unit": "Mt",
+        "production": 30.800383,
+        "consumption": 33.379368,
+        "year": 2025,
+        "productionLabel": "Выпуск топлива",
+        "consumptionLabel": "Потребление топлива",
+        "note": "BAFA 2025, предварительно: бензин / дизель без отопительного топлива. Потребление — внутренние поставки; полный итог бензина скрыт по правилам конфиденциальности BAFA."
+      },
+      "gasoline": {
+        "unit": "Mt",
+        "production": 19.785513,
+        "consumption": null,
+        "year": 2025,
+        "productionLabel": "Выпуск топлива",
+        "consumptionLabel": "Потребление топлива",
+        "note": "BAFA 2025, предварительно: бензин / дизель без отопительного топлива. Потребление — внутренние поставки; полный итог бензина скрыт по правилам конфиденциальности BAFA."
+      }
+    },
+    "EGY": {
+      "diesel": {
+        "unit": "MtPeriod",
+        "production": 3.93,
+        "consumption": 9.349,
+        "year": 2025,
+        "productionLabel": "Выпуск НПЗ",
+        "consumptionLabel": "Потребление топлива",
+        "note": "JODI: январь–август 2025 (8 месяцев), без пересчёта на год. Бензин включает автомобильный и авиационный; дизель — gas/diesel oil. Для всех нефтепродуктов спрос включает прямое использование нефти/NGL. Код 3: сопоставимость не оценена."
+      },
+      "gasoline": {
+        "unit": "MtPeriod",
+        "production": 2.524,
+        "consumption": 5.663,
+        "year": 2025,
+        "productionLabel": "Выпуск НПЗ",
+        "consumptionLabel": "Потребление топлива",
+        "note": "JODI: январь–август 2025 (8 месяцев), без пересчёта на год. Бензин включает автомобильный и авиационный; дизель — gas/diesel oil. Для всех нефтепродуктов спрос включает прямое использование нефти/NGL. Код 3: сопоставимость не оценена."
+      },
+      "refined": {
+        "unit": "MtPeriod",
+        "production": 16.25,
+        "consumption": 24.838,
+        "year": 2025,
+        "productionLabel": "Выпуск НПЗ",
+        "consumptionLabel": "Потребление топлива",
+        "note": "JODI: январь–август 2025 (8 месяцев), без пересчёта на год. Бензин включает автомобильный и авиационный; дизель — gas/diesel oil. Для всех нефтепродуктов спрос включает прямое использование нефти/NGL. Код 3: сопоставимость не оценена."
+      }
+    },
+    "MDA": {
+      "gasoline": {
+        "unit": "Mt",
+        "production": null,
+        "consumption": 0.21020296,
+        "year": 2025,
+        "productionLabel": "Выпуск топлива",
+        "consumptionLabel": "Потребление топлива",
+        "note": "ANRE 2025: внутреннее потребление бензина / дизельного топлива; данные добычи/выпуска не опубликованы в этой таблице."
+      },
+      "diesel": {
+        "unit": "Mt",
+        "production": null,
+        "consumption": 0.74098645,
+        "year": 2025,
+        "productionLabel": "Выпуск топлива",
+        "consumptionLabel": "Потребление топлива",
+        "note": "ANRE 2025: внутреннее потребление бензина / дизельного топлива; данные добычи/выпуска не опубликованы в этой таблице."
+      }
     }
   },
   "totalObservations": {
+    "EGY:crude:imports": "comtrade-EGY-270900-M-2025.json#data[0]/HS=270900/flow=M/partner=0",
+    "EGY:crude:exports": "comtrade-EGY-270900-X-2025.json#data[0]/HS=270900/flow=X/partner=0",
     "FRA:crude:imports": "france-crude-imports-2025.html#produit-tableau-figure1/row=18/column=2025 (p)",
+    "DEU:diesel:imports": "germany-bafa-2025.txt#page=6/row=Dieselkraftstoff/column=cumulative-2025",
+    "DEU:gasoline:imports": "germany-bafa-2025.txt#page=6/row=Ottokraftstoff/column=cumulative-2025",
+    "DEU:diesel:exports": "germany-bafa-2025.txt#page=7/row=Dieselkraftstoff/column=cumulative-2025",
+    "DEU:gasoline:exports": "germany-bafa-2025.txt#page=7/row=Ottokraftstoff/column=cumulative-2025",
+    "DEU:crude:imports": "germany-destatis-2025.html#press-release=9-March-2026/total-2025",
+    "EGY:diesel:exports": "jodi-EGY-products-2025.csv#period=2025-01/2025-08/GASDIES/TOTEXPSB",
+    "EGY:diesel:imports": "jodi-EGY-products-2025.csv#period=2025-01/2025-08/GASDIES/TOTIMPSB",
+    "EGY:gasoline:exports": "jodi-EGY-products-2025.csv#period=2025-01/2025-08/GASOLINE/TOTEXPSB",
+    "EGY:gasoline:imports": "jodi-EGY-products-2025.csv#period=2025-01/2025-08/GASOLINE/TOTIMPSB",
+    "EGY:refined:exports": "jodi-EGY-products-2025.csv#period=2025-01/2025-08/TOTPRODS/TOTEXPSB",
+    "EGY:refined:imports": "jodi-EGY-products-2025.csv#period=2025-01/2025-08/TOTPRODS/TOTIMPSB",
+    "MDA:gasoline:imports": "moldova-anre-2025.txt#page=8/table=6.1/row=Benzină/column=total_imports",
+    "MDA:diesel:imports": "moldova-anre-2025.txt#page=8/table=6.1/row=Motorină/column=total_imports",
     "USA:crude:exports": "us-crude-exports-2025.html#DataRow=1/year=2025",
     "USA:crude:imports": "us-crude-imports-2025.html#DataRow=1/year=2025",
     "USA:diesel:exports": "us-diesel-exports-2025.html#DataRow=1/year=2025",
@@ -12409,12 +13049,225 @@
     "USA:gasoline:imports": "us-gasoline-imports-2025.html#DataRow=1/year=2025"
   },
   "totalUnits": {
+    "EGY:crude:imports": "Mt",
+    "EGY:crude:exports": "Mt",
     "FRA:crude:imports": "Mt",
+    "DEU:diesel:imports": "Mt",
+    "DEU:gasoline:imports": "Mt",
+    "DEU:diesel:exports": "Mt",
+    "DEU:gasoline:exports": "Mt",
+    "DEU:crude:imports": "Mt",
+    "EGY:diesel:exports": "MtPeriod",
+    "EGY:diesel:imports": "MtPeriod",
+    "EGY:gasoline:exports": "MtPeriod",
+    "EGY:gasoline:imports": "MtPeriod",
+    "EGY:refined:exports": "MtPeriod",
+    "EGY:refined:imports": "MtPeriod",
+    "MDA:gasoline:imports": "Mt",
+    "MDA:diesel:imports": "Mt",
     "USA:crude:exports": "kbpd",
     "USA:crude:imports": "kbpd",
     "USA:diesel:exports": "kbpd",
     "USA:diesel:imports": "kbpd",
     "USA:gasoline:exports": "kbpd",
     "USA:gasoline:imports": "kbpd"
+  },
+  "tradeCoverage": {
+    "EGY:crude:imports": {
+      "total": 2.725804964492,
+      "known": 2.725804964492,
+      "unit": "Mt",
+      "year": 2025,
+      "estimated": true,
+      "rounded": false,
+      "period": null,
+      "source": "national-comtrade-EGY-270900-M-2025",
+      "note": "UN Comtrade, HS 270900: таможенная торговля сырой нефтью."
+    },
+    "EGY:crude:exports": {
+      "total": 2.015946783764,
+      "known": 2.015946783764,
+      "unit": "Mt",
+      "year": 2025,
+      "estimated": true,
+      "rounded": false,
+      "period": null,
+      "source": "national-comtrade-EGY-270900-X-2025",
+      "note": "UN Comtrade, HS 270900: таможенная торговля сырой нефтью."
+    },
+    "DEU:diesel:imports": {
+      "total": 12.455002,
+      "known": 0,
+      "unit": "Mt",
+      "year": 2025,
+      "estimated": false,
+      "rounded": false,
+      "period": null,
+      "source": "national-germany-bafa-2025",
+      "note": "BAFA: национальные итоги, поставщики по этому продукту ещё не распределены."
+    },
+    "DEU:gasoline:imports": {
+      "total": 2.270156,
+      "known": 0,
+      "unit": "Mt",
+      "year": 2025,
+      "estimated": false,
+      "rounded": false,
+      "period": null,
+      "source": "national-germany-bafa-2025",
+      "note": "BAFA: национальные итоги, поставщики по этому продукту ещё не распределены."
+    },
+    "DEU:diesel:exports": {
+      "total": 9.738627,
+      "known": 0,
+      "unit": "Mt",
+      "year": 2025,
+      "estimated": false,
+      "rounded": false,
+      "period": null,
+      "source": "national-germany-bafa-2025",
+      "note": "BAFA: национальные итоги, поставщики по этому продукту ещё не распределены."
+    },
+    "DEU:gasoline:exports": {
+      "total": 4.404105,
+      "known": 0,
+      "unit": "Mt",
+      "year": 2025,
+      "estimated": false,
+      "rounded": false,
+      "period": null,
+      "source": "national-germany-bafa-2025",
+      "note": "BAFA: национальные итоги, поставщики по этому продукту ещё не распределены."
+    },
+    "DEU:crude:imports": {
+      "total": 75.7,
+      "known": 39.843,
+      "unit": "Mt",
+      "year": 2025,
+      "estimated": false,
+      "rounded": true,
+      "period": null,
+      "source": "national-germany-destatis-2025",
+      "note": "Destatis: шесть названных поставщиков, округлённые значения одной редакции от 9 марта 2026; остаток не распределён."
+    },
+    "EGY:diesel:exports": {
+      "total": 0.375,
+      "known": 0,
+      "unit": "MtPeriod",
+      "year": 2025,
+      "estimated": false,
+      "rounded": false,
+      "period": "2025-01/2025-08",
+      "source": "national-jodi-EGY-products-2025",
+      "note": "JODI: только январь–август; сентябрь–декабрь отсутствуют. Поставщики за этот период не раскрыты; годовые стрелки 2025 не складываются с этим итогом. Сопоставимость данных JODI не оценена (код 3)."
+    },
+    "EGY:diesel:imports": {
+      "total": 5.247,
+      "known": 0,
+      "unit": "MtPeriod",
+      "year": 2025,
+      "estimated": false,
+      "rounded": false,
+      "period": "2025-01/2025-08",
+      "source": "national-jodi-EGY-products-2025",
+      "note": "JODI: только январь–август; сентябрь–декабрь отсутствуют. Поставщики за этот период не раскрыты; годовые стрелки 2025 не складываются с этим итогом. Сопоставимость данных JODI не оценена (код 3)."
+    },
+    "EGY:gasoline:exports": {
+      "total": 0.0,
+      "known": 0,
+      "unit": "MtPeriod",
+      "year": 2025,
+      "estimated": false,
+      "rounded": false,
+      "period": "2025-01/2025-08",
+      "source": "national-jodi-EGY-products-2025",
+      "note": "JODI: только январь–август; сентябрь–декабрь отсутствуют. Поставщики за этот период не раскрыты; годовые стрелки 2025 не складываются с этим итогом. Сопоставимость данных JODI не оценена (код 3)."
+    },
+    "EGY:gasoline:imports": {
+      "total": 1.932,
+      "known": 0,
+      "unit": "MtPeriod",
+      "year": 2025,
+      "estimated": false,
+      "rounded": false,
+      "period": "2025-01/2025-08",
+      "source": "national-jodi-EGY-products-2025",
+      "note": "JODI: только январь–август; сентябрь–декабрь отсутствуют. Поставщики за этот период не раскрыты; годовые стрелки 2025 не складываются с этим итогом. Сопоставимость данных JODI не оценена (код 3)."
+    },
+    "EGY:refined:exports": {
+      "total": 1.305,
+      "known": 0,
+      "unit": "MtPeriod",
+      "year": 2025,
+      "estimated": false,
+      "rounded": false,
+      "period": "2025-01/2025-08",
+      "source": "national-jodi-EGY-products-2025",
+      "note": "JODI: только январь–август; сентябрь–декабрь отсутствуют. Поставщики за этот период не раскрыты; годовые стрелки 2025 не складываются с этим итогом. Сопоставимость данных JODI не оценена (код 3)."
+    },
+    "EGY:refined:imports": {
+      "total": 11.895,
+      "known": 0,
+      "unit": "MtPeriod",
+      "year": 2025,
+      "estimated": false,
+      "rounded": false,
+      "period": "2025-01/2025-08",
+      "source": "national-jodi-EGY-products-2025",
+      "note": "JODI: только январь–август; сентябрь–декабрь отсутствуют. Поставщики за этот период не раскрыты; годовые стрелки 2025 не складываются с этим итогом. Сопоставимость данных JODI не оценена (код 3)."
+    },
+    "MDA:gasoline:imports": {
+      "total": 0.21191958,
+      "known": 0.21191958,
+      "unit": "Mt",
+      "year": 2025,
+      "estimated": true,
+      "rounded": false,
+      "period": null,
+      "source": "national-moldova-anre-2025",
+      "note": "Отчёт ANRE: объёмы стран рассчитаны из округлённых долей; нераспределённый остаток показан отдельно."
+    },
+    "MDA:diesel:imports": {
+      "total": 0.7375600600000001,
+      "known": 0.7368224999400002,
+      "unit": "Mt",
+      "year": 2025,
+      "estimated": true,
+      "rounded": false,
+      "period": null,
+      "source": "national-moldova-anre-2025",
+      "note": "Отчёт ANRE: объёмы стран рассчитаны из округлённых долей; нераспределённый остаток показан отдельно."
+    }
+  },
+  "totalYears": {
+    "EGY:crude:imports": 2025,
+    "EGY:crude:exports": 2025,
+    "DEU:diesel:imports": 2025,
+    "DEU:gasoline:imports": 2025,
+    "DEU:diesel:exports": 2025,
+    "DEU:gasoline:exports": 2025,
+    "DEU:crude:imports": 2025,
+    "EGY:diesel:exports": 2025,
+    "EGY:diesel:imports": 2025,
+    "EGY:gasoline:exports": 2025,
+    "EGY:gasoline:imports": 2025,
+    "EGY:refined:exports": 2025,
+    "EGY:refined:imports": 2025,
+    "MDA:gasoline:imports": 2025,
+    "MDA:diesel:imports": 2025
+  },
+  "refining": {
+    "EGY": {
+      "capacity": 763.0,
+      "year": 2024,
+      "count": 8,
+      "source": "national-egypt-eia-2024",
+      "midor": {
+        "capacity": 160.0,
+        "year": 2025,
+        "label": "НПЗ MIDOR",
+        "source": "national-midor-sustainability-2025"
+      }
+    }
   }
 }

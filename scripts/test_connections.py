@@ -25,9 +25,15 @@ class GraphChecks(unittest.TestCase):
  def test_domestic_fuel_and_subnational_boundaries(self):
   self.assertAlmostEqual(G['domestic']['USA']['gasoline']['consumption'],3261180/365)
   self.assertAlmostEqual(G['states']['Texas']['crude'],2102613/365)
-  self.assertEqual(len(G['sites']),6 if G['canary'] else 16)
+  self.assertEqual(len([s for s in G['sites'] if s['country']!='EGY']),16)
+  self.assertEqual(len([s for s in G['sites'] if s['country']=='EGY' and s['kind']=='refinery']),8)
+  self.assertEqual(next(s['capacity'] for s in G['sites'] if s['id']=='midor'),160)
  def test_graph_integrity_and_years(self):
-  self.assertEqual(len(G['flows']),55 if G['canary'] else 706)
+  self.assertEqual(len(G['flows']),732)
+  self.assertEqual(len([f for f in G['flows'] if f['owner']=='DEU']),6)
+  self.assertAlmostEqual(G['tradeCoverage']['DEU:crude:imports']['known'],39.843)
+  self.assertEqual(G['domestic']['EGY']['diesel']['unit'],'MtPeriod')
+  self.assertEqual(G['tradeCoverage']['EGY:diesel:imports']['total'],5.247)
   self.assertEqual(len({f['id'] for f in G['flows']}),len(G['flows']))
   for f in G['flows']:
    self.assertGreater(f['value'],0);self.assertIn(f['origin'],G['nodes']);self.assertIn(f['destination'],G['nodes'])

@@ -6,7 +6,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs');
  await page.goto(base+'/#v=2&country=USA&product=crude&mode=trade&direction=imports');await page.waitForFunction(()=>window.oilAtlas);
  async function clearCountry(){
   const boxes=await page.evaluate(()=>{const c=document.querySelector('#country-card').getBoundingClientRect();return {card:[c.left,c.top,c.right,c.bottom],country:oilAtlas.getSelectedBounds(),visible:getComputedStyle(document.querySelector('#country-card')).visibility!=='hidden',side:document.querySelector('#country-card').dataset.side,view:oilAtlas.getView(),count:oilAtlas.graph.flows.length};});
-  const [a,b]=[boxes.card,boxes.country];const overlap=Math.max(0,Math.min(a[2],b[2])-Math.max(a[0],b[0]))*Math.max(0,Math.min(a[3],b[3])-Math.max(a[1],b[1]));if(boxes.visible)assert.equal(overlap,0,JSON.stringify(boxes));assert.equal(boxes.count,706);return boxes;
+  const [a,b]=[boxes.card,boxes.country];const overlap=Math.max(0,Math.min(a[2],b[2])-Math.max(a[0],b[0]))*Math.max(0,Math.min(a[3],b[3])-Math.max(a[1],b[1]));if(boxes.visible)assert.equal(overlap,0,JSON.stringify(boxes));assert.equal(boxes.count,+(process.env.EXPECT_FLOWS||706));return boxes;
  }
  let info=await clearCountry();assert.equal(info.side,'right');assert.deepEqual(info.view.translate,[720,450]);
  assert.equal(await page.locator('#map-settings').isVisible(),false);assert.equal(await page.locator('.search').isVisible(),false);assert.equal(await page.locator('.map-caption').isVisible(),false);
