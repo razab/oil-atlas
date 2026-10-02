@@ -9,6 +9,8 @@ const fs = require('node:fs');
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
  await page.goto(base);await page.waitForFunction(()=>window.oilAtlas,{timeout:30000});
  const snapshot=await page.evaluate(()=>window.oilAtlas.data);assert.equal(snapshot.snapshot,'2025');
+ if(process.env.EXPECT_COUNTRIES)assert.equal(snapshot.countries.length,Number(process.env.EXPECT_COUNTRIES),'Published country boundary');
+ if(process.env.EXPECT_CANARY)assert.equal(snapshot.canary,process.env.EXPECT_CANARY==='1','Published stage boundary');
  const byCode=Object.fromEntries(snapshot.countries.map(c=>[c.iso,c]));
  assert.ok(byCode.SAU.balance>0);assert.ok(byCode.CHN.balance<0);assert.equal(byCode.LUX.production,0);assert.equal(byCode.JPN.reserves,null);
  assert.equal(await page.locator('#country-details .country-name').innerText(),'Саудовская Аравия');
